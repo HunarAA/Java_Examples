@@ -1,0 +1,83 @@
+public class Variables {
+    public static void main(String[] args) {
+        // examples of Java variables
+        int age = 18;     // valid and good practice
+        int AGE = 20;     // valid and good practice
+        int myAge = 22;   // valid and good practice
+        int my_age = 21;  // valid and good practice
+        int _age = 25;    // valid but bad practice
+        int $age = 32;    // valid but bad practice
+        int 1age = 19;    // invalid variable
+        int my age = 23;  // invalid variable
+
+        byte itemQuantity = 5;
+        byte batteryLevel = 85;
+        short numOfSmartphones = 350;
+        short numOfTablets = 125;
+        int userAge = 28;
+        int accountNumber = 123456;
+        int x = 5;
+        int y = 6;
+        System.out.println(x + y);
+
+        int myNum = 15;
+        myNum = 20;
+        System.out.println(myNum);
+
+        int x1 = 12, y1 = 15, z1 = 17;
+        System.out.println(x1 + y1 + z1);
+
+        int x2, y2, z2;
+        x2 = y2 = z2 = 35;
+        System.out.println(x2 + y2 + z2);
+
+        int totalStudents = 30;  // Number of students in the course
+        System.out.println("Total number of students: " + totalStudents);
+
+        long creditCardNumber = 1234_5678_9012_3456L;
+        long worldPopulation = 7_900_000_000L;
+        long population = 1393409038L;  // Population of India (in billions)
+        System.out.println("Population of India: " + population);
+
+        double accountBalance = 5000.50;
+        double personHeight = 1.75;
+        float temperatureCelsius = 37.5f;
+        double averageScore = 85.7;  // Average score of the student
+        System.out.println("Student's average score: " + averageScore);
+
+        float itemPrice = 19.99f;  // Price of the item
+        float totalPrice = itemPrice * 1.1f;  // Total price with tax (10%)
+        System.out.println("Total price with tax: " + totalPrice);
+
+        boolean isLoggedIn = true;  // Status of user login
+        boolean isActiveAccount = true;
+        boolean isSubscribed = true;
+
+        char initialLetter = 'J';
+        char grade = 'A';  // Student's grade
+        System.out.println("Student's grade: " + grade);
+
+        String userEmail = "alice.johnson@example.com";
+        String studentName = "John Doe";  // Student's name
+        System.out.println("Student's name: " + studentName);
+        String myString = "Java Programming Language";
+
+        double TAX_RATE = 0.08;  // Constant tax rate of 8%
+        double price = 100.0;
+        double tax = price * TAX_RATE;
+        double total = price + tax;
+        System.out.println("Total price with tax: " + total);
+
+        // approximate light speed in miles per second
+        int lightSpeed = 186000;
+        long days = 1000;
+        long seconds;
+        long distance;
+        seconds = days * 24 * 60 * 60; // convert to seconds
+        distance = lightSpeed * seconds; // compute distance
+        System.out.println("In " + days);
+        System.out.println(" days light will travel about ");
+        System.out.println(distance + " miles");
+
+    }
+}
