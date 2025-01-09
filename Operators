@@ -1,0 +1,76 @@
+public class operators {
+    public static void main(String[] args) {
+    // TODO: increment and decrement examples
+        // example_1
+        int count = 5;
+        System.out.println("Initial count: " + count);
+        count++;
+        System.out.println("After increment: " + count);
+        // example_2
+        int value = 20;
+        int result = value--;
+        System.out.println("Value after decrement: " + value);
+        System.out.println("Result: " + result);
+    // TODO: assignment operator examples
+        int a = 10;
+        int b = a;
+        System.out.println("a = " + a + ", b = " + b);
+        b += a;
+        System.out.println("a = " + a + ", b = " + b);
+        b -= a;
+        System.out.println("a = " + a + ", b = " + b);
+        b *= a;
+        System.out.println("a = " + a + ", b = " + b);
+        b /= a;
+        System.out.println("a = " + a + ", b = " + b);
+        b %= a;
+        System.out.println("a = " + a + ", b = " + b);
+    // TODO: comparison examples
+        // example_1
+        int ageJohn = 25;
+        int ageAnna = 30;
+        System.out.println("ageJohn == ageAnna: " + (ageJohn == ageAnna));
+        // example_2
+        int scorePlayer1 = 50;
+        int scorePlayer2 = 45;
+        System.out.println("scorePlayer1 != scorePlayer2: " + (scorePlayer1 != scorePlayer2));
+        // example_3
+        double heightBuilding1 = 150.5;
+        double heightBuilding2 = 120.3;
+        System.out.println("heightBuilding1 > heightBuilding2: " + (heightBuilding1 > heightBuilding2));
+        // example_4
+        int speedCar = 120;
+        int speedLimit = 100;
+        System.out.println("speedCar < speedLimit: " + (speedCar < speedLimit));
+        // example_5
+        int pointsPlayer = 90;
+        int pointsRequired = 90;
+        System.out.println("pointsPlayer >= pointsRequired: " + (pointsPlayer >= pointsRequired));
+        // example_6
+        int temperatureToday = 25;
+        int temperatureYesterday = 30;
+        System.out.println("temperatureToday <= temperatureYesterday: " + (temperatureToday <= temperatureYesterday));
+    // TODO: logical examples
+        // example_1
+        boolean isAccountActive = true;
+        boolean hasSufficientBalance = true;
+        System.out.println("Can make a purchase: " + (isAccountActive && hasSufficientBalance));
+        // example_2
+        boolean hasMembershipCard = false;
+        boolean hasDiscountCoupon = true;
+        System.out.println("Eligible for discount: " + (hasMembershipCard || hasDiscountCoupon));
+        // example_3
+        boolean isServerDown = false;
+        System.out.println("Can access website: " + !isServerDown);
+        // example_4
+        boolean isSunny = false;
+        boolean hasUmbrella = true;
+        boolean wantsToGoOutside = true;
+        System.out.println("Can go outside: " + ((isSunny || hasUmbrella) && wantsToGoOutside));
+        // example_5
+        boolean hasJobOffer = true;
+        boolean isQualified = false;
+        boolean isWillingToLearn = true;
+        System.out.println("Can get the job: " + (hasJobOffer && (isQualified || isWillingToLearn)));
+    }
+}
