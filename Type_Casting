@@ -1,0 +1,44 @@
+public class type_casting {
+    public static void main(String[] args) {
+    // TODO: Implicit (widening) casting
+        // example_1
+        int num = 100;
+        long bigNum = num;
+        float decimal = num;
+        System.out.println("Original num: " + num);
+        System.out.println("Big num: " + bigNum);
+        System.out.println("Decimal num: " + decimal);
+        // example_2
+        int intVal = 130;
+        byte byteVal = (byte) intVal;
+        System.out.println("int Value: " + intVal);
+        // example_3
+        char char_value = 'A';
+        int int_val = char_value;
+        System.out.println("char Value: " + char_value);
+        System.out.println("int Value (ASCII value): " + int_val);
+
+    // TODO: Explicit (narrowing) casting
+        // example_1
+        double doubleValue = 9.7;
+        int intValue = (int) doubleValue;
+        System.out.println("double Value: " + doubleValue);
+        System.out.println("int Value: " + intValue);
+        // example_2
+        double dollarAmount = 9.99;
+        int cents = (int) (dollarAmount * 100);
+        System.out.println("Dollar Amount: $" + dollarAmount);
+        System.out.println("Cents: " + cents);
+        // example_2
+        int age1 = 25;
+        int age2 = 30;
+        int age3 = 35;
+        double averageAge = (double) (age1 + age2 + age3) / 3;
+        System.out.println("Average Age: " + averageAge);
+        // example_3
+        double accountBalance = 98765.43;
+        int roundedBalance = (int) accountBalance;
+        System.out.println("Account Balance: $" + accountBalance);
+        System.out.println("Rounded Balance: $" + roundedBalance);
+    }
+}
