@@ -1,0 +1,168 @@
+import java.util.Scanner;
+public class if_else {
+    public static void main(String[] arguments){
+        Scanner scanner = new Scanner(System.in);
+    // if statement examples
+        // TODO: write a program to check if a number is odd or even
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+
+        if (number % 2 == 0) {
+            System.out.println(number + " is even.");
+        } else {
+            System.out.println(number + " is odd.");
+        }
+
+
+        // TODO: if a person is eligible to vote based on their age
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        if (age >= 18) {
+            System.out.println("You are eligible to vote.");
+        } else {
+            System.out.println("You are not eligible to vote.");
+        }
+
+
+        // TODO: Check if a number is positive, negative, or zero
+        System.out.print("Enter a number: ");
+        int theNumber = scanner.nextInt();
+
+        if (theNumber > 0) {
+            System.out.println("The number is positive.");
+        } else if (theNumber < 0) {
+            System.out.println("The number is negative.");
+        } else {
+            System.out.println("The number is zero.");
+        }
+
+
+        // TODO: Find the maximum of three numbers using if
+        System.out.print("Enter the first number: ");
+        int num1 = scanner.nextInt();
+        System.out.print("Enter the second number: ");
+        int num2 = scanner.nextInt();
+        System.out.print("Enter the third number: ");
+        int num3 = scanner.nextInt();
+
+        if (num1 > num2 && num1>num3) {
+            System.out.println("The maximum number is: " + num1);
+        } else if (num2 > num1 && num2 > num3) {
+            System.out.println("The maximum number is: " + num2);
+        } else {
+            System.out.println("The maximum number is: " + num3);
+        }
+
+
+        /* TODO: This program simulates basic ATM operations, allowing users
+            to either add money to their account or withdraw money.
+            It includes necessary checks for withdrawal limits,
+            account balance, and deposit amounts.
+         */
+        double accountBalance = 500.0;
+        String message = "";
+
+        System.out.println("Welcome to ATM! Your balance is $" + accountBalance);
+
+        System.out.println("Enter 1 to add money or 2 to withdraw money:");
+        int choice = scanner.nextInt();
+
+        if (choice == 1) {
+            System.out.print("Enter the amount to add: ");
+            double depositAmount = scanner.nextDouble();
+            if (depositAmount > 0) {
+                accountBalance += depositAmount;
+                message = "You added $" + depositAmount +
+                        ". Your new balance is $" + accountBalance + ".";
+            } else {
+                message = "Failed! Deposit amount must be greater than $0.";
+            }
+        } else if (choice == 2) {
+            System.out.print("Enter the amount to withdraw: ");
+            int withdrawalAmount = scanner.nextInt();
+            if (withdrawalAmount >= 10) {
+                if (withdrawalAmount <= accountBalance) {
+                    accountBalance -= withdrawalAmount;
+                    message = "You withdrew $" + withdrawalAmount +
+                            ". Your balance is $" + accountBalance + ".";
+                } else {
+                    message = "Failed! Insufficient amount. Current balance: $" + accountBalance + ".";
+                }
+            } else {
+                message = "Transaction failed! Minimum withdrawal amount is $10.";
+            }
+        } else {
+            message = "Invalid choice! Please select either 1 or 2.";
+        }
+        System.out.println(message);
+
+
+
+        /* TODO: This program calculates discounts, loyalty points, and
+            the final price based on the total amount spent.
+            It applies a percentage discount, adds tax, and displays
+            the final amount after deductions.
+         */
+        int loyaltyPoints = 0;
+        double discount = 0;
+
+        System.out.print("Enter the total amount spent: $");
+        double amountSpent = scanner.nextDouble();
+
+        if (amountSpent >= 100) {
+            discount = 0.20; // 20% discount
+        } else if (amountSpent >= 50) {
+            discount = 0.10; // 10% discount
+        } else if (amountSpent >= 20) {
+            discount = 0.05; // 5% discount
+        }
+
+        loyaltyPoints = (int) (amountSpent / 10); // 1 point for every $10
+
+        // Calculate final amount after applying discount
+        double discountedAmount = amountSpent - (amountSpent * discount);
+
+        // Apply tax (8% for example)
+        double tax = discountedAmount * 0.08;
+        double finalAmount = discountedAmount + tax;
+
+        System.out.println("Original Amount: $" + amountSpent);
+        if (discount > 0) {
+            System.out.println("You qualify for a " + (discount * 100) + "% discount!");
+            System.out.println("Discounted Amount: $" + discountedAmount);
+        } else {
+            System.out.println("No discount available for this amount.");
+        }
+        System.out.println("Loyalty Points Earned: " + loyaltyPoints + " points");
+        System.out.println("Tax (8%): $" + tax);
+        System.out.println("Total amount to pay after discount and tax: $" + finalAmount);
+
+
+
+
+
+        // TODO: check if a number is odd or even using shorthand if
+        System.out.print("Enter a number: ");
+        int num = scanner.nextInt();
+        String res = (num % 2 == 0) ? "The number is even" :
+                "The number is odd";
+        System.out.println(res);
+
+        // TODO: find large number between two numbers using shorthand if
+        int num_1 = 45;
+        int num_2 = 30;
+        int largerNumber = (num_1 > num_2) ? num_1 : num_2;
+        System.out.println("Larger number: " + largerNumber);
+
+        // TODO: multi condition using shorthand if
+        int score = 85;
+        String grade =  (score >= 90) ? "A" :
+                        (score >= 75) ? "B" :
+                        (score >= 60) ? "C" :
+                                "D";
+        System.out.println("Grade: " + grade);
+
+
+        scanner.close();
+    }
+}
