@@ -1,0 +1,150 @@
+import java.util.Scanner;
+public class switch_case {
+    public static void main(String[] args){
+        Scanner scanner = new Scanner(System.in);
+    /* TODO: The program takes a membership level as input and displays
+             the benefits associated with that membership.
+        */
+        System.out.print("Enter your membership level (1 for Basic, 2 for Silver, 3 for Gold, 4 for Platinum): ");
+        int membershipLevel = scanner.nextInt();
+        String benefits;
+
+        switch (membershipLevel) {
+            case 1:
+                benefits = "Basic Membership: Access to standard content, 5% discount on products.";
+                break;
+            case 2:
+                benefits = "Silver Membership: Access to premium content, 10% discount on products, Early access to sales.";
+                break;
+            case 3:
+                benefits = "Gold Membership: Access to all content, 15% discount on products, Early access to sales, Priority support.";
+                break;
+            case 4:
+                benefits = "Platinum Membership: Access to exclusive content, 20% discount on products, Early access to sales, Priority support, Free shipping.";
+                break;
+            default:
+                benefits = "Invalid membership level entered!";
+                System.out.println(benefits);
+                return;
+        }
+        System.out.println(benefits);
+
+        /* TODO: In this program, the user will input a color name, and
+            the program will display the corresponding hex code for that color.
+         */
+        System.out.print("Enter a color name (e.g., Red, Green, Blue): ");
+        String color = scanner.nextLine();
+        String hexCode;
+
+        switch (color) {
+            case "red":
+                hexCode = "#FF0000";
+                break;
+            case "green":
+                hexCode = "#00FF00";
+                break;
+            case "blue":
+                hexCode = "#0000FF";
+                break;
+            case "yellow":
+                hexCode = "#FFFF00";
+                break;
+            case "black":
+                hexCode = "#000000";
+                break;
+            case "white":
+                hexCode = "#FFFFFF";
+                break;
+            case "purple":
+                hexCode = "#800080";
+                break;
+            default:
+                hexCode = "Invalid color entered. Please enter a valid color name.";
+        }
+        System.out.println("Hex Code: " + hexCode);
+
+        /* TODO: A program to calculate the result of a basic arithmetic
+            operation (addition, subtraction, multiplication, or division)
+            based on the operator input
+         */
+        System.out.print("Enter the first number: ");
+        double num1 = scanner.nextDouble();
+        System.out.print("Enter the operator (+, *, /): ");
+        char operator = scanner.next().charAt(0);
+        System.out.print("Enter the second number: ");
+        double num2 = scanner.nextDouble();
+        double result = 0.0;
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '*':
+                if (num1 == 0 || num2 == 0) {
+                    System.out.println("Multiply by zero, always results in zero");
+                    return;
+                } else {
+                    result = num1 * num2;
+                }
+                break;
+            case '/':
+                if (num2 != 0) {
+                    result = num1 / num2;
+                } else {
+                    System.out.println("Error: Division by zero.");
+                    return;
+                }
+                break;
+            default:
+                System.out.println("Invalid operator.");
+                return;
+        }
+        System.out.println(num1 + " " + operator + " " + num2 + " = " + result);
+
+
+        // TODO: using multiple labels
+        int num = 2;
+        switch (num) {
+            case 1, 2, 3:
+                System.out.println("Low number");
+                break;
+            case 4, 5, 6:
+                System.out.println("Medium number");
+                break;
+            default:
+                System.out.println("High number");
+        }
+
+        // TODO: using "switch expression"
+        char letter = 'e';
+        String letter_result;
+        switch (letter) {
+            case 'a', 'e', 'i', 'o', 'u' -> letter_result = "Vowel";
+            default -> letter_result = "Consonant";
+        }
+        System.out.println(letter_result);
+
+
+
+        int role = 2;  // role can be 1 (Admin), 2 (Moderator), or 3 (User)
+        String accessLevel;
+
+        accessLevel = switch (role) {
+            case 1, 2 -> "Elevated privileges";
+            case 3 -> "Basic access";
+            default -> "Invalid role";
+        };
+        System.out.println(accessLevel);
+
+
+
+        String productName = "laptop";
+        String category;
+
+        switch (productName) {
+            case "laptop", "smartphone", "tablet" -> category = "Electronics";
+            case "shirt", "pants", "jacket" -> category = "Clothing";
+            default -> category = "Unknown Category";
+        }
+        System.out.println(category);
+    }
+}
