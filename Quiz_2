@@ -1,0 +1,83 @@
+import java.util.Scanner;
+public class Quiz_2 {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        /* TODO: Write a Java program to get a mark from user using java input then calculate the grade based on below instructions.
+            • 90-100: Grade A
+            • 80-89: Grade B
+            • 70-79: Grade C
+            • 60-69: Grade D
+            • Below 60: Grade F
+            Be aware to:
+                1-	Warn the user if the input mark is less than 0 or greater than 100.
+                2-	Give 5% adjustment to the mark but be aware to not exceed 100.
+                3-	Use nested if else
+         */
+        System.out.print("Enter your mark (0-100): ");
+        int marks = scanner.nextInt();
+        if (marks < 0 || marks > 100) {
+            System.out.println("Error: Marks should be between 0 and 100.");
+        } else {
+            double curvePercentage = 0.05;
+            double adjustedMarks = marks + (marks * curvePercentage);
+            if (adjustedMarks > 100) {
+                adjustedMarks = 100;
+            }
+            if (adjustedMarks >= 90) {
+                System.out.println("Mark = " + marks + "\nAdjusted mark = " + adjustedMarks + "\ngrade is A");
+            } else if (adjustedMarks >= 80) {
+                System.out.println("Mark = " + marks + "\nAdjusted mark = " + adjustedMarks + "\ngrade is B");
+            } else if (adjustedMarks >= 70) {
+                System.out.println("Mark = " + marks + "\nAdjusted mark = " + adjustedMarks + "\ngrade is C");
+            } else if (adjustedMarks >= 60) {
+                System.out.println("Mark = " + marks + "\nAdjusted mark = " + adjustedMarks + "\ngrade is D");
+            } else {
+                System.out.println("Mark = " + marks + "\nAdjusted mark = " + adjustedMarks + "\ngrade is F");
+            }
+        }
+
+        /* TODO: Write a Java program that allows the user to choose one of the following conversions:
+            1.Miles (ml) to Kilometers (km) - (divide by 0.621371)
+            2.Pounds (lbs) to Kilograms (kg) - (multiply by 0.453592)
+            3.Feet (ft) to Meters (m) - (multiply by 0.3048)
+            4.Gallons (gal) to Liters (L) - (multiply by 3.78541)
+            After choosing the conversion, the user will input the value, and the program will display
+            the converted result.
+            Be aware to:
+                1-	Warn the user if entered a wrong choice.
+                2-	Use switch case
+         */
+        System.out.print("Choose conversion (1. Ml to Km 2. lbs to Kg 3. ft to m 4. gal to L): ");
+        int choice = scanner.nextInt();
+
+        switch (choice) {
+            case 1:
+                System.out.print("Enter distance in miles: ");
+                double miles = scanner.nextDouble();
+                System.out.println(miles + " Ml = " + miles / 0.621371 + " Km.");
+                break;
+
+            case 2:
+                System.out.print("Enter weight in pounds: ");
+                double pounds = scanner.nextDouble();
+                System.out.println(pounds + " lbs = " + pounds * 0.453592 + " Kg.");
+                break;
+
+            case 3:
+                System.out.print("Enter length in feet: ");
+                double feet = scanner.nextDouble();
+                System.out.println(feet + " ft = " + feet * 0.3048 + " m.");
+                break;
+            case 4:
+                System.out.print("Enter volume in gallons: ");
+                double gallons = scanner.nextDouble();
+                System.out.println(gallons + " gal = " + gallons * 3.78541 + " L.");
+                break;
+
+            default:
+                System.out.println("Invalid choice.");
+        }
+    }
+}
