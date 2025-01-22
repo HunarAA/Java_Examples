@@ -1,0 +1,274 @@
+import java.util.Scanner;
+public class forLoop {
+    public static void main(String[] args){
+//        // TODO: 1-Simple loop to print numbers from 1 to 5
+        for(int i = 1; i <= 5; i++) {
+            System.out.println("Welcome to java programming");
+            System.out.println(i);
+        }
+//        /* ------------------------------------------------------- */
+//        // TODO: 2-Loop to print numbers in reverse order from 5 to 1
+        for (int i = 5; i >= 1; i--) {
+            System.out.println(i);
+        }
+//        /* ------------------------------------------------------- */
+//        // TODO: 3-Loop to print even numbers from 2 to 10
+        for (int i = 2; i <= 10; i++) {
+            if (i % 2 == 0) {
+                System.out.println(i);
+            }
+        }
+//        /* ------------------------------------------------------- */
+//        // TODO: 4-Loop to print numbers from 1 to 10, skipping multiples of 3
+        for (int i = 1; i <= 10; i++) {
+            if (i % 3 != 0) {
+                System.out.println(i);
+            }
+        }
+//        /* ------------------------------------------------------- */
+          /* TODO: 5-Loop to calculate the sum of numbers from 1 to 100
+              (skip multiples of 5)
+          */
+        int sum = 0;
+        for (int i = 1; i <= 100; i++) {
+            if (i % 5 != 0) {
+                sum += i;
+            }
+        }
+        System.out.println("Sum: " + sum);
+//        /* ------------------------------------------------------- */
+            /* TODO: 6-Write a program in Java to input 5 numbers from the
+                keyboard and find their sum and average
+            */
+        float kk,n=0,s=0;
+        double avg;
+        System.out.println("Input the 5 numbers : ");
+        Scanner in = new Scanner(System.in);
+        for (kk=0; kk<5; kk++)
+        {
+            n = in.nextInt();
+            s +=n;
+        }
+        avg=s/5;
+        System.out.println("The sum of 5 no is : " +s+"\nThe Average is : " +avg);
+//        /* ------------------------------------------------------- */
+//        // TODO: 7-Loop to calculate the factorial of a number
+        // example 5! = 5×4×3×2×1 = 120
+        int nn = 5;
+        int factorial = 1;
+        for (int j = 1; j <= nn; j++) {
+            factorial *= j;
+        }
+        System.out.println("Factorial of " + nn + ": " + factorial);
+//        /* ------------------------------------------------------- */
+//        // TODO: 8-Loop to print the Fibonacci series (each number is the sum of the two preceding ones)
+        int nf = 8;
+        int a = 0, b = 1;
+        System.out.print("Fibonacci Series: ");
+        for (int x = 1; x <= nf; x++) {
+            System.out.print(a + " ");
+            int sum1 = a + b;
+            a = b;
+            b = sum1;
+        }
+//        /* ------------------------------------------------------- */
+//        /* TODO: 9-Loop to find and print prime numbers
+//        (only divisible by itself and one) between 1 and 20 */
+        for (int i = 2; i <= 20; i++) {
+            boolean isPrime = true;
+            for (int j = 2; j < i; j++) {
+                if (i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                System.out.println(i);
+            }
+        }
+//        /* ------------------------------------------------------- */
+//        // TODO: 10-Nested loop to create a pattern
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+//        /* ------------------------------------------------------- */
+//        // TODO: 11-Loop to print a pyramid pattern
+        int n3 = 4;
+        for (int i = 1; i <= n3; i++) {
+            for (int j = 1; j <= n3 - i; j++) {
+                System.out.print("  ");
+            }
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+//        /* ------------------------------------------------------- */
+//        // TODO: 12-Loop to print a square pattern
+        int size = 5;
+        for (int i = 1; i <= size; i++) {
+            for (int j = 1; j <= size; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+//        /* ------------------------------------------------------- */
+//        // TODO: 13-Loop to print numbers in a triangular pattern
+        int rows = 5;
+        int count = 1;
+        for (int i = 1; i <= rows; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(count++ + " ");
+            }
+            System.out.println();
+        }
+//        /* ------------------------------------------------------- */
+//        // TODO: 14-Loop to find and print the sum of even numbers in a given range
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the start of the range: ");
+        int start = scanner.nextInt();
+
+        System.out.print("Enter the end of the range: ");
+        int end = scanner.nextInt();
+
+        int sum3 = 0;
+        for (int i = start; i <= end; i++) {
+            if (i % 2 == 0) {
+                sum3 += i;
+            }
+        }
+        System.out.println("Sum of even numbers in the range " + start + " to " + end + ": " + sum3);
+//        /* ------------------------------------------------------- */
+//        // TODO: 15-Loop to calculate and print the factorial of a number entered by the user
+        System.out.print("Enter a number: ");
+        int n2 = scanner.nextInt();
+
+        int factorial2 = 1;
+        for (int i = 1; i <= n2; i++) {
+            factorial2 *= i;
+        }
+        System.out.println("Factorial of " + n2 + ": " + factorial2);
+        scanner.close();
+        /* ------------------------------------------------------- */
+        // TODO: 16-Salary Calculation System for Multiple Employees
+
+        System.out.print("Enter the number of products in the inventory: ");
+        int numberOfProducts = scanner.nextInt();
+        scanner.nextLine();
+
+        double totalInventoryValue = 0;
+
+        for (int i = 1; i <= numberOfProducts; i++) {
+            System.out.println("\nProduct #" + i);
+
+            System.out.print("Enter product name: ");
+            String productName = scanner.nextLine();
+
+            System.out.print("Enter product price: ");
+            double productPrice = scanner.nextDouble();
+
+            System.out.print("Enter quantity in stock: ");
+            int productQuantity = scanner.nextInt();
+            scanner.nextLine();
+
+            double productValue = productPrice * productQuantity;
+
+            totalInventoryValue += productValue;
+
+            System.out.println("Product Name: " + productName);
+            System.out.println("Price per Unit: $" + productPrice);
+            System.out.println("Quantity in Stock: " + productQuantity);
+            System.out.println("Total Value of Product: $" + productValue);
+        }
+
+        System.out.println("\nTotal Value of Inventory: $" + totalInventoryValue);
+        /* ------------------------------------------------------- */
+        // TODO: 17-Salary Calculation System for Multiple Employees
+        System.out.print("Enter the number of employees: ");
+        int numberOfEmployees = scanner.nextInt();
+
+        for (int i = 1; i <= numberOfEmployees; i++) {
+            System.out.println("\nEmployee #" + i);
+
+            System.out.print("Enter the number of hours worked: ");
+            double hoursWorked = scanner.nextDouble();
+
+            System.out.print("Enter the hourly rate ($): ");
+            double hourlyRate = scanner.nextDouble();
+
+            // Calculate gross salary
+            double grossSalary = hoursWorked * hourlyRate;
+
+            // Deduct tax (10%) and insurance ($50)
+            double taxDeduction = grossSalary * 0.10;  // 10% tax
+            double insuranceDeduction = 50;  // Flat $50 for insurance
+
+            double netSalary = grossSalary - taxDeduction - insuranceDeduction;
+
+            System.out.println("Gross Salary: $" + grossSalary);
+            System.out.println("Tax Deduction (10%): -$" + taxDeduction);
+            System.out.println("Insurance Deduction: -$" + insuranceDeduction);
+            System.out.println("Net Salary: $" + netSalary);
+        }
+        /* ------------------------------------------------------- */
+        // TODO: 18-student grading system
+        System.out.print("Enter the number of subjects: ");
+        int numSubjects = scanner.nextInt();
+
+        double totalMarks = 0.0;
+        double totalWeight = 0.0;
+
+        for (int i = 1; i <= numSubjects; i++) {
+            System.out.print("Enter the weight for subject " + i + ": ");
+            double weight = scanner.nextDouble(); // Get weight for the current subject
+            System.out.print("Enter the marks for subject " + i + ": ");
+            double marks = scanner.nextDouble(); // Get marks for the current subject
+
+            // Add weighted marks to the total
+            totalMarks += marks * weight;
+            totalWeight += weight;
+        }
+
+        // Calculate weighted average
+        double weightedAverage = totalMarks / totalWeight;
+
+        String grade;
+        if (weightedAverage >= 90) {
+            grade = "A";
+        } else if (weightedAverage >= 80) {
+            grade = "B";
+        } else if (weightedAverage >= 70) {
+            grade = "C";
+        } else if (weightedAverage >= 60) {
+            grade = "D";
+        } else {
+            grade = "F";
+        }
+
+        System.out.println("\nTotal Weighted Marks: "+ totalMarks);
+        System.out.println("Total Weight: "+ totalWeight);
+        System.out.println("Weighted Average: "+ weightedAverage);
+        System.out.println("Final Grade: " + grade);
+
+//         TODO:-----------------break and continue--------------------
+        int userInput;
+        while (true) {
+            System.out.print("Enter a positive number (or -1 to exit): ");
+            userInput = scanner.nextInt();
+            if (userInput == -1) {
+                System.out.println("Exiting the program.");
+                break;
+            }
+            if (userInput <= 0) {
+                System.out.println("Invalid input. Please enter a positive number.");
+                continue;
+            }
+            System.out.println("Valid input received: " + userInput);
+        }
+        scanner.close();
+    }
+}
