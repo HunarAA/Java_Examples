@@ -1,0 +1,79 @@
+import java.util.Scanner;
+public class Quiz_1 {
+    public static void main(String[] args) {
+        /* TODO: Write a Java program that calculates the total
+            cost for two items. Prompt the user to enter the price
+            and quantity for each item, calculate the total for
+            each item. Then calculate the total amount,
+            apply the 10% discount, round the total amount down to
+            the nearest whole number, and display a detailed cost
+            breakdown.
+        */
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter price for item 1: ");
+        double item1Price = scanner.nextDouble();
+
+        System.out.print("Enter price for item 2: ");
+        double item2Price = scanner.nextDouble();
+
+        System.out.print("Enter quantity for item 1: ");
+        int item1Quantity = scanner.nextInt();
+
+        System.out.print("Enter quantity for item 2: ");
+        int item2Quantity = scanner.nextInt();
+
+        double totalItem1Cost = item1Price * item1Quantity;
+        double totalItem2Cost = item2Price * item2Quantity;
+
+        double discountRate = 0.10;
+        double totalAmountBeforeDiscount = totalItem1Cost + totalItem2Cost;
+        double discountAmount = totalAmountBeforeDiscount * discountRate;
+        int totalAmountAfterDiscount = (int) (totalAmountBeforeDiscount - discountAmount);
+        System.out.println("Item 1: " + item1Quantity + " x $" + item1Price + " = $" + totalItem1Cost);
+        System.out.println("Item 2: " + item2Quantity + " x $" + item2Price + " = $" + totalItem2Cost);
+        System.out.println("Total before discount: $" + totalAmountBeforeDiscount);
+        System.out.println("Total after discount (integer): $" + totalAmountAfterDiscount);
+
+
+        /* TODO: Write a Java program that calculates the profit 
+            for two items. Prompt the user to enter the purchase 
+            price, selling price, and quantity for each item. 
+            Then, calculate the profit per item. After that, 
+            calculate the total profit per item. 
+            Finally, calculate the total profit for 
+            both items combined and display a detailed profit 
+            breakdown for each item, along with the overall 
+            total profit.
+         */
+        System.out.print("Enter purchase price of Item 1: ");
+        double item1PurchasePrice = scanner.nextDouble();
+
+        System.out.print("Enter selling price of Item 1: ");
+        double item1SellingPrice = scanner.nextDouble();
+
+        System.out.print("Enter quantity of Item 1: ");
+        int item1_Quantity = scanner.nextInt();
+
+        System.out.print("Enter purchase price of Item 2: ");
+        double item2PurchasePrice = scanner.nextDouble();
+
+        System.out.print("Enter selling price of Item 2: ");
+        double item2SellingPrice = scanner.nextDouble();
+
+        System.out.print("Enter quantity of Item 2: ");
+        int item2_Quantity = scanner.nextInt();
+
+        double item1Profit = item1SellingPrice - item1PurchasePrice;
+        double item2Profit = item2SellingPrice - item2PurchasePrice;
+
+        double totalProfit = (item1Profit * item1_Quantity) + (item2Profit * item2_Quantity);
+
+        System.out.println("\nItem 1: Profit per Item = $" + item1Profit + ", Total Profit = $" + (item1Profit * item1_Quantity));
+
+        System.out.println("Item 2: Profit per Item = $" + item2Profit + ", Total Profit = $" + (item2Profit * item2_Quantity));
+
+        System.out.println("Total Profit for all items = $" + totalProfit);
+        scanner.close();
+    }
+}
