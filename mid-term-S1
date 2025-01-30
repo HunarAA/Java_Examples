@@ -1,0 +1,73 @@
+import java.util.Scanner;
+public class mid_term_S1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        char answer; // get the answer option as char
+        int score = 0; // collect user score
+        int points = 5; // question points
+
+        // Question 1
+        System.out.println("Q1: What color is the sky?");
+        System.out.println("A)Green  B)Blue  C)Red  D)Yellow");
+        for (int i = 0; i < 2; i++) {
+            System.out.print("Enter your answer (A, B, C, D): ");
+            answer = scanner.next().charAt(0);
+
+            if (answer == 'B' || answer == 'b') {
+                score += (i == 0) ? points : (points - 2);
+                System.out.println("Correct!");
+                break;
+            } else {
+                if (i == 1) {
+                    System.out.println("Incorrect. The correct answer is B) Blue.");
+                } else {
+                    System.out.println("Incorrect. Try again.");
+                }
+            }
+        }
+        points += 2;
+
+        // Question 2
+        System.out.println("\nQ2: How many legs does a cat have?");
+        System.out.println("A) 2  B) 3  C) 4  D) 6");
+        for (int i = 0; i < 2; i++) {
+            System.out.print("Enter your answer (A, B, C, D): ");
+            answer = scanner.next().charAt(0);
+
+            if (answer == 'C' || answer == 'c') {
+                score += (i == 0) ? points : (points - 2); // Deduct 2 points for the second attempt
+                System.out.println("Correct!");
+                break;
+            } else {
+                if (i == 1) {
+                    System.out.println("Incorrect. The correct answer is C) 4.");
+                } else {
+                    System.out.println("Incorrect. Try again.");
+                }
+            }
+        }
+        points += 2;
+
+        // Question 3
+        System.out.println("\nQ3: What is 2 + 2?");
+        System.out.println("A) 4  B) 3  C) 5  D) 5");
+        for (int i = 0; i < 2; i++) {
+            System.out.print("Enter your answer (A, B, C, D): ");
+            answer = scanner.next().charAt(0);
+
+            if (answer == 'A' || answer == 'a') {
+                score += (i == 0) ? points : (points - 2);
+                System.out.println("Correct!");
+                break;
+            } else {
+                if (i == 1) {
+                    System.out.println("Incorrect. The correct answer is A) 4.");
+                } else {
+                    System.out.println("Incorrect. Try again.");
+                }
+            }
+        }
+        System.out.println("\nYour final score is: " + score + " points.");
+        scanner.close();
+    }
+}
