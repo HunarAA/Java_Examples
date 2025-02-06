@@ -1,0 +1,162 @@
+import java.util.Scanner;
+
+public class whileLoop {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        // TODO: While loop to print numbers from 1 to 5
+        int j = 1;
+        while (j <= 5) {
+            System.out.println(j);
+            j++;
+        }
+/* ------------------------------------------------------- */
+        // TODO: While loop to print even numbers from 2 to 10
+        int i = 2;
+        while (i <= 10) {
+            System.out.println(i);
+            i += 2;
+        }
+/* ------------------------------------------------------- */
+        // TODO: While loop to calculate the sum of numbers from 1 to 100 (skip multiples of 5)
+        int sum = 0;
+        int k = 1;
+        while (k <= 100) {
+            if (k % 5 != 0) {
+                sum += k;
+            }
+            k++;
+        }
+        System.out.println("Sum: " + sum);
+/* ------------------------------------------------------- */
+        // TODO: While loop to check if a number is prime
+        System.out.print("Enter a number: ");
+        int num = scanner.nextInt();
+
+        boolean isPrime = true;
+        int m = 2;
+        while (m <= num / 2) {
+            if (num % m == 0) {
+                isPrime = false;
+                break;
+            }
+            m++;
+        }
+        if (isPrime) {
+            System.out.println(num + " is a prime number.");
+        } else {
+            System.out.println(num + " is not a prime number.");
+        }
+/* ------------------------------------------------------- */
+        // TODO: While loop to find the factorial of a number
+        System.out.print("Enter a number: ");
+        int n = scanner.nextInt();
+
+        int factorial = 1;
+        int f = 1;
+        while (f <= n) {
+            factorial *= f;
+            f++;
+        }
+        System.out.println("Factorial of " + n + ": " + factorial);
+/* ------------------------------------------------------- */
+        // TODO: While loop to reverse a number
+        System.out.print("Enter a number: ");
+        int num_f = scanner.nextInt();
+        int reversedNum = 0;
+        while (num_f != 0) {
+            int digit = num_f % 10;
+            reversedNum = reversedNum * 10 + digit;
+            num_f /= 10;
+        }
+        System.out.println("Reversed number: " + reversedNum);
+/* ------------------------------------------------------- */
+        // TODO: Reading User Input Until a Valid Value is Entered
+        int userInput = -1;
+        while (userInput < 0 || userInput > 100) {
+            System.out.print("Enter a number between 0 and 100: ");
+            userInput = scanner.nextInt();
+
+            if (userInput < 0 || userInput > 100) {
+                System.out.println("Invalid input. Try again.");
+            }
+        }
+        System.out.println("Valid input received: " + userInput);
+        /* -------------------do while-------------------- */
+        // TODO: Do-while loop to print numbers from 1 to 5
+        int i2 = 1;
+        do {
+            System.out.println(i2);
+            i2++;
+        } while (i2 <= 5);
+/* ------------------------------------------------------- */
+        // TODO: Do-while loop to print even numbers from 2 to 10
+        int i3 = 2;
+        do {
+            System.out.println(i3);
+            i3 += 2;
+        } while (i3 <= 10);
+/* ------------------------------------------------------- */
+        // TODO: User Input Validation with a do-while Loop
+        int userInput_2;
+        do {
+            System.out.print("Enter a positive number: ");
+            userInput_2 = scanner.nextInt();
+
+            if (userInput_2 <= 0) {
+                System.out.println("Invalid input. Please enter a positive number.");
+            }
+        } while (userInput_2 <= 0);
+        System.out.println("Valid input received: " + userInput_2);
+/* ------------------------------------------------------- */
+        // TODO: Do-while loop to print a triangle of numbers
+        System.out.print("Enter the number of rows for the triangle: ");
+        int rows = scanner.nextInt();
+        int h = 1;
+
+        do {
+            int jj = 1;
+            do {
+                System.out.print(jj + " ");
+                jj++;
+            } while (jj <= h);
+            System.out.println();
+            h++;
+        } while (h <= rows);
+/* ------------------------------------------------------- */
+        // TODO:-----------------break and continue--------------------
+        /*
+        TODO: A user is withdrawing money from an ATM.
+         The ATM has a withdrawal limit of $5000.
+         If the user tries to withdraw more than that,
+         the system stops the process immediately.
+        */
+        int withdrawalLimit = 5000;
+        while (true) {
+            System.out.print("Enter withdrawal amount: ");
+            int amount = scanner.nextInt();
+            if (amount > withdrawalLimit) {
+                System.out.println("Error: Exceeds withdrawal limit! Transaction stopped.");
+                break;
+            }
+            System.out.println("Withdrawal of $" + amount + " successful!");
+        }
+        System.out.println("ATM session ended.");
+        scanner.close();
+/* ------------------------------------------------------- */
+        /*
+        TODO: A company sends work reminders from Monday to
+         Friday, but skips Saturday and Sunday.
+        */
+        int day = 1; // 1 = Monday, 7 = Sunday
+        while (day <= 7) {
+            if (day == 6 || day == 7) { // 6 = Saturday, 7 = Sunday
+                System.out.println("Skipping: Day " + day + " (Weekend)");
+                day++;
+                continue; // Skip the weekend
+            }
+            System.out.println("Sending work reminder for Day " + day);
+            day++;
+        }
+        System.out.println("Work schedule completed.");
+    }
+}
