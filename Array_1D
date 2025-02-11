@@ -1,1 +1,263 @@
+import java.util.Scanner;
+public class Arrays_1D {
+    public static void main(String[] args) {
+        // TODO: Example_1
+        double[] prices = new double[5];
+        prices[0] = 23.5;
+        prices[1] = 33.0;
+        System.out.println(prices[0]);
+/* ------------------------------------------------------- */
+        // TODO: Example_2
+        String[] cars = {"BMW", "Mercedes", "Tesla", "Nissan", "Toyota"};
+        System.out.println(cars[2]);
+        cars[0] = "Ford";// index 0 changed
+        System.out.println(cars[0]);
+        System.out.println(cars[5]); //index out of range
+        for(int i=0;i<cars.length; i++){
+            System.out.println(cars[i]);
+        }
+        //foreach or enhanced for
+        for(String x : cars){
+            System.out.println(x);
+        }
 
+/* ------------------------------------------------------- */
+        // TODO: Example_3: sum array elements
+        int[] numbers = {11, 22, 35, 41, 55};
+        int sum = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            sum += numbers[i];
+        }
+        System.out.println("Sum of elements: " + sum);
+
+/* ------------------------------------------------------- */
+        // TODO: Example_4: Finding the Maximum Element
+        int[] nums = {8, 3, 11, 5, 2};
+        int max = nums[0];
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] > max) {
+                max = nums[i];
+            }
+        }
+        System.out.println("Maximum element: " + max);
+
+/* ------------------------------------------------------- */
+        // TODO: Example_5: Checking for Even Numbers
+        int[] numbers_1 = {1, 2, 3, 4, 5};
+        for (int i = 0; i < numbers_1.length; i++) {
+            if (numbers_1[i] % 2 == 0) {
+                System.out.println(numbers_1[i] + " is even.");
+            }
+        }
+
+/* ------------------------------------------------------- */
+        // TODO: Example_6: Counting Positive and Negative Numbers
+        int[] numbers_2 = {-1, 2, -3, 4, -5};
+        int positiveCount = 0;
+        int negativeCount = 0;
+        for (int i = 0; i < numbers_2.length; i++) {
+            if (numbers_2[i] > 0) {
+                positiveCount++;
+            } else if (numbers_2[i] < 0) {
+                negativeCount++;
+            }
+        }
+        System.out.println("Positive numbers: " + positiveCount);
+        System.out.println("Negative numbers: " + negativeCount);
+
+/* ------------------------------------------------------- */
+        // TODO: Example_7: Reversing an Array
+        int[] numbers_3 = {1, 2, 3, 4, 5};
+        int[] reversed = new int[numbers_3.length];
+        for (int i = 0; i < numbers_3.length; i++) {
+            reversed[i] = numbers_3[numbers_3.length - 1 - i];
+        }
+        System.out.print("Reversed array: ");
+        for (int i = 0; i < reversed.length; i++) {
+            System.out.print(reversed[i] + " ");
+        }
+        System.out.println();
+
+/* ------------------------------------------------------- */
+        // TODO: Example_8: Counting Duplicates
+        int[] numbers_4 = {3, 2, 4, 2, 5, 1, 3};
+        int duplicateCount = 0;
+        for (int i = 0; i < numbers_4.length - 1; i++) {
+            for (int j = i + 1; j < numbers_4.length; j++) {
+                if (numbers_4[i] == numbers_4[j]) {
+                    duplicateCount++;
+                    break;
+                }
+            }
+        }
+        System.out.println("Number of duplicates: " + duplicateCount);
+
+/* ------------------------------------------------------- */
+        // TODO: Example_9: Finding the Average
+        int[] numbers_5 = {10, 20, 30, 40, 50};
+        double average;
+        int sum_1 = 0;
+        for (int num : numbers_5) {
+            sum_1 += num;
+        }
+        average = (double) sum_1 / numbers_5.length;
+        System.out.println("Average: " + average);
+
+/* ------------------------------------------------------- */
+        // TODO: Example_10: Finding the Common Elements in Two Arrays
+        int[] array1 = {1, 2, 3, 4, 5};
+        int[] array2 = {3, 4, 5, 6, 7};
+        System.out.print("Common elements: ");
+        for (int number1 : array1) {
+            for (int number2 : array2) {
+                if (number1 == number2) {
+                    System.out.print(number1 + " ");
+                    break;
+                }
+            }
+        }
+        System.out.println();
+
+/* ------------------------------------------------------- */
+        // TODO: Example_11: Array Rotation (Left Rotation)
+        int[] numbers_6 = {1, 2, 3, 4, 5};
+        int rotations_1 = 2;
+        for (int r = 0; r < rotations_1; r++) {
+            int firstElement = numbers_6[0];
+
+            // Shift elements to the left
+            for (int i = 0; i < numbers_6.length - 1; i++) {
+                numbers_6[i] = numbers_6[i + 1];
+            }
+            // Place the first element at the end
+            numbers_6[numbers_6.length - 1] = firstElement;
+        }
+        System.out.print("Rotated Array: ");
+        for (int num : numbers_6) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+
+/* ------------------------------------------------------- */
+        // TODO: Example_12: Array Rotation (Right Rotation)
+        int[] numbers_7 = {1, 2, 3, 4, 5};
+        int rotations_2 = 2;
+        for (int r = 0; r < rotations_2; r++) {
+            int lastElement = numbers_7[numbers_7.length - 1];
+            // Shift elements to the right
+            for (int i = numbers_7.length - 1; i > 0; i--) {
+                numbers_7[i] = numbers_7[i - 1];
+            }
+            // Place the last element at the beginning
+            numbers_7[0] = lastElement;
+        }
+        System.out.print("Right Rotated Array: ");
+        for (int num : numbers_7) {
+            System.out.print(num + " ");
+        }
+        System.out.println();
+
+/* ------------------------------------------------------- */
+        // TODO: Example_13: Finding the Difference Between Consecutive Elements
+        int[] numbers_8 = {5, 8, 12, 3, 7};
+        int[] differences = new int[numbers_8.length - 1];
+
+        for (int i = 0; i < differences.length; i++) {
+            differences[i] = numbers_8[i + 1] - numbers_8[i];
+        }
+        System.out.print("Differences Between Consecutive Elements: ");
+        for (int diff : differences) {
+            System.out.print(diff + " ");
+        }
+        System.out.println();
+
+/* ------------------------------------------------------- */
+        // TODO: Example_14: copying an array to another one
+        int[] sourceArray = {2, 4, 6, 8, 10};
+        int[] destinationArray = new int[sourceArray.length];
+
+        for (int i = 0; i < sourceArray.length; i++) {
+            destinationArray[i] = sourceArray[i];
+        }
+        System.out.print("Source Array: ");
+        for (int number : sourceArray) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+        System.out.print("Destination Array: ");
+        for (int number : destinationArray) {
+            System.out.print(number + " ");
+        }
+
+/* ------------------------------------------------------- */
+        // TODO: Example_15: sort array elements
+        int[] array = {7, 2, 5, 1, 8, 3};
+        System.out.print("Original Array: ");
+        for (int number : array) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+        // Perform simple sorting without using methods
+        for (int i = 0; i < array.length - 1; i++) {
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    // Swap array[j] and array[j+1]
+                    int temp = array[j];
+                    array[j] = array[j + 1];
+                    array[j + 1] = temp;
+                }
+            }
+        }
+        System.out.print("Sorted Array: ");
+        for (int number : array) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+
+/* ------------------------------------------------------- */
+        // TODO: Example_16: differences between two arrays
+        int[] array_1 = {5, 8, 12, 6, 10};
+        int[] array_2 = {3, 6, 8, 4, 7};
+        // Calculate the difference and store in the third array
+        int[] differenceArray = new int[array_1.length];
+        for (int i = 0; i < array_1.length; i++) {
+            differenceArray[i] = array_1[i] - array_2[i];
+        }
+        // Display the original arrays
+        System.out.print("First Array: ");
+        for (int number : array_1) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+        System.out.print("Second Array: ");
+        for (int number : array_2) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+        // Display the difference array
+        System.out.print("Difference Array: ");
+        for (int number : differenceArray) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+
+/* ------------------------------------------------------- */
+        // TODO: Example_17: insert new element in specified location
+        int[] originalArray = {1, 2, 4, 5, 6};
+        int insertIndex = 2;
+        int newElement = 3;
+        int[] newArray = new int[originalArray.length + 1];
+        for (int i = 0; i < insertIndex; i++) {
+            newArray[i] = originalArray[i];
+        }
+        newArray[insertIndex] = newElement;
+        for (int i = insertIndex + 1; i < newArray.length; i++) {
+            newArray[i] = originalArray[i - 1];
+        }
+        System.out.print("Array after Insertion: ");
+        for (int number : newArray) {
+            System.out.print(number + " ");
+        }
+        System.out.println();
+    }
+}
