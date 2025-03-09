@@ -1,0 +1,178 @@
+public class methods {
+    public static void main(String args[]){
+//        // an instance (object) of methods class
+        methods me = new methods();
+//        // calling non-static method
+        me.myMethod1();
+//        // calling static method
+        myMethod2();
+
+//        call summation method
+        summation(5, 4);
+        
+//        call celsiusToFahrenheit method
+        me.celsiusToFahrenheit(45);
+        
+//        calling power method
+        me.power(4, 2);
+
+//        call array findMax method
+        int[] numbers = {};
+        int maxNumber = findMax(numbers);
+        System.out.println("Maximum Number: " + maxNumber);
+
+//        array average method
+        int[] myArray_1 = {};
+        double average = calculateAverage(myArray_1);
+        System.out.println("Average of elements: " + average);
+
+//        search for element in array
+        int[] myArray_2 = {1, 2, 3, 4, 5};
+        int targetElement = 3;
+        boolean contains = containsElement(myArray_2, targetElement);
+        System.out.println("Array contains " + targetElement + ": " + contains);
+
+//        calling factorial method
+        int result = factorial(5);
+        System.out.println("Factorial: " + result);
+
+//        array 2D
+        int rows = 3;
+        int cols = 4;
+//        // Initialize a 2D array
+        int[][] myArray_3 = initializeArray(rows, cols);
+//        // Print the 2D array
+        System.out.println("Original 2D Array:");
+        printArray(myArray_3);
+//        // Calculate and print the sum of all elements in the 2D array
+        int sum = calculateSum(myArray_3);
+        System.out.println("\nSum of all elements: " + sum);
+
+    }// TODO: end of main method
+
+    // non-static method
+    public void myMethod1(){
+        System.out.println("My first method");
+    }
+    // static method
+    public static void myMethod2(){
+        System.out.println("My first method");
+    }
+
+    public static int summation(int x, int y){
+        int sum;
+        sum = x + y;
+        return sum;
+    }
+
+    // TODO: Method to convert Celsius to Fahrenheit
+    public double celsiusToFahrenheit(double celsius) {
+        return (celsius * 9/5) + 32;
+    }
+
+    // TODO: Method to calculate the power of a number
+    public double power(double base, int exponent) {
+        return Math.pow(base, exponent);
+    }
+
+    // TODO: Method to simulate a coin toss (Heads or Tails)
+    public String coinToss() {
+        return Math.random() < 0.5 ? "Heads" : "Tails";  // 50% chance for Heads or Tails
+    }
+
+    // TODO: Method to generate a random integer between two given values (inclusive)
+    public int randomIntInRange(int min, int max) {
+        return min + (int) (Math.random() * (max - min + 1));  // Random integer in the range [min, max]
+    }
+
+    // TODO: Method to find the maximum value in an array
+    public static int findMax(int[] array) {
+        if (array.length == 0) {
+            System.out.println("Array is empty");
+        }
+        int max = array[0];
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max) {
+                max = array[i];
+            }
+        }
+        return max;
+    }
+
+    // TODO: Method to calculate the average of elements in a 1D array
+    public static double calculateAverage(int[] array) {
+        if (array.length == 0) {
+            System.out.println("Array is empty");
+        }
+        int sum = 0;
+        for (int value : array) {
+            sum += value;
+        }
+        return (double) sum / array.length;
+    }
+
+    // TODO: Method to find the sum of even numbers in an array
+    public int sumEvenNumbers(int[] array) {
+        int sum = 0;
+        for (int num : array) {
+            if (num % 2 == 0) {
+                sum += num;
+            }
+        }
+        return sum;
+    }
+
+    // TODO: Method to check if an element exists in a 1D array
+    public static boolean containsElement(int[] array, int target) {
+        for (int value : array) {
+            if (value == target) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // TODO: Method to calculate the factorial of a number
+    public static int factorial(int n) {
+        if (n < 0) {
+            System.out.println("Factorial is not defined for negative numbers");
+        }
+        int result = 1;
+        for (int i = 1; i <= n; i++) {
+            result *= i;
+        }
+        return result;
+    }
+
+    // TODO: Method to initialize a 2D array with random values
+    public static int[][] initializeArray(int rows, int cols) {
+        int[][] array = new int[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                array[i][j] = (int) (Math.random() * 100);
+            }
+        }
+        return array;
+    }
+
+    // TODO: Method to print the contents of a 2D array
+    public static void printArray(int[][] array) {
+        for (int i = 0; i < array.length; i++) {
+            for (int j = 0; j < array[i].length; j++) {
+                System.out.print(array[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // TODO: Method to calculate the sum of all elements in a 2D array
+    public static int calculateSum(int[][] array) {
+        int sum = 0;
+        for (int[] row : array) {
+            for (int value : row) {
+                sum += value;
+            }
+        }
+        return sum;
+    }
+}
