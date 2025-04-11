@@ -1,0 +1,187 @@
+import java.util.Scanner;
+public class Java_Strings_New {
+    public static void main(String[] args) {
+//        TODO: example_1 -> string formatting
+        String firstName = "John";
+        String lastName = "Doe";
+        int age = 30;
+        double height = 5.9;
+//        using String.format
+        String formattedString =
+                String.format("Name: %s %s, Age: %d, Height: %.2f feet"
+                        , firstName, lastName, age, height);
+        System.out.println("Formatted String (String.format): " + formattedString);
+//        using printf
+        System.out.printf("Formatted String (printf): Name: %s %s, Age: %d, Height: %.2f feet",
+                firstName, lastName, age, height);
+// ---------------------------string operations-------------------------------------------------------------------
+        // TODO: example_2 -> string operations
+        // concatenation
+        String welcomeMessage_1 = "Welcome, " + firstName + " " + lastName + "!";
+        String welcomeMessage_2 = "Welcome, " + firstName.concat(lastName) + "!";
+        System.out.println(welcomeMessage_1);
+        System.out.println(welcomeMessage_2);
+
+        // substring
+        String sentence = "The quick brown fox jumps over the lazy dog.";
+        String subject = sentence.substring(4);
+        System.out.println("Subject: " + subject);
+
+        // trim
+        String userInput = "   Spaces are not cool.   ";
+        String cleanedInput = userInput.trim();
+        System.out.println("Cleaned Input: " + cleanedInput);
+
+        // Replace
+        String originalString = "Hello, World!";
+        String modifiedString = originalString.replace(',', '!');
+        System.out.println("Original String: " + originalString);
+        System.out.println("Modified String: " + modifiedString);
+
+        // equals
+        String str1 = "Java";
+        String str2 = "java";
+        boolean isEqual = str1.equals(str2);
+        System.out.println("Case-sensitive comparison: " + isEqual);
+        boolean isEqualIgnoreCase = str1.equalsIgnoreCase(str2);
+        System.out.println("Case-insensitive comparison: " + isEqualIgnoreCase);
+
+        // index of
+        String new_sentence = "Java is fun and Java is powerful.";
+        int indexOfJava = new_sentence.indexOf("Java");
+        System.out.println("Index of 'Java': " + indexOfJava);
+
+        // last index of
+        String filePath = "/path/to/document.txt";
+        int lastIndexOfDot = filePath.lastIndexOf('.');
+        if (lastIndexOfDot != -1) {
+            String fileExtension = filePath.substring(lastIndexOfDot + 1);
+            System.out.println("File Extension: " + fileExtension);
+        } else {
+            System.out.println("No file extension found.");
+        }
+
+        // start with and end with
+        String fileName_1 = "document.txt";
+        boolean startsWithDoc = fileName_1.startsWith("doc");
+        boolean endsWithTxt = fileName_1.endsWith("txt");
+        System.out.println("Starts with 'doc': " + startsWithDoc);
+        System.out.println("Ends with 'txt': " + endsWithTxt);
+
+        // to char array
+        String word = "Java";
+        char[] charArray = word.toCharArray();
+        System.out.print("Char Array: ");
+        for (char c : charArray) {
+            System.out.print(c + " ");
+        }
+        System.out.println();
+
+        // TODO: Example_3 working on file path
+        String filePathString = "C:\\Users\\Username\\Documents\\example.txt";
+
+        // Get file name (with extension)
+        int lastSeparatorIndex = filePathString.lastIndexOf("\\");
+        int lastDotIndex = filePathString.lastIndexOf(".");
+        String fileName_2 = (lastSeparatorIndex == -1) ? filePathString : filePathString.substring(lastSeparatorIndex + 1);
+        System.out.println("File Name: " + fileName_2);
+
+        // Get parent directory
+        lastSeparatorIndex = filePathString.lastIndexOf("\\");
+        String parentDirectory = (lastSeparatorIndex == -1) ? "" : filePathString.substring(0, lastSeparatorIndex);
+        System.out.println("Parent Directory: " + parentDirectory);
+
+        // Get file extension
+        lastDotIndex = fileName_2.lastIndexOf(".");
+        String fileExtension = (lastDotIndex == -1) ? "" : fileName_2.substring(lastDotIndex + 1);
+        System.out.println("File Extension: " + fileExtension);
+
+//        // TODO: example_4 working on user input
+        String username = promptUser("Enter your username: ");
+        String password = promptUser("Enter your password: ");
+        // Validate and process user input
+        if (isValidUsername(username) && isValidPassword(password)) {
+            System.out.println("Registration successful! Welcome, " + username + "!");
+        } else {
+            System.out.println("Registration failed. Please check your input.");
+        }
+//
+//        // TODO: example_5 extract product info
+        String productInfo = "Product: Laptop | Brand: XYZ | Price: $1200.50";
+        // Extract and print the product name
+        String productName = extractProductName(productInfo);
+        System.out.println("Product Name: " + productName);
+        // Extract and print the brand
+        String brand = extractBrand(productInfo);
+        System.out.println("Brand: " + brand);
+        // Extract and print the price
+        double price = extractPrice(productInfo);
+        System.out.println("Price: $" + price);
+
+    }//end of main method
+// ----------------------------------------------------------------------------------------------
+    // TODO: example_4 -> working on user input
+    // Method to prompt the user for input
+    public static String promptUser(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print(prompt);
+        return scanner.nextLine().trim();
+    }
+
+    // Method to validate the username
+    public static boolean isValidUsername(String username) {
+        // Simple validation: Check if the username is not empty
+        return !username.isEmpty();
+    }
+
+    // Method to validate the password
+    public static boolean isValidPassword(String password) {
+        // Complex validation: Check if the password has at least 6 characters,
+        // and contains both lowercase and uppercase letters
+        return password.length() >= 6 && containsLowerCase(password) && containsUpperCase(password);
+    }
+
+    // Helper method to check if the password contains lowercase letters
+    public static boolean containsLowerCase(String password) {
+        for (char ch : password.toCharArray()) {
+            if (Character.isLowerCase(ch)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Helper method to check if the password contains uppercase letters
+    public static boolean containsUpperCase(String password) {
+        for (char ch : password.toCharArray()) {
+            if (Character.isUpperCase(ch)) {
+                return true;
+            }
+        }
+        return false;
+    }
+// ----------------------------------------------------------------------------------------------
+    // TODO: example_5 -> extract product info
+    // Method to extract the product name
+    public static String extractProductName(String productInfo) {
+        int nameSeparatorIndex = productInfo.indexOf("| Brand:");
+        return (nameSeparatorIndex == -1) ? "" : productInfo.substring("Product: ".length(), nameSeparatorIndex).trim();
+    }
+    // Method to extract the brand
+    public static String extractBrand(String productInfo) {
+        int brandSeparatorIndex = productInfo.indexOf("| Price:");
+        int nameSeparatorIndex = productInfo.indexOf("| Brand:");
+        return (nameSeparatorIndex == -1 || brandSeparatorIndex == -1) ?
+                "" : productInfo.substring(nameSeparatorIndex + "| Brand:".length(), brandSeparatorIndex).trim();
+    }
+    // Method to extract the price
+    public static double extractPrice(String productInfo) {
+        String priceSubstring = productInfo.substring(productInfo.indexOf("| Price:") + "| Price:".length()).trim();
+        try {
+            return Double.parseDouble(priceSubstring);
+        } catch (NumberFormatException e) {
+            System.out.println("Error parsing price information.");
+            return 0.0; // Default value if parsing fails
+        }
+    }
+}
