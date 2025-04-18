@@ -1,0 +1,160 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+public class Java_Exceptions {
+    public static void  main(String[] args){
+        //  TODO: example_1
+        Scanner scanner = new Scanner(System.in);
+        try {
+            System.out.print("Enter the first number: ");
+            double number1 = scanner.nextDouble();
+            System.out.print("Enter the second number: ");
+            double number2 = scanner.nextDouble();
+            div(number1, number2);
+            mul(number1, number2);
+        } catch (InputMismatchException e) {
+            System.err.println("Error: " + e.getMessage());
+        } finally {
+            scanner.close();
+        }
+        //  TODO: example_2
+        try {
+            int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+            System.out.println("Original Matrix:");
+            displayMatrix(matrix);
+            transposeInPlace(matrix);
+            System.out.println("In-Place Transposed Matrix:");
+            displayMatrix(matrix);
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        //  TODO: example_3
+        try {
+            char[] characters = {'a', 'b', 'c', 'd', 'e'};
+            reverseArray(characters);
+            System.out.println("Reversed Array:");
+            for (char ch : characters) {
+                System.out.print(ch + " ");
+            }
+        } catch (IllegalArgumentException e) {
+            System.err.println("Error: " + e.getMessage());
+        }
+        //  TODO: example_4
+        try {
+            printPattern("triangle", 5);
+            printPattern("inverted_triangle", 5);
+            printPattern("pyramid", 5);
+            // Uncomment the line below to test an invalid pattern type
+            // printPattern("invalid_pattern", 5);
+        } catch (IllegalArgumentException e) {
+            System.err.println("IllegalArgumentException: " + e.getMessage());
+        }
+    }// end of main method
+
+    //  TODO: example_1
+    public static void div(double number1, double number2) {
+        try {
+            double result = number1 / number2;
+            System.out.println("Result of division: " + result);
+        } catch (ArithmeticException e) {
+            System.err.println("Error during division: " + e.getMessage());
+        }
+    }
+    public static void mul(double number1, double number2) {
+        try {
+            double result = number1 * number2;
+            System.out.println("Result of multiplication: " + result);
+        } catch (Exception e) {
+            System.err.println("Error during multiplication: " + e.getMessage());
+        }
+    }
+    //  TODO: example_2
+    //  Transposing a 2D Array Without Creating a New Array using method
+    public static void transposeInPlace(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            throw new IllegalArgumentException("Matrix must be non-null and non-empty.");
+        }
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = i + 1; j < matrix[i].length; j++) {
+                int temp = matrix[i][j];
+                matrix[i][j] = matrix[j][i];
+                matrix[j][i] = temp;
+            }
+        }
+    }
+    public static void displayMatrix(int[][] matrix) {
+        for (int i = 0; i < matrix.length; i++) {
+            for (int j = 0; j < matrix[i].length; j++) {
+                System.out.print(matrix[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+    //  TODO: example_3
+    //  Reversing an Array
+    public static void reverseArray(char[] array) {
+        if (array == null || array.length == 0) {
+            throw new IllegalArgumentException("Array must be non-null and non-empty.");
+        }
+        int start = 0;
+        int end = array.length - 1;
+        while (start < end) {
+            // Swap elements at start and end indices
+            char temp = array[start];
+            array[start] = array[end];
+            array[end] = temp;
+            // Move indices towards the center
+            start++;
+            end--;
+        }
+    }
+    //  TODO: example_4
+    //  print patterns
+    private static void printPattern(String patternType, int size) {
+        if (size <= 0) {
+            throw new IllegalArgumentException("Size must be a positive integer.");
+        }
+        switch (patternType.toLowerCase()) {
+            case "triangle":
+                printRightAngledTriangle(size);
+                break;
+            case "inverted_triangle":
+                printInvertedRightAngledTriangle(size);
+                break;
+            case "pyramid":
+                printPyramid(size);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid pattern type: " + patternType);
+        }
+    }
+    private static void printRightAngledTriangle(int size) {
+        for (int i = 1; i <= size; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+    private static void printInvertedRightAngledTriangle(int size) {
+        for (int i = size; i >= 1; i--) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+    private static void printPyramid(int size) {
+        for (int i = 1; i <= size; i++) {
+            for (int j = 1; j <= size - i; j++) {
+                System.out.print("  ");
+            }
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
+}
