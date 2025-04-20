@@ -1,0 +1,129 @@
+import java.util.Scanner;
+public class String_Practice_Examples {
+// extra examples on Java string and array 2D
+    public static void main(String[] args) {
+        // TODO: check if an email is valid or not
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.print("Enter an email (or type 'exit' to quit): ");
+            String email = scanner.nextLine();
+            if (email.equalsIgnoreCase("exit")) {
+                System.out.println("Goodbye!");
+                break;
+            }
+            try {
+                 checkEmail(email); // Validate
+                String masked = maskEmail(email);
+                System.out.println("Original: " + email);
+                System.out.println("Masked:   " + masked);
+            } catch (IllegalArgumentException e) {
+                System.out.println("Error: " + e.getMessage());
+            }
+        }
+        scanner.close();
+
+        // TODO: word and letter counter
+        String text = "Java is powerful! 123";
+        int wordCount = countWords(text);
+        int letterCount = countLetters(text);
+        System.out.println("Total words: " + wordCount);
+        System.out.println("Total letters: " + letterCount);
+
+        // TODO: search word in 2d array rows or columns
+        char[][] grid = {
+                {'J', 'A', 'V', 'A'},
+                {'P', 'Y', 'T', 'H'},
+                {'C', 'P', 'H', 'P'},
+                {'R', 'U', 'B', 'Y'}
+        };
+        String word = "JAVA";
+        boolean found = findWordInGrid(grid, word);
+        if (!found) {
+            System.out.println("Word \"" + word + "\" not found in grid.");
+        }
+
+    }// end of main method
+
+    // TODO: check email validity mask the email method
+    public static void checkEmail(String email) {
+        if (email == null || email.trim().isEmpty()) {
+            throw new IllegalArgumentException("Email cannot be empty.");
+        }
+        email = email.trim();
+        if (!email.contains("@") || !email.contains(".") ||
+                email.indexOf("@") > email.lastIndexOf(".") ||
+                email.startsWith("@") || email.endsWith(".") ||
+                email.length() < 5) {
+            throw new IllegalArgumentException("Invalid email format.");
+        }
+    }
+    public static String maskEmail(String email) {
+        email = email.trim();
+        int atIndex = email.indexOf('@');
+        if (atIndex <= 1) {
+            return "***" + email.substring(atIndex);
+        }
+        char first = email.charAt(0);
+        char last = email.charAt(atIndex - 1);
+        String domain = email.substring(atIndex);
+        return first + "***" + last + domain;
+    }
+
+    // TODO: word and letter counter methods
+    public static int countWords(String text) {
+        int count = 0;
+        boolean lastWasSpace = true;
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            if (Character.isLetterOrDigit(ch)) {
+                if (lastWasSpace) {
+                    count++;
+                    lastWasSpace = false;
+                }
+            }
+            else {
+                lastWasSpace = true;
+            }
+        }
+        return count;
+    }
+    public static int countLetters(String text) {
+        int count = 0;
+        for (int i = 0; i < text.length(); i++) {
+            char ch = text.charAt(i);
+            if (Character.isLetter(ch)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
+    // TODO: search 2d array for a word method
+    public static boolean findWordInGrid(char[][] grid, String word) {
+        int rows = grid.length;
+        int cols = grid[0].length;
+        // Check each row
+        for (int i = 0; i < rows; i++) {
+            String row = "";
+            for (int j = 0; j < cols; j++) {
+                row += grid[i][j];
+            }
+            if (row.contains(word)) {
+                System.out.println("Word \"" + word + "\" found in row " + i);
+                return true;
+            }
+        }
+        // Check each column
+        for (int j = 0; j < cols; j++) {
+            String col = "";
+            for (int i = 0; i < rows; i++) {
+                col += grid[i][j];
+            }
+            if (col.contains(word)) {
+                System.out.println("Word \"" + word + "\" found in column " + j);
+                return true;
+            }
+        }
+        return false;
+    }
+}
