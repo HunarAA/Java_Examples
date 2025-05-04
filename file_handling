@@ -1,0 +1,174 @@
+import java.io.*;
+public class file_handling {
+    public static void main(String[] args){
+        // change the path for your own one
+        String filePath = "E:\\Java_Examples\\src\\myFile.txt";
+
+        // calling creating file method
+        createFileIfNotExists(filePath);
+
+        // calling write to file method
+        String content = "Hello, This is my text to be written to a text file.";
+        File mf1 = new File(filePath);
+        writeFileContent(mf1, content);
+
+        // save users preferred language
+        String username = "john_doe";
+        String email = "john@example.com";
+        String language = "English";
+        // Save user preferences to the configuration file
+        savePreferences_1(filePath, username, email, language);
+
+        // read user preferences character by character
+        readPreferences_1(mf1);
+
+        // read user preferences line by line
+        readPreferences_2(filePath);
+
+        // calling delete file method
+        deleteFile(mf1);
+    }
+    //    creating file method
+    public static void createFileIfNotExists(String filePath) {
+        File file = new File(filePath);
+        try {
+            if (file.canWrite()) {
+                if (!file.exists()) {
+                    if (file.createNewFile()) {
+                        System.out.println("File created successfully.");
+                    }
+                } else {
+                    System.out.println("File already exists. Here its \n" + file.getAbsolutePath());
+                }
+            } else {
+                System.out.println("Access is denied.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred." + e.getMessage());
+        }
+    }
+    //    write to file method
+    public static void writeFileContent(File file, String content) {
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(content);
+            System.out.println("Content written to the file successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the file.");
+        }
+    }
+    //    save user preferences
+    public static void savePreferences_1(String filePath, String username, String email, String language) {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            // Write user preferences to the configuration file
+            writer.write("Username: " + username + ",");
+            writer.write("Email: " + email + ",");
+            writer.write("Language: " + language + "\n");
+        } catch (IOException e) {
+            System.err.println("Error saving user preferences: " + e.getMessage());
+        }
+    }
+    // save user preferences using buffered writer
+    public static void savePreferences_2(String filePath, String username, String email, String language) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            // Write user preferences to the configuration file
+            writer.write("Username: " + username + ",");
+            writer.write("Email: " + email + ",");
+            writer.write("Language: " + language + "\n");
+        } catch (IOException e) {
+            System.err.println("Error saving user preferences: " + e.getMessage());
+        }
+    }
+    // read file content -> using file reader to read character by character
+    public static void readPreferences_1(File file) {
+        try (FileReader fileReader = new FileReader(file)) {
+            int character;
+            System.out.println("User Preferences:");
+            // fileReader.read() reads Unicode character of every char
+                                                   // -1 end of file
+            while ((character = fileReader.read()) != -1) {
+                // we convert the Unicode character back to the char
+                System.out.print((char) character);
+            }
+            /*
+            // read using another way (not always true?!)
+                char[] charArray = new char[(int) file.length()];
+                int charsRead;
+                System.out.println("\n\nUser Preferences (char array):");
+                fileReader.read(charArray);
+                for (char ch : charArray) {
+                    System.out.print(ch);
+                }
+             */
+        } catch (IOException e) {
+            System.err.println("Error reading user preferences: " + e.getMessage());
+        }
+    }
+    // read file content -> using buffered reader to read line by line
+    public static void readPreferences_2(String filePath) {
+        try (FileReader fileReader = new FileReader(filePath);
+             BufferedReader reader = new BufferedReader(fileReader)) {
+            String line;
+            System.out.println("User Preferences:");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(line);
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading user preferences: " + e.getMessage());
+        }
+    }
+    //    delete file method
+    public static void deleteFile(File file) {
+        // Delete the file
+        if (file.exists()) {
+            if (file.delete()) {
+                System.out.println("File deleted successfully.");
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+    // TODO:
+    // call it by yourself inside main method
+    public static void saveAppSettings(String filePath, String theme, boolean notificationsEnabled, int fontSize) {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write("theme=" + theme + "\n");
+            writer.write("notifications=" + notificationsEnabled + "\n");
+            writer.write("font_size=" + fontSize + "\n");
+        } catch (IOException e) {
+            System.err.println("Error saving app settings: " + e.getMessage());
+        }
+    }
+    // call it by yourself inside main method
+    public static void readAppSettings(File file) {
+        try (FileReader reader = new FileReader(file)) {
+            System.out.println("App Settings:");
+            String currentLine = "";
+            int ch;
+                                        // -1 end of file
+            while ((ch = reader.read()) != -1) {
+                          // \n means end of line
+                if (ch != '\n')  {
+                    currentLine += (char) ch;
+                } else {
+                    // Process the line
+                    String[] parts = currentLine.split("=");
+                    if (parts.length == 2) {
+                        System.out.println(parts[0].trim() + " -> " + parts[1].trim());
+                    }
+                    currentLine = "";
+                }
+            }
+            // Handle the last line (in case the file does not end with a newline)
+            if (!currentLine.isEmpty()) {
+                String[] parts = currentLine.split("=");
+                if (parts.length == 2) {
+                    System.out.println(parts[0].trim() + " -> " + parts[1].trim());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading app settings: " + e.getMessage());
+        }
+    }
+}
