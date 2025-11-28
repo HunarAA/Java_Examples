@@ -1,0 +1,186 @@
+public class Variables {
+    public static void main(String[] args) {
+        // ========================================
+        // SECTION 1: Variable Naming Conventions
+        // ========================================
+        System.out.println("=== Variable Naming Conventions ===\n");
+        // VALID and GOOD PRACTICE
+        int age = 18;  // starts with lowercase, descriptive
+        int myAge = 22; // camelCase for multi-word variables
+
+        // VALID but NOT RECOMMENDED
+        int AGE = 20;   // Valid but confusing
+        int my_age = 21; // Valid but not Java convention
+        int _age = 25;   // Valid but poor practice
+        int $age = 32;   // Valid but poor practice
+
+        // INVALID - These will cause compilation errors
+        // int 1age = 19;       // Cannot start with a number
+        // int my age = 23;     // Cannot contain spaces
+        // int my-age = 24;     // Hyphens are not allowed
+        // int class = 30;      // Cannot use reserved keywords
+
+        System.out.println("Age: " + age);
+        System.out.println("My Age: " + myAge + "\n");
+
+
+        // ========================================
+        // SECTION 2: Integer Data Types
+        // ========================================
+        System.out.println("=== Integer Data Types ===\n");
+
+        // byte: 8-bit, range -128 to 127
+        byte itemQuantity = 127;        // Maximum byte value
+        byte batteryLevel = 85;         // Percentage (0-100)
+        System.out.println("Item Quantity: " + itemQuantity);
+        System.out.println("Battery Level: " + batteryLevel + "%");
+
+        // short: 16-bit, range -32,768 to 32,767
+        short numOfSmartphones = 350;
+        short numOfTablets = 125;
+        System.out.println("Smartphones: " + numOfSmartphones);
+        System.out.println("Tablets: " + numOfTablets);
+
+        // int: 32-bit, range -2,147,483,648 to 2,147,483,647 (most commonly used)
+        int userAge = 28;
+        int accountNumber = 123456;
+        System.out.println("User Age: " + userAge);
+        System.out.println("Account Number: " + accountNumber);
+
+        // Simple arithmetic with int variables
+        int x = 5;
+        int y = 6;
+        System.out.println("x + y = " + (x + y));
+
+        // long: 64-bit, range -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+        // Note: Use 'L' suffix for long literals
+        long creditCardNumber = 1234_5678_9012_3456L;   // Underscores improve readability
+        long worldPopulation = 7_900_000_000L;
+        long indiaPopulation = 1393409038L;
+        System.out.println("World Population: " + worldPopulation);
+        System.out.println("India Population: " + indiaPopulation + "\n");
+
+
+        // ========================================
+        // SECTION 3: Variable Assignment and Reassignment
+        // ========================================
+        System.out.println("=== Variable Assignment ===\n");
+
+        // Variables can be reassigned new values
+        int myNum = 15;
+        System.out.println("Original value: " + myNum);
+        myNum = 20;     // Reassigning the variable
+        System.out.println("New value: " + myNum);
+
+        // Multiple variable declaration in one line
+        int x1 = 12, y1 = 15, z1 = 17;
+        System.out.println("Sum of x1, y1, z1: " + (x1 + y1 + z1));
+
+        // Declaring multiple variables and assigning same value
+        int x2, y2, z2;
+        x2 = y2 = z2 = 35;
+        System.out.println("Sum of x2, y2, z2: " + (x2 + y2 + z2));
+
+        // Descriptive variable with comment
+        int totalStudents = 30;  // Number of students in the course
+        System.out.println("Total students: " + totalStudents + "\n");
+
+
+        // ========================================
+        // SECTION 4: Floating-Point Data Types
+        // ========================================
+        System.out.println("=== Floating-Point Data Types ===\n");
+
+        // double: 64-bit, more precise (default for decimal numbers)
+        double accountBalance = 5000.50;
+        double personHeight = 1.75;             // Height in meters
+        double averageScore = 85.7;
+        System.out.println("Account Balance: $" + accountBalance);
+        System.out.println("Person Height: " + personHeight + " meters");
+        System.out.println("Average Score: " + averageScore);
+
+        // float: 32-bit, less precise (requires 'f' suffix)
+        float temperatureCelsius = 37.5f;       // Note the 'f' suffix
+        System.out.println("Temperature: " + temperatureCelsius + "°C");
+        
+        float itemPrice = 19.99f;
+        float taxRate = 0.1f;                   // 10% tax
+        float totalPrice = itemPrice * (1 + taxRate);
+        System.out.println("Item Price: $" + itemPrice);
+        System.out.println("Total with Tax: $" + totalPrice + "\n");
+
+
+        // ========================================
+        // SECTION 5: Boolean Data Type
+        // ========================================
+        System.out.println("=== Boolean Data Type ===\n");
+
+        // boolean: true or false values only
+        boolean isLoggedIn = true;
+        boolean isActiveAccount = true;
+        boolean isSubscribed = false;
+        System.out.println("Is Logged In: " + isLoggedIn);
+        System.out.println("Is Active Account: " + isActiveAccount);
+        System.out.println("Is Subscribed: " + isSubscribed + "\n");
+
+
+        // ========================================
+        // SECTION 6: Character Data Type
+        // ========================================
+        System.out.println("=== Character Data Type ===\n");
+
+        // char: Single 16-bit Unicode character (use single quotes)
+        char initialLetter = 'J';
+        char grade = 'A';
+        char symbol = '@';
+        System.out.println("Initial: " + initialLetter);
+        System.out.println("Grade: " + grade);
+        System.out.println("Symbol: " + symbol + "\n");
+
+
+        // ========================================
+        // SECTION 7: String Data Type
+        // ========================================
+        System.out.println("=== String Data Type ===\n");
+
+        // String: Sequence of characters (use double quotes)
+        // Note: String is a class, not a primitive type
+        String userEmail = "alice.johnson@example.com";
+        String studentName = "John Doe";
+        String courseName = "Java Programming Language";
+        System.out.println("Student: " + studentName);
+        System.out.println("Email: " + userEmail);
+        System.out.println("Course: " + courseName + "\n");
+
+
+        // ========================================
+        // SECTION 8: Practical Example
+        // ========================================
+        System.out.println("=== Practical Example ===\n");
+        
+        int max_Students = 30;
+        System.out.println("Max Students: " + max_Students + "\n");
+
+        double tax_Rate = 0.08;           // 8% tax rate
+        double price = 100.0;
+        double tax = price * tax_Rate;
+        double total = price + tax;
+        System.out.println("Price: $" + price);
+        System.out.println("Tax Rate: " + (tax_Rate * 100) + "%");
+        System.out.println("Total: $" + total);
+
+
+        // ========================================
+        // SECTION 9: Practical Example - Light Speed Calculation
+        // ========================================
+        System.out.println("=== Practical Example: Distance Light Travels ===\n");
+
+        final int LIGHT_SPEED = 186000;         // Miles per second (constant)
+        long days = 1000;
+        long seconds = days * 24 * 60 * 60;     // Convert days to seconds
+        long distance = LIGHT_SPEED * seconds;   // Calculate distance
+
+        System.out.println("In " + days + " days, light will travel about");
+        System.out.println(distance + " miles.");
+    }
+}
