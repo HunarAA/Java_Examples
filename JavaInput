@@ -1,0 +1,330 @@
+import java.util.Scanner;
+public class JavaInput {
+    public static void main(String[] args) {
+
+        // TODO: SECTION 1 - Introduction to Scanner
+        System.out.println("=== Introduction to Scanner ===\n");
+
+        // Creating a Scanner object to read from standard input (keyboard)
+        Scanner scanner = new Scanner(System.in);
+
+        // TODO: SECTION 2 - Reading Integer Input
+        System.out.println("=== Reading Integer Input ===\n");
+
+        // nextInt() - Reads an integer value
+        System.out.print("Enter your age: ");
+        int age = scanner.nextInt();
+        System.out.println("You entered: " + age);
+        System.out.println("Data type: int\n");
+
+        // example: Sum of two numbers
+        System.out.println("--- Example: Sum of Two Numbers ---");
+        System.out.print("Enter first number: ");
+        int number1 = scanner.nextInt();
+
+        System.out.print("Enter second number: ");
+        int number2 = scanner.nextInt();
+
+        int sum = number1 + number2;
+        System.out.println("The sum of " + number1 + " and " + number2 + " is: " + sum + "\n");
+
+
+        // TODO: SECTION 3 - Reading Floating-Point Input
+        System.out.println("=== Reading Floating-Point Input ===\n");
+
+        // nextFloat() - Reads a float value
+        System.out.print("Enter your height in meters (e.g., 1.75): ");
+        float height = scanner.nextFloat();
+        System.out.println("You entered: " + height + " meters");
+        System.out.println("Data type: float\n");
+
+        // nextDouble() - Reads a double value (more precise)
+        System.out.print("Enter product price (e.g., 99.99): ");
+        double price = scanner.nextDouble();
+        System.out.println("You entered: $" + price);
+        System.out.println("Data type: double\n");
+
+        // example: Calculate area of rectangle
+        System.out.println("--- Example: Area of Rectangle ---");
+        System.out.print("Enter the length of the rectangle: ");
+        float length = scanner.nextFloat();
+
+        System.out.print("Enter the width of the rectangle: ");
+        float width = scanner.nextFloat();
+
+        float area = length * width;
+        System.out.println("The area of the rectangle is: " + area + " square units\n");
+
+
+        // TODO: SECTION 4 - Reading String Input
+        System.out.println("=== Reading String Input ===\n");
+
+        // next() - Reads a single word (stops at whitespace)
+        System.out.print("Enter your first name: ");
+        String firstName = scanner.next();
+        System.out.println("First name: " + firstName);
+
+        // nextLine() - Reads entire line including spaces
+        scanner.nextLine();  // Clear the newline character left by next()
+        System.out.print("Enter your full address: ");
+        String address = scanner.nextLine();
+        System.out.println("Address: " + address + "\n");
+
+
+        // TODO: SECTION 5 - Reading Boolean Input
+        System.out.println("=== Reading Boolean Input ===\n");
+
+        // nextBoolean() - Reads true or false
+        System.out.print("Are you a student? (true/false): ");
+        boolean isStudent = scanner.nextBoolean();
+        System.out.println("Student status: " + isStudent);
+        System.out.println("Data type: boolean\n");
+
+
+        // TODO: SECTION 6 - Reading Character Input
+        System.out.println("=== Reading Character Input ===\n");
+
+        // Scanner doesn't have nextChar(), so we use next().charAt(0)
+        System.out.print("Enter your grade (A, B, C, D, F): ");
+        char grade = scanner.next().charAt(0);
+        System.out.println("Grade entered: " + grade);
+        System.out.println("Data type: char\n");
+
+
+        // TODO: SECTION 7 - Common Scanner issue - nextLine() Issue
+        System.out.println("=== Understanding nextLine() Issue ===\n");
+
+        // When using nextInt(), nextFloat(), etc., they leave a newline character
+        // We need to consume it with an extra nextLine() before reading string input
+
+        System.out.print("Enter your student ID: ");
+        int studentId = scanner.nextInt();
+        scanner.nextLine();  // IMPORTANT: Consume the leftover newline
+
+        System.out.print("Enter your major: ");
+        String major = scanner.nextLine();  // Now it works correctly
+
+        System.out.println("Student ID: " + studentId);
+        System.out.println("Major: " + major + "\n");
+
+
+        // TODO: SECTION 8 - Practical Examples
+
+        // Example - User Profile
+        System.out.println("=== User Profile ===\n");
+
+        System.out.print("Enter your first name: ");
+        String userFirstName = scanner.next();
+
+        System.out.print("Enter your last name: ");
+        String userLastName = scanner.next();
+
+        System.out.print("Enter your age: ");
+        int userAge = scanner.nextInt();
+        scanner.nextLine();  // Consume newline
+
+        System.out.print("Enter your gender (Male/Female/Other): ");
+        String gender = scanner.nextLine();
+
+        System.out.print("Enter your email address: ");
+        String email = scanner.nextLine();
+
+        System.out.print("Enter your phone number: ");
+        String phone = scanner.nextLine();
+
+        // Display user profile
+        System.out.println("\n========== USER PROFILE ==========");
+        System.out.println("Full Name    : " + userFirstName + " " + userLastName);
+        System.out.println("Age          : " + userAge + " years old");
+        System.out.println("Gender       : " + gender);
+        System.out.println("Email        : " + email);
+        System.out.println("Phone        : " + phone);
+        System.out.println("==================================\n");
+
+
+        // Example - Student Grade Calculator
+        System.out.println("=== Student Grade Calculator ===\n");
+
+        System.out.print("Enter the student's full name: ");
+        String studentName = scanner.nextLine();
+
+        System.out.print("Enter marks for Math: ");
+        float mathMarks = scanner.nextFloat();
+
+        System.out.print("Enter marks for Science: ");
+        float scienceMarks = scanner.nextFloat();
+
+        System.out.print("Enter marks for English: ");
+        float englishMarks = scanner.nextFloat();
+
+        // Calculate total and average
+        float totalMarks = mathMarks + scienceMarks + englishMarks;
+        float averageMarks = totalMarks / 3;
+
+        // Calculate percentage (assuming each subject is out of 100)
+        float percentage = (totalMarks / 300) * 100;
+
+        // Display results
+        System.out.println("\n========== STUDENT GRADE REPORT ==========");
+        System.out.println("Student Name : " + studentName);
+        System.out.println("-------------------------------------------");
+        System.out.println("Math         : " + mathMarks);
+        System.out.println("Science      : " + scienceMarks);
+        System.out.println("English      : " + englishMarks);
+        System.out.println("-------------------------------------------");
+        System.out.println("Total Marks  : " + totalMarks + " / 300");
+        System.out.printf("Average      : %.2f\n", averageMarks);
+        System.out.printf("Percentage   : %.2f%%\n", percentage);
+        System.out.println("==========================================\n");
+
+
+        // Example - Shopping Cart
+        System.out.println("=== Shopping Cart ===\n");
+
+        scanner.nextLine();  // Consume newline
+
+        System.out.print("Enter product name: ");
+        String productName = scanner.nextLine();
+
+        System.out.print("Enter price per unit: $");
+        double pricePerUnit = scanner.nextDouble();
+
+        System.out.print("Enter quantity: ");
+        int quantity = scanner.nextInt();
+
+        System.out.print("Enter discount percentage (0-100): ");
+        double discountPercent = scanner.nextDouble();
+
+        // Calculate prices
+        double subtotal = pricePerUnit * quantity;
+        double discountAmount = subtotal * (discountPercent / 100);
+        double totalAfterDiscount = subtotal - discountAmount;
+        double taxAmount = totalAfterDiscount * 0.08;  // 8% tax
+        double finalTotal = totalAfterDiscount + taxAmount;
+
+        // Display receipt
+        System.out.println("\n========== SHOPPING RECEIPT ==========");
+        System.out.println("Product      : " + productName);
+        System.out.println("Price/Unit   : $" + pricePerUnit);
+        System.out.println("Quantity     : " + quantity);
+        System.out.println("--------------------------------------");
+        System.out.printf("Subtotal     : $%.2f\n", subtotal);
+        System.out.printf("Discount     : -$%.2f (%.0f%%)\n", discountAmount, discountPercent);
+        System.out.printf("After Disc.  : $%.2f\n", totalAfterDiscount);
+        System.out.printf("Tax (8%%)     : $%.2f\n", taxAmount);
+        System.out.println("--------------------------------------");
+        System.out.printf("TOTAL        : $%.2f\n", finalTotal);
+        System.out.println("======================================\n");
+
+
+        // Example - BMI Calculator
+        System.out.println("=== BMI Calculator ===\n");
+
+        scanner.nextLine();  // Consume newline
+
+        System.out.print("Enter your name: ");
+        String userName = scanner.nextLine();
+
+        System.out.print("Enter your weight in kg: ");
+        double weightKg = scanner.nextDouble();
+
+        System.out.print("Enter your height in meters: ");
+        double heightMeters = scanner.nextDouble();
+
+        // Calculate BMI: weight (kg) / height^2 (m^2)
+        double bmi = weightKg / (heightMeters * heightMeters);
+
+        // Display results
+        System.out.println("\n========== BMI CALCULATION RESULTS ==========");
+        System.out.println("Name         : " + userName);
+        System.out.println("Weight       : " + weightKg + " kg");
+        System.out.println("Height       : " + heightMeters + " meters");
+        System.out.printf("BMI          : %.2f\n", bmi);
+        System.out.println("---------------------------------------------");
+        System.out.println("BMI Categories:");
+        System.out.println("  Underweight: BMI < 18.5");
+        System.out.println("  Normal:      BMI 18.5 - 24.9");
+        System.out.println("  Overweight:  BMI 25 - 29.9");
+        System.out.println("  Obese:       BMI >= 30");
+        System.out.println("=============================================\n");
+
+
+        // Example - Temperature Converter
+        System.out.println("=== Temperature Converter ===\n");
+
+        System.out.print("Enter temperature in Celsius: ");
+        double celsius = scanner.nextDouble();
+
+        // Convert to Fahrenheit: F = (C × 9/5) + 32
+        double fahrenheit = (celsius * 9.0 / 5.0) + 32;
+
+        // Convert to Kelvin: K = C + 273.15
+        double kelvin = celsius + 273.15;
+
+        // Display results
+        System.out.println("\n========== TEMPERATURE CONVERSION ==========");
+        System.out.printf("Celsius      : %.2f°C\n", celsius);
+        System.out.printf("Fahrenheit   : %.2f°F\n", fahrenheit);
+        System.out.printf("Kelvin       : %.2f K\n", kelvin);
+        System.out.println("============================================\n");
+
+
+        // Example - Loan Calculator
+        System.out.println("=== Simple Loan Calculator ===\n");
+
+        System.out.print("Enter loan amount: $");
+        double loanAmount = scanner.nextDouble();
+
+        System.out.print("Enter annual interest rate (%): ");
+        double annualRate = scanner.nextDouble();
+
+        System.out.print("Enter loan term in years: ");
+        int years = scanner.nextInt();
+
+        // Calculate simple interest: I = P × R × T
+        double monthlyRate = annualRate / 100 / 12;
+        int months = years * 12;
+        double totalInterest = loanAmount * (annualRate / 100) * years;
+        double totalAmount = loanAmount + totalInterest;
+        double monthlyPayment = totalAmount / months;
+
+        // Display results
+        System.out.println("\n========== LOAN CALCULATION SUMMARY ==========");
+        System.out.printf("Loan Amount        : $%.2f\n", loanAmount);
+        System.out.printf("Interest Rate      : %.2f%% per year\n", annualRate);
+        System.out.println("Loan Term          : " + years + " years (" + months + " months)");
+        System.out.println("----------------------------------------------");
+        System.out.printf("Total Interest     : $%.2f\n", totalInterest);
+        System.out.printf("Total Amount       : $%.2f\n", totalAmount);
+        System.out.printf("Monthly Payment    : $%.2f\n", monthlyPayment);
+        System.out.println("==============================================\n");
+
+
+        // Example - Distance and Speed Calculator
+        System.out.println("=== Distance & Speed Calculator ===\n");
+
+        System.out.print("Enter distance in kilometers: ");
+        double distanceKm = scanner.nextDouble();
+
+        System.out.print("Enter time taken in hours: ");
+        double timeHours = scanner.nextDouble();
+
+        // Calculate speed: Speed = Distance / Time
+        double speedKmh = distanceKm / timeHours;
+        double speedMph = speedKmh * 0.621371;  // Convert to miles per hour
+
+        // Display results
+        System.out.println("\n========== SPEED CALCULATION ==========");
+        System.out.printf("Distance       : %.2f km\n", distanceKm);
+        System.out.printf("Time           : %.2f hours\n", timeHours);
+        System.out.println("---------------------------------------");
+        System.out.printf("Speed          : %.2f km/h\n", speedKmh);
+        System.out.printf("Speed          : %.2f mph\n", speedMph);
+        System.out.println("=======================================\n");
+
+
+        // Always close Scanner to free up system resources
+        scanner.close();
+        System.out.println("Scanner closed. Program completed successfully!");
+    }
+}
