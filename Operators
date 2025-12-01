@@ -1,76 +1,328 @@
-public class operators {
+public class Operators {
     public static void main(String[] args) {
-    // TODO: increment and decrement examples
-        // example_1
+
+        // TODO: SECTION 1 - Arithmetic Operators
+        System.out.println("=== Arithmetic Operators ===\n");
+
+        // Basic arithmetic operations
+        int num1 = 20;
+        int num2 = 5;
+
+        // Addition (+)
+        int sum = num1 + num2;
+        System.out.println(num1 + " + " + num2 + " = " + sum);
+
+        // Subtraction (-)
+        int difference = num1 - num2;
+        System.out.println(num1 + " - " + num2 + " = " + difference);
+
+        // Multiplication (*)
+        int product = num1 * num2;
+        System.out.println(num1 + " * " + num2 + " = " + product);
+
+        // Division (/)
+        int quotient = num1 / num2;
+        System.out.println(num1 + " / " + num2 + " = " + quotient);
+
+        // Modulus (%) - Returns the remainder
+        int remainder = num1 % num2;
+        System.out.println(num1 + " % " + num2 + " = " + remainder);
+
+        // example: Calculating price with tax
+        double itemPrice = 99.99;
+        double taxRate = 0.08;              // 8% tax
+        double tax = itemPrice * taxRate;
+        double totalPrice = itemPrice + tax;
+        System.out.println("\nItem Price: $" + itemPrice);
+        System.out.println("Tax (8%): $" + tax);
+        System.out.println("Total Price: $" + totalPrice + "\n");
+
+
+        // TODO: SECTION 2 - Increment and Decrement Operators
+        System.out.println("=== Increment and Decrement Operators ===\n");
+
+        // Post-increment (variable++)
         int count = 5;
         System.out.println("Initial count: " + count);
-        count++;
-        System.out.println("After increment: " + count);
-        // example_2
+        count++;    // Equivalent to: count = count + 1
+        System.out.println("After count++: " + count);
+
+        // Pre-increment (++variable)
+        int score = 10;
+        System.out.println("\nInitial score: " + score);
+        ++score;    // Increment happens before use
+        System.out.println("After ++score: " + score);
+
+        // Post-decrement (variable--)
         int value = 20;
-        int result = value--;
+        int result = value--;   // result gets 20, then value becomes 19
+        System.out.println("\nOriginal value: 20");
+        System.out.println("Result (value--): " + result);
         System.out.println("Value after decrement: " + value);
-        System.out.println("Result: " + result);
-    // TODO: assignment operator examples
+
+        // Pre-decrement (--variable)
+        int points = 15;
+        int newPoints = --points;   // points becomes 14, then assigned to newPoints
+        System.out.println("\nOriginal points: 15");
+        System.out.println("New points (--points): " + newPoints);
+        System.out.println("Points after decrement: " + points);
+
+        // example: Loop counter simulation
+        int lives = 3;
+        System.out.println("\n--- Game Lives Example ---");
+        System.out.println("Starting lives: " + lives);
+        System.out.println("After taking damage: " + (--lives));
+        System.out.println("After taking damage: " + (--lives));
+        System.out.println("Remaining lives: " + lives + "\n");
+
+
+        // TODO: SECTION 3 - Assignment Operators
+        System.out.println("=== Assignment Operators ===\n");
+
+        // Simple assignment (=)
         int a = 10;
         int b = a;
         System.out.println("a = " + a + ", b = " + b);
-        b += a;
-        System.out.println("a = " + a + ", b = " + b);
-        b -= a;
-        System.out.println("a = " + a + ", b = " + b);
-        b *= a;
-        System.out.println("a = " + a + ", b = " + b);
-        b /= a;
-        System.out.println("a = " + a + ", b = " + b);
-        b %= a;
-        System.out.println("a = " + a + ", b = " + b);
-    // TODO: comparison examples
-        // example_1
+
+        // Addition assignment (+=)
+        b += a;     // Equivalent to: b = b + a
+        System.out.println("After b += a: a = " + a + ", b = " + b);
+
+        // Subtraction assignment (-=)
+        b -= a;     // Equivalent to: b = b - a
+        System.out.println("After b -= a: a = " + a + ", b = " + b);
+
+        // Multiplication assignment (*=)
+        b *= a;     // Equivalent to: b = b * a
+        System.out.println("After b *= a: a = " + a + ", b = " + b);
+
+        // Division assignment (/=)
+        b /= a;     // Equivalent to: b = b / a
+        System.out.println("After b /= a: a = " + a + ", b = " + b);
+
+        // Modulus assignment (%=)
+        b %= a;     // Equivalent to: b = b % a
+        System.out.println("After b %= a: a = " + a + ", b = " + b);
+
+        // example: Bank account balance updates
+        double balance = 1000.0;
+        System.out.println("\n--- Bank Account Example ---");
+        System.out.println("Initial balance: $" + balance);
+        balance += 500;     // Deposit
+        System.out.println("After deposit of $500: $" + balance);
+        balance -= 200;     // Withdrawal
+        System.out.println("After withdrawal of $200: $" + balance);
+
+
+        // TODO: SECTION 4 - Comparison (Relational) Operators
+        System.out.println("=== Comparison Operators ===\n");
+
+        // Equal to (==)
         int ageJohn = 25;
         int ageAnna = 30;
         System.out.println("ageJohn == ageAnna: " + (ageJohn == ageAnna));
-        // example_2
+        System.out.println(ageJohn + " == " + ageAnna + " is " + (ageJohn == ageAnna));
+
+        // Not equal to (!=)
         int scorePlayer1 = 50;
         int scorePlayer2 = 45;
-        System.out.println("scorePlayer1 != scorePlayer2: " + (scorePlayer1 != scorePlayer2));
-        // example_3
+        System.out.println("\nscorePlayer1 != scorePlayer2: " + (scorePlayer1 != scorePlayer2));
+        System.out.println(scorePlayer1 + " != " + scorePlayer2 + " is " + (scorePlayer1 != scorePlayer2));
+
+        // Greater than (>)
         double heightBuilding1 = 150.5;
         double heightBuilding2 = 120.3;
-        System.out.println("heightBuilding1 > heightBuilding2: " + (heightBuilding1 > heightBuilding2));
-        // example_4
+        System.out.println("\nheightBuilding1 > heightBuilding2: " + (heightBuilding1 > heightBuilding2));
+        System.out.println(heightBuilding1 + " > " + heightBuilding2 + " is " + (heightBuilding1 > heightBuilding2));
+
+        // Less than (<)
         int speedCar = 120;
         int speedLimit = 100;
-        System.out.println("speedCar < speedLimit: " + (speedCar < speedLimit));
-        // example_5
+        System.out.println("\nspeedCar < speedLimit: " + (speedCar < speedLimit));
+        System.out.println(speedCar + " < " + speedLimit + " is " + (speedCar < speedLimit));
+
+        // Greater than or equal to (>=)
         int pointsPlayer = 90;
         int pointsRequired = 90;
-        System.out.println("pointsPlayer >= pointsRequired: " + (pointsPlayer >= pointsRequired));
-        // example_6
+        System.out.println("\npointsPlayer >= pointsRequired: " + (pointsPlayer >= pointsRequired));
+        System.out.println(pointsPlayer + " >= " + pointsRequired + " is " + (pointsPlayer >= pointsRequired));
+
+        // Less than or equal to (<=)
         int temperatureToday = 25;
         int temperatureYesterday = 30;
-        System.out.println("temperatureToday <= temperatureYesterday: " + (temperatureToday <= temperatureYesterday));
-    // TODO: logical examples
-        // example_1
+        System.out.println("\ntemperatureToday <= temperatureYesterday: " + (temperatureToday <= temperatureYesterday));
+        System.out.println(temperatureToday + " <= " + temperatureYesterday + " is " + (temperatureToday <= temperatureYesterday));
+
+        // example: Age verification
+        int userAge = 18;
+        int minimumAge = 18;
+        boolean isEligible = userAge >= minimumAge;
+        System.out.println("\n--- Age Verification Example ---");
+        System.out.println("User age: " + userAge);
+        System.out.println("Minimum age: " + minimumAge);
+        System.out.println("Is eligible: " + isEligible + "\n");
+
+
+        // TODO: SECTION 5 - Logical Operators
+        System.out.println("=== Logical Operators ===\n");
+
+        // Logical AND (&&) - Both conditions must be true
         boolean isAccountActive = true;
         boolean hasSufficientBalance = true;
+        System.out.println("--- Logical AND (&&) ---");
+        System.out.println("Is account active: " + isAccountActive);
+        System.out.println("Has sufficient balance: " + hasSufficientBalance);
         System.out.println("Can make a purchase: " + (isAccountActive && hasSufficientBalance));
-        // example_2
+
+        // Logical OR (||) - At least one condition must be true
         boolean hasMembershipCard = false;
         boolean hasDiscountCoupon = true;
+        System.out.println("\n--- Logical OR (||) ---");
+        System.out.println("Has membership card: " + hasMembershipCard);
+        System.out.println("Has discount coupon: " + hasDiscountCoupon);
         System.out.println("Eligible for discount: " + (hasMembershipCard || hasDiscountCoupon));
-        // example_3
+
+        // Logical NOT (!) - Reverses the boolean value
         boolean isServerDown = false;
+        System.out.println("\n--- Logical NOT (!) ---");
+        System.out.println("Is server down: " + isServerDown);
         System.out.println("Can access website: " + !isServerDown);
-        // example_4
+
+        // Complex logical expression with AND and OR
         boolean isSunny = false;
         boolean hasUmbrella = true;
         boolean wantsToGoOutside = true;
+        System.out.println("\n--- Complex Expression 1 ---");
+        System.out.println("Is sunny: " + isSunny);
+        System.out.println("Has umbrella: " + hasUmbrella);
+        System.out.println("Wants to go outside: " + wantsToGoOutside);
         System.out.println("Can go outside: " + ((isSunny || hasUmbrella) && wantsToGoOutside));
-        // example_5
+
+        // Another complex logical expression
         boolean hasJobOffer = true;
         boolean isQualified = false;
         boolean isWillingToLearn = true;
+        System.out.println("\n--- Complex Expression 2 ---");
+        System.out.println("Has job offer: " + hasJobOffer);
+        System.out.println("Is qualified: " + isQualified);
+        System.out.println("Is willing to learn: " + isWillingToLearn);
         System.out.println("Can get the job: " + (hasJobOffer && (isQualified || isWillingToLearn)));
+
+
+        // TODO: SECTION 6 - Operator Precedence
+        System.out.println("=== Operator Precedence ===\n");
+
+        // Operators are evaluated in a specific order
+        int x = 10;
+        int y = 5;
+        int z = 2;
+
+        // Multiplication happens before addition
+        int result1 = x + y * z;    // 10 + (5 * 2) = 10 + 10 = 20
+        System.out.println("10 + 5 * 2 = " + result1);
+
+        // Using parentheses to change order
+        int result2 = (x + y) * z;  // (10 + 5) * 2 = 15 * 2 = 30
+        System.out.println("(10 + 5) * 2 = " + result2);
+
+        // Complex expression
+        int result3 = x + y * z - x / z;    // 10 + 10 - 5 = 15
+        System.out.println("10 + 5 * 2 - 10 / 2 = " + result3);
+
+        // Comparison and logical operators
+        boolean result4 = x > y && y > z;   // (10 > 5) && (5 > 2) = true && true = true
+        System.out.println("10 > 5 && 5 > 2 = " + result4 + "\n");
+
+
+        // TODO: SECTION 7 - Practical Examples
+
+        // Example - Shopping Cart
+        System.out.println("=== Shopping Cart ===\n");
+
+        double productPrice = 49.99;
+        int quantity = 3;
+        double shippingCost = 5.99;
+        double discountRate = 0.10;         // 10% discount
+        boolean isMember = true;
+
+        // Calculate subtotal
+        double subtotal = productPrice * quantity;
+        System.out.println("Product Price: $" + productPrice);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Subtotal: $" + subtotal);
+
+        // Apply discount if member
+        double discount = isMember ? subtotal * discountRate : 0;
+        System.out.println("Member discount (10%): $" + discount);
+
+        // Calculate total
+        double total = subtotal - discount + shippingCost;
+        System.out.println("Shipping cost: $" + shippingCost);
+        System.out.println("Total: $" + total);
+
+        // Check if free shipping eligible (over $100)
+        boolean freeShipping = subtotal >= 100;
+        System.out.println("Eligible for free shipping: " + freeShipping + "\n");
+
+
+        // Example - Grade Calculator
+        System.out.println("=== Grade Calculator ===\n");
+
+        int examScore = 85;
+        int homeworkScore = 90;
+        int projectScore = 88;
+        int totalScores = 3;
+
+        // Calculate average
+        double average = (examScore + homeworkScore + projectScore) / (double) totalScores;
+        System.out.println("Exam Score: " + examScore);
+        System.out.println("Homework Score: " + homeworkScore);
+        System.out.println("Project Score: " + projectScore);
+        System.out.println("Average Score: " + average);
+
+        // Determine if passing (>= 70)
+        boolean isPassing = average >= 70;
+        System.out.println("Is Passing: " + isPassing);
+
+        // Determine if honors (>= 85)
+        boolean isHonors = average >= 85;
+        System.out.println("Is Honors: " + isHonors + "\n");
+
+
+        // Example - Temperature Converter
+        System.out.println("=== Temperature Converter ===\n");
+
+        double celsius = 25.0;
+
+        // Convert Celsius to Fahrenheit: F = (C * 9/5) + 32
+        double fahrenheit = (celsius * 9.0 / 5.0) + 32;
+        System.out.println(celsius + "°C = " + fahrenheit + "°F");
+
+        // Check if comfortable temperature (18-24°C)
+        boolean isComfortable = celsius >= 18 && celsius <= 24;
+        System.out.println("Is comfortable temperature: " + isComfortable);
+
+        // Check if freezing
+        boolean isFreezing = celsius <= 0;
+        System.out.println("Is freezing: " + isFreezing);
+
+        // Check if hot
+        boolean isHot = celsius > 30;
+        System.out.println("Is hot: " + isHot + "\n");
+
+
+        // Example - Time Calculator
+        System.out.println("=== Time Calculator ===\n");
+
+        int totalSeconds = 3665;
+
+        // Calculate hours, minutes, and remaining seconds
+        int hours = totalSeconds / 3600;
+        int remainingAfterHours = totalSeconds % 3600;
+        int minutes = remainingAfterHours / 60;
+        int seconds = remainingAfterHours % 60;
+
+        System.out.println("Total seconds: " + totalSeconds);
+        System.out.println("Time: " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds");
     }
 }
