@@ -1,9 +1,12 @@
 import java.util.Scanner;
+
 public class if_else {
-    public static void main(String[] arguments){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-    // if statement examples
-        // TODO: write a program to check if a number is odd or even
+
+        // TODO: SECTION 1 - Basic If-Else Statements
+
+        // Example 1: Check if a number is odd or even
         System.out.print("Enter a number: ");
         int number = scanner.nextInt();
 
@@ -13,18 +16,17 @@ public class if_else {
             System.out.println(number + " is odd.");
         }
 
-
-        // TODO: if a person is eligible to vote based on their age
+        // Example 2: Age eligibility for voting
         System.out.print("Enter your age: ");
         int age = scanner.nextInt();
         if (age >= 18) {
             System.out.println("You are eligible to vote.");
         } else {
             System.out.println("You are not eligible to vote.");
+            System.out.println("You need " + (18 - age) + " more years to be eligible.");
         }
 
-
-        // TODO: Check if a number is positive, negative, or zero
+        // Example 3: Check if a number is positive, negative, or zero
         System.out.print("Enter a number: ");
         int theNumber = scanner.nextInt();
 
@@ -36,96 +38,154 @@ public class if_else {
             System.out.println("The number is zero.");
         }
 
+        // Example 4: Password strength checker
+        System.out.print("Enter password length: ");
+        int passwordLength = scanner.nextInt();
 
-        // TODO: Find the maximum of three numbers using if
-        System.out.print("Enter the first number: ");
-        int num1 = scanner.nextInt();
-        System.out.print("Enter the second number: ");
-        int num2 = scanner.nextInt();
-        System.out.print("Enter the third number: ");
-        int num3 = scanner.nextInt();
-
-        if (num1 > num2 && num1>num3) {
-            System.out.println("The maximum number is: " + num1);
-        } else if (num2 > num1 && num2 > num3) {
-            System.out.println("The maximum number is: " + num2);
+        if (passwordLength >= 12) {
+            System.out.println("Strong password length!");
+        } else if (passwordLength >= 8) {
+            System.out.println("Medium password strength. Consider making it longer.");
+        } else if (passwordLength >= 6) {
+            System.out.println("Weak password. Should be at least 8 characters.");
         } else {
-            System.out.println("The maximum number is: " + num3);
+            System.out.println("Very weak password. Must be at least 6 characters.");
         }
 
 
-        /* TODO: This program simulates basic ATM operations, allowing users
-            to either add money to their account or withdraw money.
-            It includes necessary checks for withdrawal limits,
-            account balance, and deposit amounts.
-         */
+        // TODO: SECTION 2 - Multiple Conditions
+        System.out.println("\n=== Multiple Conditions ===\n");
+
+        // Example 1: Find the maximum of three numbers
+        System.out.print("Enter the first number: ");
+        int number1 = scanner.nextInt();
+        System.out.print("Enter the second number: ");
+        int number2 = scanner.nextInt();
+        System.out.print("Enter the third number: ");
+        int number3 = scanner.nextInt();
+
+        if (number1 >= number2 && number1 >= number3) {
+            System.out.println("The maximum number is: " + number1);
+        } else if (number2 >= number1 && number2 >= number3) {
+            System.out.println("The maximum number is: " + number2);
+        } else {
+            System.out.println("The maximum number is: " + number3);
+        }
+
+        // Example 2: Grade classification system
+        System.out.print("Enter student's score (0-100): ");
+        int studentScore = scanner.nextInt();
+
+        if (studentScore >= 90) {
+            System.out.println("Grade: A (Excellent)");
+        } else if (studentScore >= 80) {
+            System.out.println("Grade: B (Good)");
+        } else if (studentScore >= 70) {
+            System.out.println("Grade: C (Average)");
+        } else if (studentScore >= 60) {
+            System.out.println("Grade: D (Below Average)");
+        } else if (studentScore >= 0) {
+            System.out.println("Grade: F (Fail)");
+        } else {
+            System.out.println("Invalid score! Please enter a score between 0-100.");
+        }
+
+        // TODO: SECTION 3 - Practical Examples
+        System.out.println("\n=== Practical Applications ===\n");
+
+        // Example 1: ATM Simulation
         double accountBalance = 500.0;
         String message = "";
 
+        System.out.println("--- ATM Simulation ---");
         System.out.println("Welcome to ATM! Your balance is $" + accountBalance);
-
-        System.out.println("Enter 1 to add money or 2 to withdraw money:");
+        System.out.println("Enter 1 to deposit, 2 to withdraw, 3 to check balance:");
         int choice = scanner.nextInt();
 
         if (choice == 1) {
-            System.out.print("Enter the amount to add: ");
+            System.out.print("Enter the amount to deposit: ");
             double depositAmount = scanner.nextDouble();
-            if (depositAmount > 0) {
+            if (depositAmount > 0 && depositAmount <= 10000) {
                 accountBalance += depositAmount;
-                message = "You added $" + depositAmount +
+                message = "Successfully deposited $" + depositAmount +
                         ". Your new balance is $" + accountBalance + ".";
+            } else if (depositAmount <= 0) {
+                message = "Invalid amount! Deposit amount must be greater than $0.";
             } else {
-                message = "Failed! Deposit amount must be greater than $0.";
+                message = "Transaction limit exceeded! Maximum deposit is $10,000.";
             }
         } else if (choice == 2) {
             System.out.print("Enter the amount to withdraw: ");
-            int withdrawalAmount = scanner.nextInt();
+            double withdrawalAmount = scanner.nextDouble();
             if (withdrawalAmount >= 10) {
                 if (withdrawalAmount <= accountBalance) {
-                    accountBalance -= withdrawalAmount;
-                    message = "You withdrew $" + withdrawalAmount +
-                            ". Your balance is $" + accountBalance + ".";
+                    if (withdrawalAmount <= 1000) {
+                        accountBalance -= withdrawalAmount;
+                        message = "Successfully withdrew $" + withdrawalAmount +
+                                ". Your remaining balance is $" + accountBalance + ".";
+                    } else {
+                        message = "Daily withdrawal limit exceeded! Maximum withdrawal is $1,000.";
+                    }
                 } else {
-                    message = "Failed! Insufficient amount. Current balance: $" + accountBalance + ".";
+                    message = "Insufficient funds! Current balance: $" + accountBalance + ".";
                 }
             } else {
                 message = "Transaction failed! Minimum withdrawal amount is $10.";
             }
+        } else if (choice == 3) {
+            message = "Your current balance is $" + accountBalance + ".";
         } else {
-            message = "Invalid choice! Please select either 1 or 2.";
+            message = "Invalid choice! Please select 1, 2, or 3.";
         }
         System.out.println(message);
 
-
-
-        /* TODO: This program calculates discounts, loyalty points, and
-            the final price based on the total amount spent.
-            It applies a percentage discount, adds tax, and displays
-            the final amount after deductions.
-         */
+        // Example 2: Shopping Discount Calculator
+        System.out.println("\n--- Shopping Discount Calculator ---");
         int loyaltyPoints = 0;
         double discount = 0;
+        String membershipLevel = "";
 
         System.out.print("Enter the total amount spent: $");
         double amountSpent = scanner.nextDouble();
+        System.out.print("Are you a VIP member? (true/false): ");
+        boolean isVipMember = scanner.nextBoolean();
 
-        if (amountSpent >= 100) {
-            discount = 0.20; // 20% discount
-        } else if (amountSpent >= 50) {
-            discount = 0.10; // 10% discount
-        } else if (amountSpent >= 20) {
-            discount = 0.05; // 5% discount
+        // Determine discount based on amount and membership
+        if (isVipMember) {
+            if (amountSpent >= 200) {
+                discount = 0.30; // 30% VIP discount
+                membershipLevel = "VIP Gold";
+            } else if (amountSpent >= 100) {
+                discount = 0.25; // 25% VIP discount
+                membershipLevel = "VIP Silver";
+            } else {
+                discount = 0.15; // 15% VIP discount
+                membershipLevel = "VIP Bronze";
+            }
+        } else {
+            if (amountSpent >= 200) {
+                discount = 0.15; // 15% regular discount
+                membershipLevel = "Regular Gold";
+            } else if (amountSpent >= 100) {
+                discount = 0.10; // 10% regular discount
+                membershipLevel = "Regular Silver";
+            } else if (amountSpent >= 50) {
+                discount = 0.05; // 5% regular discount
+                membershipLevel = "Regular Bronze";
+            }
         }
 
         loyaltyPoints = (int) (amountSpent / 10); // 1 point for every $10
+        if (isVipMember) {
+            loyaltyPoints *= 2; // VIP members get double points
+        }
 
-        // Calculate final amount after applying discount
+        // Calculate final amount
         double discountedAmount = amountSpent - (amountSpent * discount);
-
-        // Apply tax (8% for example)
-        double tax = discountedAmount * 0.08;
+        double tax = discountedAmount * 0.08; // 8% tax
         double finalAmount = discountedAmount + tax;
 
+        System.out.println("Membership Level: " + membershipLevel);
         System.out.println("Original Amount: $" + amountSpent);
         if (discount > 0) {
             System.out.println("You qualify for a " + (discount * 100) + "% discount!");
@@ -135,34 +195,213 @@ public class if_else {
         }
         System.out.println("Loyalty Points Earned: " + loyaltyPoints + " points");
         System.out.println("Tax (8%): $" + tax);
-        System.out.println("Total amount to pay after discount and tax: $" + finalAmount);
+        System.out.println("Final Amount: $" + finalAmount);
 
+        // Example 3: Calculator simulation
+        System.out.print("Enter first number: ");
+        double calcNum1 = scanner.nextDouble();
+        System.out.print("Enter operator (+, -, *, /): ");
+        String operator = scanner.next();
+        System.out.print("Enter second number: ");
+        double calcNum2 = scanner.nextDouble();
 
+        double calcResult = 0;
+        String calcMessage = "";
 
+        if (operator.equals("+")) {
+            calcResult = calcNum1 + calcNum2;
+            calcMessage = calcNum1 + " + " + calcNum2 + " = " + calcResult;
+        } else if (operator.equals("-")) {
+            calcResult = calcNum1 - calcNum2;
+            calcMessage = calcNum1 + " - " + calcNum2 + " = " + calcResult;
+        } else if (operator.equals("*")) {
+            calcResult = calcNum1 * calcNum2;
+            calcMessage = calcNum1 + " * " + calcNum2 + " = " + calcResult;
+        } else if (operator.equals("/")) {
+            if (calcNum2 != 0) {
+                calcResult = calcNum1 / calcNum2;
+                calcMessage = calcNum1 + " / " + calcNum2 + " = " + calcResult;
+            } else {
+                calcMessage = "Error: Division by zero!";
+            }
+        } else {
+            calcMessage = "Error: Invalid operator!";
+        }
 
+        System.out.println(calcMessage);
 
-        // TODO: check if a number is odd or even using shorthand if
-        System.out.print("Enter a number: ");
+        // Example 4: Employee Salary Calculator
+        System.out.println("--- Employee Salary Calculator ---");
+        System.out.print("Enter employee type (1=Full-time, 2=Part-time, 3=Contract): ");
+        int employeeType = scanner.nextInt();
+        System.out.print("Enter hours worked this week: ");
+        double hoursWorked = scanner.nextDouble();
+        System.out.print("Enter hourly rate: $");
+        double hourlyRate = scanner.nextDouble();
+        System.out.print("Enter years of experience: ");
+        int experience = scanner.nextInt();
+
+        double baseSalary = 0;
+        double overtimePay = 0;
+        double bonus = 0;
+        String employeeStatus = "";
+
+        if (employeeType == 1) { // Full-time
+            employeeStatus = "Full-time";
+            if (hoursWorked <= 40) {
+                baseSalary = hoursWorked * hourlyRate;
+            } else {
+                baseSalary = 40 * hourlyRate;
+                overtimePay = (hoursWorked - 40) * hourlyRate * 1.5; // Time and a half
+            }
+
+            // Experience bonus for full-time employees
+            if (experience >= 10) {
+                bonus = baseSalary * 0.15; // 15% bonus
+            } else if (experience >= 5) {
+                bonus = baseSalary * 0.10; // 10% bonus
+            } else if (experience >= 2) {
+                bonus = baseSalary * 0.05; // 5% bonus
+            }
+        } else if (employeeType == 2) { // Part-time
+            employeeStatus = "Part-time";
+            if (hoursWorked <= 20) {
+                baseSalary = hoursWorked * hourlyRate;
+            } else {
+                baseSalary = hoursWorked * hourlyRate;
+                System.out.println("Warning: Part-time employee worked more than 20 hours!");
+            }
+        } else if (employeeType == 3) { // Contract
+            employeeStatus = "Contract";
+            baseSalary = hoursWorked * hourlyRate;
+            // No overtime or bonus for contract workers
+        } else {
+            employeeStatus = "Invalid";
+            System.out.println("Invalid employee type!");
+        }
+
+        double totalPay = baseSalary + overtimePay + bonus;
+
+        if (!employeeStatus.equals("Invalid")) {
+            System.out.println("Employee Type: " + employeeStatus);
+            System.out.println("Base Salary: $" + baseSalary);
+            if (overtimePay > 0) {
+                System.out.println("Overtime Pay: $" + overtimePay);
+            }
+            if (bonus > 0) {
+                System.out.println("Experience Bonus: $" + bonus);
+            }
+            System.out.println("Total Pay: $" + totalPay);
+        }
+
+        // Example 5: Loan Approval System
+        System.out.println("\n--- Loan Approval System ---");
+        System.out.print("Enter annual income: $");
+        double annualIncome = scanner.nextDouble();
+        System.out.print("Enter credit score (300-850): ");
+        int creditScore = scanner.nextInt();
+        System.out.print("Enter loan amount requested: $");
+        double loanAmount = scanner.nextDouble();
+        System.out.print("Enter existing debt: $");
+        double existingDebt = scanner.nextDouble();
+
+        boolean loanApproved = false;
+        double interestRate = 0;
+        String loanDecision = "";
+        double maxLoanAmount = 0;
+
+        // Calculate debt-to-income ratio
+        double monthlyIncome = annualIncome / 12;
+        double monthlyDebt = existingDebt / 12;
+        double debtToIncomeRatio = (monthlyDebt / monthlyIncome) * 100;
+
+        // Determine maximum loan amount based on income
+        maxLoanAmount = annualIncome * 4; // 4x annual income
+
+        if (creditScore >= 750) {
+            if (debtToIncomeRatio <= 30 && loanAmount <= maxLoanAmount) {
+                loanApproved = true;
+                interestRate = 3.5; // Excellent rate
+                loanDecision = "Approved - Excellent Credit";
+            } else if (debtToIncomeRatio <= 40) {
+                loanApproved = true;
+                interestRate = 4.0;
+                loanDecision = "Approved - Good Standing";
+                if (loanAmount > maxLoanAmount) {
+                    loanAmount = maxLoanAmount;
+                    loanDecision += " (Reduced Amount)";
+                }
+            } else {
+                loanDecision = "Denied - High Debt-to-Income Ratio";
+            }
+        } else if (creditScore >= 650) {
+            if (debtToIncomeRatio <= 25 && loanAmount <= maxLoanAmount * 0.8) {
+                loanApproved = true;
+                interestRate = 5.5;
+                loanDecision = "Approved - Average Credit";
+            } else {
+                loanDecision = "Denied - Insufficient Credit/Income";
+            }
+        } else if (creditScore >= 550) {
+            if (debtToIncomeRatio <= 20 && loanAmount <= maxLoanAmount * 0.5) {
+                loanApproved = true;
+                interestRate = 8.0;
+                loanDecision = "Approved - High Risk";
+            } else {
+                loanDecision = "Denied - Poor Credit";
+            }
+        } else {
+            loanDecision = "Denied - Credit Score Too Low";
+        }
+
+        System.out.println("Credit Score: " + creditScore);
+        System.out.println("Debt-to-Income Ratio: " + String.format("%.1f", debtToIncomeRatio) + "%");
+        System.out.println("Maximum Eligible Amount: $" + maxLoanAmount);
+        System.out.println("Loan Decision: " + loanDecision);
+
+        if (loanApproved) {
+            System.out.println("Approved Amount: $" + loanAmount);
+            System.out.println("Interest Rate: " + interestRate + "%");
+
+            // Calculate monthly payment (simplified)
+            double monthlyPayment = (loanAmount * (interestRate / 100 / 12)) /
+                    (1 - Math.pow(1 + (interestRate / 100 / 12), -360)); // 30-year loan
+            System.out.println("Estimated Monthly Payment: $" + String.format("%.2f", monthlyPayment));
+        }
+
+        // TODO: SECTION 4 - Shorthand if else (Ternary Operator)
+        System.out.println("\n=== Ternary (Conditional) Operator ===\n");
+
+        // Example 1: Simple odd/even check using ternary operator
+        System.out.print("Enter a number for ternary check: ");
         int num = scanner.nextInt();
-        String res = (num % 2 == 0) ? "The number is even" :
-                "The number is odd";
-        System.out.println(res);
+        String result = (num % 2 == 0) ? "The number is even" : "The number is odd";
+        System.out.println(result);
 
-        // TODO: find large number between two numbers using shorthand if
-        int num_1 = 45;
-        int num_2 = 30;
-        int largerNumber = (num_1 > num_2) ? num_1 : num_2;
-        System.out.println("Larger number: " + largerNumber);
+        // Example 2: Find larger number between two numbers
+        int num1 = 45;
+        int num2 = 30;
+        int largerNumber = (num1 > num2) ? num1 : num2;
+        System.out.println("Larger number between " + num1 + " and " + num2 + ": " + largerNumber);
 
-        // TODO: multi condition using shorthand if
+        // Example 3: Grade assignment using nested ternary
         int score = 85;
-        String grade =  (score >= 90) ? "A" :
-                        (score >= 75) ? "B" :
-                        (score >= 60) ? "C" :
-                                "D";
-        System.out.println("Grade: " + grade);
+        String grade = (score >= 90) ? "A" :
+                (score >= 80) ? "B" :
+                        (score >= 70) ? "C" :
+                                (score >= 60) ? "D" : "F";
+        System.out.println("Score: " + score + ", Grade: " + grade);
+
+        // Example 4: Age category classification
+        System.out.print("Enter age for category check: ");
+        int personAge = scanner.nextInt();
+        String ageCategory = (personAge < 13) ? "Child" :
+                (personAge < 20) ? "Teenager" :
+                        (personAge < 60) ? "Adult" : "Senior";
+        System.out.println("Age: " + personAge + ", Category: " + ageCategory);
 
 
         scanner.close();
+        System.out.println("\n=== Program Complete ===");
     }
 }
