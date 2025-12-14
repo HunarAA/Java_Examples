@@ -1,150 +1,315 @@
 import java.util.Scanner;
-public class switch_case {
-    public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-    /* TODO: The program takes a membership level as input and displays
-             the benefits associated with that membership.
-        */
-        System.out.print("Enter your membership level (1 for Basic, 2 for Silver, 3 for Gold, 4 for Platinum): ");
-        int membershipLevel = scanner.nextInt();
-        String benefits;
 
-        switch (membershipLevel) {
+public class switch_case {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // TODO: SECTION 1 - Basic Switch Statements
+
+        // Example 1: Day of the week
+        System.out.print("Enter a day number (1-7): ");
+        int dayNumber = scanner.nextInt();
+
+        String dayName;
+        switch (dayNumber) {
             case 1:
-                benefits = "Basic Membership: Access to standard content, 5% discount on products.";
+                dayName = "Monday";
                 break;
             case 2:
-                benefits = "Silver Membership: Access to premium content, 10% discount on products, Early access to sales.";
+                dayName = "Tuesday";
                 break;
             case 3:
-                benefits = "Gold Membership: Access to all content, 15% discount on products, Early access to sales, Priority support.";
+                dayName = "Wednesday";
                 break;
             case 4:
-                benefits = "Platinum Membership: Access to exclusive content, 20% discount on products, Early access to sales, Priority support, Free shipping.";
+                dayName = "Thursday";
+                break;
+            case 5:
+                dayName = "Friday";
+                break;
+            case 6:
+                dayName = "Saturday";
+                break;
+            case 7:
+                dayName = "Sunday";
                 break;
             default:
-                benefits = "Invalid membership level entered!";
-                System.out.println(benefits);
-                return;
+                dayName = "Invalid day number! Please enter 1-7.";
         }
-        System.out.println(benefits);
+        System.out.println("Day: " + dayName);
 
-        /* TODO: In this program, the user will input a color name, and
-            the program will display the corresponding hex code for that color.
-         */
-        System.out.print("Enter a color name (e.g., Red, Green, Blue): ");
-        String color = scanner.nextLine();
-        String hexCode;
-
-        switch (color) {
-            case "red":
-                hexCode = "#FF0000";
-                break;
-            case "green":
-                hexCode = "#00FF00";
-                break;
-            case "blue":
-                hexCode = "#0000FF";
-                break;
-            case "yellow":
-                hexCode = "#FFFF00";
-                break;
-            case "black":
-                hexCode = "#000000";
-                break;
-            case "white":
-                hexCode = "#FFFFFF";
-                break;
-            case "purple":
-                hexCode = "#800080";
-                break;
-            default:
-                hexCode = "Invalid color entered. Please enter a valid color name.";
-        }
-        System.out.println("Hex Code: " + hexCode);
-
-        /* TODO: A program to calculate the result of a basic arithmetic
-            operation (addition, subtraction, multiplication, or division)
-            based on the operator input
-         */
-        System.out.print("Enter the first number: ");
+        // Example 2: Simple calculator
+        System.out.print("\nEnter first number: ");
         double num1 = scanner.nextDouble();
-        System.out.print("Enter the operator (+, *, /): ");
+        System.out.print("Enter operator (+, -, *, /): ");
         char operator = scanner.next().charAt(0);
-        System.out.print("Enter the second number: ");
+        System.out.print("Enter second number: ");
         double num2 = scanner.nextDouble();
+
         double result = 0.0;
+        boolean validOperation = true;
+
         switch (operator) {
             case '+':
                 result = num1 + num2;
                 break;
+            case '-':
+                result = num1 - num2;
+                break;
             case '*':
-                if (num1 == 0 || num2 == 0) {
-                    System.out.println("Multiply by zero, always results in zero");
-                    return;
-                } else {
-                    result = num1 * num2;
-                }
+                result = num1 * num2;
                 break;
             case '/':
                 if (num2 != 0) {
                     result = num1 / num2;
                 } else {
-                    System.out.println("Error: Division by zero.");
-                    return;
+                    System.out.println("Error: Division by zero!");
+                    validOperation = false;
                 }
                 break;
             default:
-                System.out.println("Invalid operator.");
-                return;
+                System.out.println("Error: Invalid operator!");
+                validOperation = false;
         }
-        System.out.println(num1 + " " + operator + " " + num2 + " = " + result);
 
+        if (validOperation) {
+            System.out.println("Result: " + num1 + " " + operator + " " + num2 + " = " + result);
+        }
 
-        // TODO: using multiple labels
-        int num = 2;
-        switch (num) {
-            case 1, 2, 3:
-                System.out.println("Low number");
+        // TODO: SECTION 2 - Switch with Multiple Labels
+
+        // Example 1: Month categorization by season
+        System.out.print("\nEnter a month number (1-12): ");
+        int month = scanner.nextInt();
+
+        String season;
+        switch (month) {
+            case 12, 1, 2:
+                season = "Winter";
                 break;
-            case 4, 5, 6:
-                System.out.println("Medium number");
+            case 3, 4, 5:
+                season = "Spring";
+                break;
+            case 6, 7, 8:
+                season = "Summer";
+                break;
+            case 9, 10, 11:
+                season = "Fall";
                 break;
             default:
-                System.out.println("High number");
+                season = "Invalid month! Please enter 1-12.";
+        }
+        System.out.println("Season: " + season);
+
+        // Example 2: Working days vs weekend
+        System.out.print("Enter day number (1-7) to check if it's a working day: ");
+        int day = scanner.nextInt();
+
+        String dayType;
+        switch (day) {
+            case 1, 2, 3, 4, 5:
+                dayType = "Working Day";
+                break;
+            case 6, 7:
+                dayType = "Weekend";
+                break;
+            default:
+                dayType = "Invalid day number!";
+        }
+        System.out.println(dayType);
+
+        // TODO: SECTION 3 - Practical Applications
+        System.out.println("\n=== Practical Applications ===\n");
+
+        // Example 1: Restaurant Menu Ordering System
+        System.out.println("--- Restaurant Menu ---");
+        System.out.println("1. Burger - $8.99");
+        System.out.println("2. Pizza - $12.99");
+        System.out.println("3. Pasta - $10.99");
+        System.out.println("4. Salad - $6.99");
+        System.out.println("5. Steak - $18.99");
+        System.out.print("Enter your choice (1-5): ");
+        int menuChoice = scanner.nextInt();
+
+        String itemName = "";
+        double itemPrice = 0.0;
+        int prepTime = 0; // in minutes
+
+        switch (menuChoice) {
+            case 1:
+                itemName = "Burger";
+                itemPrice = 8.99;
+                prepTime = 10;
+                break;
+            case 2:
+                itemName = "Pizza";
+                itemPrice = 12.99;
+                prepTime = 15;
+                break;
+            case 3:
+                itemName = "Pasta";
+                itemPrice = 10.99;
+                prepTime = 12;
+                break;
+            case 4:
+                itemName = "Salad";
+                itemPrice = 6.99;
+                prepTime = 5;
+                break;
+            case 5:
+                itemName = "Steak";
+                itemPrice = 18.99;
+                prepTime = 20;
+                break;
+            default:
+                System.out.println("Invalid choice! Please select 1-5.");
+                scanner.close();
+                return;
         }
 
-        // TODO: using "switch expression"
-        char letter = 'e';
-        String letter_result;
-        switch (letter) {
-            case 'a', 'e', 'i', 'o', 'u' -> letter_result = "Vowel";
-            default -> letter_result = "Consonant";
+        System.out.print("Enter quantity: ");
+        int quantity = scanner.nextInt();
+        double subtotal = itemPrice * quantity;
+        double tax = subtotal * 0.08; // 8% tax
+        double total = subtotal + tax;
+
+        System.out.println("\n--- Order Summary ---");
+        System.out.println("Item: " + itemName);
+        System.out.println("Quantity: " + quantity);
+        System.out.println("Price per item: $" + itemPrice);
+        System.out.println("Subtotal: $" + subtotal);
+        System.out.println("Tax (8%): $" + tax);
+        System.out.println("Total: $" + total);
+        System.out.println("Estimated prep time: " + (prepTime * quantity) + " minutes");
+
+        // Example 2: University Grade System with Credits
+        System.out.println("\n--- University Grade Calculator ---");
+        System.out.print("Enter letter grade (A/B/C/D/F): ");
+        char grade = scanner.next().charAt(0);
+        System.out.print("Enter credit hours: ");
+        int creditHours = scanner.nextInt();
+
+        double gradePoints = 0.0;
+        String gradeDescription = "";
+
+        switch (grade) {
+            case 'A':
+                gradePoints = 4.0;
+                gradeDescription = "Excellent";
+                break;
+            case 'B':
+                gradePoints = 3.0;
+                gradeDescription = "Good";
+                break;
+            case 'C':
+                gradePoints = 2.0;
+                gradeDescription = "Satisfactory";
+                break;
+            case 'D':
+                gradePoints = 1.0;
+                gradeDescription = "Poor";
+                break;
+            case 'F':
+                gradePoints = 0.0;
+                gradeDescription = "Fail";
+                break;
+            default:
+                System.out.println("Invalid grade! Please enter A, B, C, D, or F.");
+                scanner.close();
+                return;
         }
-        System.out.println(letter_result);
 
+        double qualityPoints = gradePoints * creditHours;
 
+        System.out.println("\nGrade: " + grade + " (" + gradeDescription + ")");
+        System.out.println("Grade Points: " + gradePoints);
+        System.out.println("Credit Hours: " + creditHours);
+        System.out.println("Quality Points: " + qualityPoints);
 
-        int role = 2;  // role can be 1 (Admin), 2 (Moderator), or 3 (User)
-        String accessLevel;
+        // Example 3: ATM Machine Simulation
+        System.out.println("\n--- ATM Machine ---");
+        double accountBalance = 1000.00;
+        System.out.println("Current Balance: $" + accountBalance);
+        System.out.println("1. Deposit");
+        System.out.println("2. Withdraw");
+        System.out.println("3. Check Balance");
+        System.out.println("4. Transfer");
+        System.out.print("Select operation (1-4): ");
+        int atmChoice = scanner.nextInt();
 
-        accessLevel = switch (role) {
-            case 1, 2 -> "Elevated privileges";
-            case 3 -> "Basic access";
-            default -> "Invalid role";
-        };
-        System.out.println(accessLevel);
+        String transactionMessage = "";
+        boolean transactionSuccess = false;
 
+        switch (atmChoice) {
+            case 1: // Deposit
+                System.out.print("Enter deposit amount: $");
+                double depositAmount = scanner.nextDouble();
+                if (depositAmount > 0 && depositAmount <= 10000) {
+                    accountBalance += depositAmount;
+                    transactionMessage = "Successfully deposited $" + depositAmount;
+                    transactionSuccess = true;
+                } else if (depositAmount <= 0) {
+                    transactionMessage = "Invalid amount! Must be greater than $0.";
+                } else {
+                    transactionMessage = "Deposit limit exceeded! Maximum: $10,000.";
+                }
+                break;
 
+            case 2: // Withdraw
+                System.out.print("Enter withdrawal amount: $");
+                double withdrawAmount = scanner.nextDouble();
+                if (withdrawAmount > 0 && withdrawAmount <= accountBalance) {
+                    if (withdrawAmount <= 500) {
+                        accountBalance -= withdrawAmount;
+                        transactionMessage = "Successfully withdrew $" + withdrawAmount;
+                        transactionSuccess = true;
+                    } else {
+                        transactionMessage = "Daily withdrawal limit: $500.";
+                    }
+                } else if (withdrawAmount <= 0) {
+                    transactionMessage = "Invalid amount!";
+                } else {
+                    transactionMessage = "Insufficient funds!";
+                }
+                break;
 
-        String productName = "laptop";
-        String category;
+            case 3: // Check Balance
+                transactionMessage = "Your current balance is $" + accountBalance;
+                transactionSuccess = true;
+                break;
 
-        switch (productName) {
-            case "laptop", "smartphone", "tablet" -> category = "Electronics";
-            case "shirt", "pants", "jacket" -> category = "Clothing";
-            default -> category = "Unknown Category";
+            case 4: // Transfer
+                System.out.print("Enter transfer amount: $");
+                double transferAmount = scanner.nextDouble();
+                System.out.print("Enter recipient account number: ");
+                int recipientAccount = scanner.nextInt();
+
+                if (transferAmount > 0 && transferAmount <= accountBalance) {
+                    if (transferAmount <= 1000) {
+                        accountBalance -= transferAmount;
+                        transactionMessage = "Successfully transferred $" + transferAmount +
+                                " to account #" + recipientAccount;
+                        transactionSuccess = true;
+                    } else {
+                        transactionMessage = "Transfer limit exceeded! Maximum: $1,000.";
+                    }
+                } else if (transferAmount <= 0) {
+                    transactionMessage = "Invalid transfer amount!";
+                } else {
+                    transactionMessage = "Insufficient funds for transfer!";
+                }
+                break;
+
+            default:
+                transactionMessage = "Invalid operation! Please select 1-4.";
         }
-        System.out.println(category);
+
+        System.out.println(transactionMessage);
+        if (transactionSuccess && atmChoice != 3) {
+            System.out.println("New Balance: $" + accountBalance);
+        }
+
+        scanner.close();
+        System.out.println("\n=== Program Complete ===");
     }
 }
