@@ -1,0 +1,415 @@
+import java.util.Scanner;
+
+public class forLoop {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // TODO: SECTION 1 - Basic For Loops
+
+        // Example 1: Simple counting loop
+        System.out.println("=== Counting from 1 to 5 ===");
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Number: " + i);
+        }
+
+        // Example 2: Reverse counting
+        System.out.println("\n=== Counting down from 10 to 1 ===");
+        for (int i = 10; i >= 1; i--) {
+            System.out.print(i + " ");
+        }
+
+        // Example 3: Counting by intervals
+        System.out.println("\n=== Even numbers from 2 to 20 ===");
+        for (int i = 2; i <= 20; i += 2) {
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        // TODO: SECTION 2 - Loops with Conditionals
+
+        // Example 1: Sum of numbers with condition
+        System.out.println("\n=== Sum of numbers from 1 to 50 (skip multiples of 7) ===");
+        int sum = 0;
+        for (int i = 1; i <= 50; i++) {
+            if (i % 7 != 0) {
+                sum += i;
+            }
+        }
+        System.out.println("Sum: " + sum);
+
+        // Example 2: Finding odd and even count
+        System.out.print("Enter the range limit: ");
+        int rangeLimit = scanner.nextInt();
+        int oddCount = 0, evenCount = 0;
+
+        for (int i = 1; i <= rangeLimit; i++) {
+            if (i % 2 == 0) {
+                evenCount++;
+            } else {
+                oddCount++;
+            }
+        }
+        System.out.println("Odd numbers: " + oddCount);
+        System.out.println("Even numbers: " + evenCount);
+
+
+        // TODO: SECTION 3 - Mathematical Operations
+
+        // Example 1: Factorial calculation
+        System.out.print("\nEnter a number to calculate factorial: ");
+        int factNum = scanner.nextInt();
+        long factorial = 1;
+
+        for (int i = 1; i <= factNum; i++) {
+            factorial *= i;
+        }
+        System.out.println("Factorial of " + factNum + " = " + factorial);
+
+        // Example 2: Fibonacci series
+        System.out.print("Enter how many Fibonacci numbers to generate: ");
+        int fibCount = scanner.nextInt();
+        int fib1 = 0, fib2 = 1;
+
+        System.out.print("Fibonacci Series: ");
+        for (int i = 1; i <= fibCount; i++) {
+            System.out.print(fib1 + " ");
+            int nextFib = fib1 + fib2;
+            fib1 = fib2;
+            fib2 = nextFib;
+        }
+        System.out.println();
+
+        // TODO: SECTION 4 - Nested Loops and Patterns
+        System.out.println("\n=== Patterns and Nested Loops ===\n");
+
+        // Example 1: Right triangle pattern
+        System.out.println("Right Triangle Pattern:");
+        for (int i = 1; i <= 5; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+
+        // Example 2: Pyramid pattern
+        System.out.println("\nPyramid Pattern:");
+        int pyramidRows = 5;
+        for (int i = 1; i <= pyramidRows; i++) {
+            // Print spaces
+            for (int j = 1; j <= pyramidRows - i; j++) {
+                System.out.print("  ");
+            }
+            // Print stars
+            for (int k = 1; k <= 2 * i - 1; k++) {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+
+        // Example 3: Hollow square pattern
+        System.out.println("\nHollow Square Pattern:");
+        int squareSize = 6;
+        for (int i = 1; i <= squareSize; i++) {
+            for (int j = 1; j <= squareSize; j++) {
+                if (i == 1 || i == squareSize || j == 1 || j == squareSize) {
+                    System.out.print("* ");
+                } else {
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
+        }
+
+        // Example 4: Number triangle
+        System.out.println("\nNumber Triangle:");
+        int numRows = 5;
+        int counter = 1;
+        for (int i = 1; i <= numRows; i++) {
+            for (int j = 1; j <= i; j++) {
+                System.out.print(counter++ + " ");
+            }
+            System.out.println();
+        }
+
+        // TODO: SECTION 5 - Practical Applications
+        System.out.println("\n=== Practical Applications ===\n");
+
+        // Example 1: Student Grade Management System
+        System.out.println("--- Student Grade Calculator ---");
+        System.out.print("Enter number of students: ");
+        int numStudents = scanner.nextInt();
+
+        double totalClassAverage = 0;
+        int passedStudents = 0;
+        int failedStudents = 0;
+
+        for (int i = 1; i <= numStudents; i++) {
+            System.out.println("\nStudent #" + i);
+            System.out.print("Enter student name: ");
+            scanner.nextLine(); // Clear buffer
+            String studentName = scanner.nextLine();
+
+            System.out.print("Enter number of subjects: ");
+            int numSubjects = scanner.nextInt();
+
+            double totalMarks = 0;
+            for (int j = 1; j <= numSubjects; j++) {
+                System.out.print("  Subject " + j + " marks (0-100): ");
+                double marks = scanner.nextDouble();
+                totalMarks += marks;
+            }
+
+            double average = totalMarks / numSubjects;
+            totalClassAverage += average;
+
+            String grade;
+            if (average >= 90) {
+                grade = "A";
+                passedStudents++;
+            } else if (average >= 80) {
+                grade = "B";
+                passedStudents++;
+            } else if (average >= 70) {
+                grade = "C";
+                passedStudents++;
+            } else if (average >= 60) {
+                grade = "D";
+                passedStudents++;
+            } else {
+                grade = "F";
+                failedStudents++;
+            }
+
+            System.out.println("Student: " + studentName);
+            System.out.println("Average: " + average);
+            System.out.println("Grade: " + grade);
+        }
+
+        double classAverage = totalClassAverage / numStudents;
+        System.out.println("\n--- Class Summary ---");
+        System.out.println("Class Average: " + classAverage);
+        System.out.println("Passed Students: " + passedStudents);
+        System.out.println("Failed Students: " + failedStudents);
+        System.out.println("Pass Rate: " + (passedStudents * 100.0 / numStudents) + "%");
+
+        // Example 2: Shopping Cart System
+        System.out.println("\n--- Shopping Cart System ---");
+        System.out.print("Enter number of items to purchase: ");
+        int numItems = scanner.nextInt();
+        scanner.nextLine(); // Clear buffer
+
+        double cartTotal = 0;
+        double totalDiscount = 0;
+
+        for (int i = 1; i <= numItems; i++) {
+            System.out.println("\nItem #" + i);
+            System.out.print("Enter item name: ");
+            String itemName = scanner.nextLine();
+
+            System.out.print("Enter item price: $");
+            double itemPrice = scanner.nextDouble();
+
+            System.out.print("Enter quantity: ");
+            int quantity = scanner.nextInt();
+            scanner.nextLine(); // Clear buffer
+
+            double itemTotal = itemPrice * quantity;
+            double discount = 0;
+
+            // Apply quantity discounts
+            if (quantity >= 10) {
+                discount = itemTotal * 0.15; // 15% discount
+            } else if (quantity >= 5) {
+                discount = itemTotal * 0.10; // 10% discount
+            } else if (quantity >= 3) {
+                discount = itemTotal * 0.05; // 5% discount
+            }
+
+            double finalItemPrice = itemTotal - discount;
+            cartTotal += finalItemPrice;
+            totalDiscount += discount;
+
+            System.out.println("Item: " + itemName);
+            System.out.println("Price per unit: $" + itemPrice);
+            System.out.println("Quantity: " + quantity);
+            System.out.println("Subtotal: $" + itemTotal);
+            if (discount > 0) {
+                System.out.println("Discount: -$" + discount);
+            }
+            System.out.println("Item Total: $" + finalItemPrice);
+        }
+
+        double tax = cartTotal * 0.08; // 8% tax
+        double grandTotal = cartTotal + tax;
+
+        System.out.println("\n--- Order Summary ---");
+        System.out.println("Subtotal: $" + cartTotal);
+        System.out.println("Total Discount: -$" + totalDiscount);
+        System.out.println("Tax (8%): $" + tax);
+        System.out.println("Grand Total: $" + grandTotal);
+
+        // Example 3: Employee Payroll System
+        System.out.println("\n--- Employee Payroll System ---");
+        System.out.print("Enter number of employees: ");
+        int numEmployees = scanner.nextInt();
+
+        double totalPayroll = 0;
+
+        for (int i = 1; i <= numEmployees; i++) {
+            System.out.println("\nEmployee #" + i);
+            System.out.print("Enter employee name: ");
+            scanner.nextLine(); // Clear buffer
+            String empName = scanner.nextLine();
+
+            System.out.print("Enter hours worked: ");
+            double hoursWorked = scanner.nextDouble();
+
+            System.out.print("Enter hourly rate: $");
+            double hourlyRate = scanner.nextDouble();
+
+            double regularPay = 0;
+            double overtimePay = 0;
+
+            // Calculate regular and overtime pay
+            if (hoursWorked <= 40) {
+                regularPay = hoursWorked * hourlyRate;
+            } else {
+                regularPay = 40 * hourlyRate;
+                overtimePay = (hoursWorked - 40) * hourlyRate * 1.5; // Time and a half
+            }
+
+            double grossPay = regularPay + overtimePay;
+            double taxDeduction = grossPay * 0.12; // 12% tax
+            double insuranceDeduction = 75.00; // Flat insurance
+            double netPay = grossPay - taxDeduction - insuranceDeduction;
+
+            totalPayroll += netPay;
+
+            System.out.println("\n--- Pay Stub for " + empName + " ---");
+            System.out.println("Hours Worked: " + hoursWorked);
+            System.out.println("Hourly Rate: $" + hourlyRate);
+            System.out.println("Regular Pay: $" + regularPay);
+            if (overtimePay > 0) {
+                System.out.println("Overtime Pay: $" + overtimePay);
+            }
+            System.out.println("Gross Pay: $" + grossPay);
+            System.out.println("Tax Deduction (12%): -$" + taxDeduction);
+            System.out.println("Insurance: -$" + insuranceDeduction);
+            System.out.println("Net Pay: $" + netPay);
+        }
+
+        System.out.println("\n--- Payroll Summary ---");
+        System.out.println("Total Payroll: $" + totalPayroll);
+        System.out.println("Average Pay per Employee: $" + (totalPayroll / numEmployees));
+
+        // Example 4: Inventory Management System
+        System.out.println("\n--- Inventory Management System ---");
+        System.out.print("Enter number of products: ");
+        int numProducts = scanner.nextInt();
+        scanner.nextLine(); // Clear buffer
+
+        double totalInventoryValue = 0;
+        int lowStockCount = 0;
+        int outOfStockCount = 0;
+
+        for (int i = 1; i <= numProducts; i++) {
+            System.out.println("\nProduct #" + i);
+            System.out.print("Enter product name: ");
+            String productName = scanner.nextLine();
+
+            System.out.print("Enter product price: $");
+            double productPrice = scanner.nextDouble();
+
+            System.out.print("Enter quantity in stock: ");
+            int stockQuantity = scanner.nextInt();
+
+            System.out.print("Enter minimum stock level: ");
+            int minStockLevel = scanner.nextInt();
+            scanner.nextLine(); // Clear buffer
+
+            double productValue = productPrice * stockQuantity;
+            totalInventoryValue += productValue;
+
+            String stockStatus;
+            if (stockQuantity == 0) {
+                stockStatus = "OUT OF STOCK";
+                outOfStockCount++;
+            } else if (stockQuantity < minStockLevel) {
+                stockStatus = "LOW STOCK";
+                lowStockCount++;
+            } else {
+                stockStatus = "IN STOCK";
+            }
+
+            System.out.println("\n--- Product Details ---");
+            System.out.println("Product: " + productName);
+            System.out.println("Price: $" + productPrice);
+            System.out.println("Quantity: " + stockQuantity);
+            System.out.println("Stock Status: " + stockStatus);
+            System.out.println("Product Value: $" + productValue);
+
+            if (stockQuantity < minStockLevel && stockQuantity > 0) {
+                int reorderAmount = minStockLevel * 2 - stockQuantity;
+                System.out.println("⚠ Reorder Needed: " + reorderAmount + " units");
+            } else if (stockQuantity == 0) {
+                System.out.println("🚨 URGENT: Restock immediately!");
+            }
+        }
+
+        System.out.println("\n--- Inventory Summary ---");
+        System.out.println("Total Inventory Value: $" + totalInventoryValue);
+        System.out.println("Low Stock Items: " + lowStockCount);
+        System.out.println("Out of Stock Items: " + outOfStockCount);
+
+        // TODO: SECTION 6 - Break and Continue Statements
+        System.out.println("\n=== Break and Continue Statements ===\n");
+
+        // Example 1: Finding first number divisible by 7
+        System.out.println("Finding first number divisible by 7 in range 50-100:");
+        for (int i = 50; i <= 100; i++) {
+            if (i % 7 == 0) {
+                System.out.println("Found: " + i);
+                break; // Exit loop when found
+            }
+        }
+
+        // Example 2: Skipping multiples of 4
+        System.out.println("\nNumbers from 1 to 20 (skipping multiples of 4):");
+        for (int i = 1; i <= 20; i++) {
+            if (i % 4 == 0) {
+                continue; // Skip this iteration
+            }
+            System.out.print(i + " ");
+        }
+        System.out.println();
+
+        // Example 3: Input validation loop
+        System.out.println("\n--- Number Input Validator ---");
+        int validInputCount = 0;
+        int targetCount = 3;
+
+        for (int i = 1; i <= 10; i++) { // Maximum 10 attempts
+            System.out.print("Enter a positive number (attempt " + i + "): ");
+            int userInput = scanner.nextInt();
+
+            if (userInput < 0) {
+                System.out.println("Invalid! Negative numbers not allowed.");
+                continue; // Skip to next iteration
+            }
+            if (userInput == 0) {
+                System.out.println("Zero entered. Exiting...");
+                break; // Exit loop
+            }
+
+            validInputCount++;
+            System.out.println("Valid input accepted: " + userInput);
+
+            if (validInputCount == targetCount) {
+                System.out.println("Target reached! Got " + targetCount + " valid inputs.");
+                break;
+            }
+        }
+        scanner.close();
+        System.out.println("\n=== Program Complete ===");
+    }
+}
