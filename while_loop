@@ -1,23 +1,40 @@
 import java.util.Scanner;
-
-public class whileLoop {
+public class while_loop {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        // TODO: While loop to print numbers from 1 to 5
-        int j = 1;
-        while (j <= 5) {
-            System.out.println(j);
-            j++;
+
+        // TODO: SECTION 1 - Basic While Loops
+
+        // Example 1: Simple counting with while loop
+        System.out.println("--- Counting from 1 to 5 ---");
+        int i = 1;
+        while (i <= 5) {
+            System.out.println("Number: " + i);
+            i++;
         }
-/* ------------------------------------------------------- */
-        // TODO: While loop to print even numbers from 2 to 10
-        int i = 2;
-        while (i <= 10) {
-            System.out.println(i);
-            i += 2;
+
+        // Example 2: Reverse counting
+        System.out.println("\n--- Counting down from 10 to 1 ---");
+        int countdown = 10;
+        while (countdown >= 1) {
+            System.out.print(countdown + " ");
+            countdown--;
         }
-/* ------------------------------------------------------- */
-        // TODO: While loop to calculate the sum of numbers from 1 to 100 (skip multiples of 5)
+        System.out.println();
+
+        // Example 3: Even numbers using while loop
+        System.out.println("\n--- Even numbers from 2 to 20 ---");
+        int even = 2;
+        while (even <= 20) {
+            System.out.print(even + " ");
+            even += 2;
+        }
+        System.out.println();
+
+        // TODO: SECTION 2 - While Loops with Conditionals
+
+        // Example 1: Sum of numbers (skip multiples of 5)
+        System.out.println("--- Sum of numbers from 1 to 100 (skip multiples of 5) ---");
         int sum = 0;
         int k = 1;
         while (k <= 100) {
@@ -27,136 +44,315 @@ public class whileLoop {
             k++;
         }
         System.out.println("Sum: " + sum);
-/* ------------------------------------------------------- */
-        // TODO: While loop to check if a number is prime
-        System.out.print("Enter a number: ");
-        int num = scanner.nextInt();
 
+        // Example 2: Count odd and even numbers
+        System.out.print("\nEnter a range limit: ");
+        int rangeLimit = scanner.nextInt();
+        int oddCount = 0, evenCount = 0;
+        int counter = 1;
+        while (counter <= rangeLimit) {
+            if (counter % 2 == 0) {
+                evenCount++;
+            } else {
+                oddCount++;
+            }
+            counter++;
+        }
+        System.out.println("Odd numbers: " + oddCount);
+        System.out.println("Even numbers: " + evenCount);
+
+        // TODO: SECTION 3 - Mathematical Operations with While Loops
+
+        // Example 1: Prime number checker
+        System.out.print("Enter a number to check if it's prime: ");
+        int num = scanner.nextInt();
         boolean isPrime = true;
         int m = 2;
-        while (m <= num / 2) {
-            if (num % m == 0) {
-                isPrime = false;
-                break;
+        if (num <= 1) {
+            isPrime = false;
+        } else {
+            while (m <= num / 2) {
+                if (num % m == 0) {
+                    isPrime = false;
+                    break;
+                }
+                m++;
             }
-            m++;
         }
         if (isPrime) {
             System.out.println(num + " is a prime number.");
         } else {
             System.out.println(num + " is not a prime number.");
         }
-/* ------------------------------------------------------- */
-        // TODO: While loop to find the factorial of a number
-        System.out.print("Enter a number: ");
-        int n = scanner.nextInt();
 
-        int factorial = 1;
+        // Example 2: Factorial calculation
+        System.out.print("\nEnter a number to calculate factorial: ");
+        int n = scanner.nextInt();
+        long factorial = 1;
         int f = 1;
+
         while (f <= n) {
             factorial *= f;
             f++;
         }
         System.out.println("Factorial of " + n + ": " + factorial);
-/* ------------------------------------------------------- */
-        // TODO: While loop to reverse a number
-        System.out.print("Enter a number: ");
-        int num_f = scanner.nextInt();
+
+        // Example 3: Number reversal
+        System.out.print("\nEnter a number to reverse: ");
+        int numToReverse = scanner.nextInt();
+        int originalNum = numToReverse;
         int reversedNum = 0;
-        while (num_f != 0) {
-            int digit = num_f % 10;
+        while (numToReverse != 0) {
+            int digit = numToReverse % 10;
             reversedNum = reversedNum * 10 + digit;
-            num_f /= 10;
+            numToReverse /= 10;
         }
+        System.out.println("Original number: " + originalNum);
         System.out.println("Reversed number: " + reversedNum);
-/* ------------------------------------------------------- */
-        // TODO: Reading User Input Until a Valid Value is Entered
-        int userInput = -1;
-        while (userInput < 0 || userInput > 100) {
-            System.out.print("Enter a number between 0 and 100: ");
-            userInput = scanner.nextInt();
 
-            if (userInput < 0 || userInput > 100) {
-                System.out.println("Invalid input. Try again.");
+        // Example 4: Digital root calculation
+        System.out.print("\nEnter a number to find its digital root: ");
+        int digitalNum = scanner.nextInt();
+
+        while (digitalNum >= 10) {
+            int digitSum = 0;
+            while (digitalNum > 0) {
+                digitSum += digitalNum % 10;
+                digitalNum /= 10;
             }
+            digitalNum = digitSum;
+            System.out.println("Sum of digits: " + digitSum);
         }
-        System.out.println("Valid input received: " + userInput);
-        /* -------------------do while-------------------- */
-        // TODO: Do-while loop to print numbers from 1 to 5
-        int i2 = 1;
-        do {
-            System.out.println(i2);
-            i2++;
-        } while (i2 <= 5);
-/* ------------------------------------------------------- */
-        // TODO: Do-while loop to print even numbers from 2 to 10
-        int i3 = 2;
-        do {
-            System.out.println(i3);
-            i3 += 2;
-        } while (i3 <= 10);
-/* ------------------------------------------------------- */
-        // TODO: User Input Validation with a do-while Loop
-        int userInput_2;
-        do {
-            System.out.print("Enter a positive number: ");
-            userInput_2 = scanner.nextInt();
+        System.out.println("Digital root: " + digitalNum);
 
-            if (userInput_2 <= 0) {
-                System.out.println("Invalid input. Please enter a positive number.");
+        // TODO: SECTION 4 - Do-While Loops
+
+        // Example 1: Menu system using do-while
+        int choice;
+        do {
+            System.out.println("\n--- Simple Calculator Menu ---");
+            System.out.println("1. Addition");
+            System.out.println("2. Subtraction");
+            System.out.println("3. Multiplication");
+            System.out.println("4. Division");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice (1-5): ");
+            choice = scanner.nextInt();
+
+            if (choice >= 1 && choice <= 4) {
+                System.out.print("Enter first number: ");
+                double num1 = scanner.nextDouble();
+                System.out.print("Enter second number: ");
+                double num2 = scanner.nextDouble();
+
+                switch (choice) {
+                    case 1:
+                        System.out.println("Result: " + (num1 + num2));
+                        break;
+                    case 2:
+                        System.out.println("Result: " + (num1 - num2));
+                        break;
+                    case 3:
+                        System.out.println("Result: " + (num1 * num2));
+                        break;
+                    case 4:
+                        if (num2 != 0) {
+                            System.out.println("Result: " + (num1 / num2));
+                        } else {
+                            System.out.println("Error: Division by zero!");
+                        }
+                        break;
+                }
+            } else if (choice == 5) {
+                System.out.println("Thank you for using the calculator!");
+            } else {
+                System.out.println("Invalid choice! Please try again.");
             }
-        } while (userInput_2 <= 0);
-        System.out.println("Valid input received: " + userInput_2);
-/* ------------------------------------------------------- */
-        // TODO: Do-while loop to print a triangle of numbers
-        System.out.print("Enter the number of rows for the triangle: ");
-        int rows = scanner.nextInt();
-        int h = 1;
+        } while (choice != 5);
 
-        do {
-            int jj = 1;
-            do {
-                System.out.print(jj + " ");
-                jj++;
-            } while (jj <= h);
-            System.out.println();
-            h++;
-        } while (h <= rows);
-/* ------------------------------------------------------- */
-        // TODO:-----------------break and continue--------------------
-        /*
-        TODO: A user is withdrawing money from an ATM.
-         The ATM has a withdrawal limit of $5000.
-         If the user tries to withdraw more than that,
-         the system stops the process immediately.
-        */
-        int withdrawalLimit = 5000;
-        while (true) {
-            System.out.print("Enter withdrawal amount: ");
-            int amount = scanner.nextInt();
-            if (amount > withdrawalLimit) {
-                System.out.println("Error: Exceeds withdrawal limit! Transaction stopped.");
+        // Example 2: Robust input validation
+        int validInput = -1;
+        int attempts = 0;
+        int maxAttempts = 3;
+
+        while (validInput < 1 || validInput > 100) {
+            if (attempts >= maxAttempts) {
+                System.out.println("Maximum attempts reached. Using default value: 50");
+                validInput = 50;
                 break;
             }
-            System.out.println("Withdrawal of $" + amount + " successful!");
-        }
-        System.out.println("ATM session ended.");
-        scanner.close();
-/* ------------------------------------------------------- */
-        /*
-        TODO: A company sends work reminders from Monday to
-         Friday, but skips Saturday and Sunday.
-        */
-        int day = 1; // 1 = Monday, 7 = Sunday
-        while (day <= 7) {
-            if (day == 6 || day == 7) { // 6 = Saturday, 7 = Sunday
-                System.out.println("Skipping: Day " + day + " (Weekend)");
-                day++;
-                continue; // Skip the weekend
+
+            System.out.print("Enter a number between 1 and 100 (attempt " + (attempts + 1) + "/" + maxAttempts + "): ");
+            validInput = scanner.nextInt();
+
+            if (validInput < 1 || validInput > 100) {
+                System.out.println("Invalid input! Number must be between 1 and 100.");
+                attempts++;
             }
-            System.out.println("Sending work reminder for Day " + day);
+        }
+        System.out.println("Valid input received: " + validInput);
+
+        // TODO: SECTION 6 - Practical Applications
+
+        // Example 1: Bank Account System
+        System.out.println("--- Simple Bank Account System ---");
+        double balance = 1000.00; // Starting balance
+        int transactionChoice;
+
+        do {
+            System.out.println("\nCurrent Balance: $" + balance);
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Check Balance");
+            System.out.println("4. Exit");
+            System.out.print("Choose an option: ");
+            transactionChoice = scanner.nextInt();
+
+            switch (transactionChoice) {
+                case 1: // Deposit
+                    System.out.print("Enter deposit amount: $");
+                    double depositAmount = scanner.nextDouble();
+                    if (depositAmount > 0) {
+                        balance += depositAmount;
+                        System.out.println("Deposit successful! New balance: $" + balance);
+                    } else {
+                        System.out.println("Invalid deposit amount!");
+                    }
+                    break;
+
+                case 2: // Withdraw
+                    System.out.print("Enter withdrawal amount: $");
+                    double withdrawAmount = scanner.nextDouble();
+                    if (withdrawAmount > 0 && withdrawAmount <= balance) {
+                        balance -= withdrawAmount;
+                        System.out.println("Withdrawal successful! New balance: $" + balance);
+                    } else if (withdrawAmount > balance) {
+                        System.out.println("Insufficient funds! Current balance: $" + balance);
+                    } else {
+                        System.out.println("Invalid withdrawal amount!");
+                    }
+                    break;
+
+                case 3: // Check Balance
+                    System.out.println("Current balance: $" + balance);
+                    break;
+
+                case 4: // Exit
+                    System.out.println("Thank you for using our banking system!");
+                    break;
+
+                default:
+                    System.out.println("Invalid option! Please try again.");
+            }
+        } while (transactionChoice != 4);
+
+
+        // TODO: SECTION 7 - Break and Continue Statements
+        System.out.println("\n=== SECTION 7: Break and Continue Statements ===\n");
+
+        // Example 1: ATM withdrawal with limits
+        System.out.println("--- ATM Withdrawal System ---");
+        double dailyLimit = 500.00;
+        double totalWithdrawn = 0;
+        int withdrawalAttempt = 1;
+
+        while (true) {
+            System.out.println("\nAttempt #" + withdrawalAttempt);
+            System.out.println("Daily limit: $" + dailyLimit);
+            System.out.println("Already withdrawn: $" + totalWithdrawn);
+            System.out.println("Remaining limit: $" + (dailyLimit - totalWithdrawn));
+
+            System.out.print("Enter withdrawal amount (0 to exit): $");
+            double amount = scanner.nextDouble();
+
+            if (amount == 0) {
+                System.out.println("Thank you for using our ATM!");
+                break; // Exit the loop
+            }
+
+            if (amount < 0) {
+                System.out.println("Invalid amount! Please enter a positive value.");
+                continue; // Skip to next iteration
+            }
+
+            if (totalWithdrawn + amount > dailyLimit) {
+                System.out.println("Error: Exceeds daily withdrawal limit!");
+                continue; // Skip to next iteration
+            }
+
+            totalWithdrawn += amount;
+            System.out.println("Withdrawal of $" + amount + " successful!");
+
+            if (totalWithdrawn >= dailyLimit) {
+                System.out.println("Daily limit reached! No more withdrawals allowed today.");
+                break; // Exit the loop
+            }
+
+            withdrawalAttempt++;
+        }
+
+        // Example 2: Work day reminder system
+        System.out.println("\n--- Work Schedule Reminder ---");
+        int day = 1; // 1 = Monday, 7 = Sunday
+
+        while (day <= 7) {
+            if (day == 6 || day == 7) { // Weekend
+                String dayName = (day == 6) ? "Saturday" : "Sunday";
+                System.out.println("Day " + day + " (" + dayName + "): Weekend - No reminders");
+                day++;
+                continue; // Skip to next iteration
+            }
+
+            // Determine day name
+            String workDayName;
+            switch (day) {
+                case 1: workDayName = "Monday"; break;
+                case 2: workDayName = "Tuesday"; break;
+                case 3: workDayName = "Wednesday"; break;
+                case 4: workDayName = "Thursday"; break;
+                case 5: workDayName = "Friday"; break;
+                default: workDayName = "Unknown"; break;
+            }
+
+            System.out.println("Day " + day + " (" + workDayName + "): Sending work reminder!");
             day++;
         }
-        System.out.println("Work schedule completed.");
+        System.out.println("Work schedule completed for the week.");
+
+        // Example 3: Prime number finder with break
+        System.out.println("\n--- Prime Number Finder ---");
+        System.out.print("Enter a range to find primes (e.g., 100 for 1-100): ");
+        int primeRange = scanner.nextInt();
+        System.out.println("Prime numbers from 1 to " + primeRange + ":");
+
+        int currentNum = 2;
+        int primeCount = 0;
+
+        while (currentNum <= primeRange) {
+            boolean isPrimeNum = true;
+            int divisor = 2;
+
+            // Check if currentNum is prime
+            while (divisor <= currentNum / 2) {
+                if (currentNum % divisor == 0) {
+                    isPrimeNum = false;
+                    break; // No need to check further
+                }
+                divisor++;
+            }
+
+            if (isPrimeNum) {
+                System.out.print(currentNum + " ");
+                primeCount++;
+
+                // Add line break every 10 primes for readability
+                if (primeCount % 10 == 0) {
+                    System.out.println();
+                }
+            }
+
+            currentNum++;
+        }
+        System.out.println("\nTotal prime numbers found: " + primeCount);
     }
 }
