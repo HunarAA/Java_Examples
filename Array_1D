@@ -1,28 +1,37 @@
 import java.util.Scanner;
 public class Arrays_1D {
     public static void main(String[] args) {
-        // TODO: Example_1
+        Scanner scanner = new Scanner(System.in);
+
+        // TODO: SECTION 1 - Array Basics (Declaration and Operations)
+        // Example 1: Array declaration and initialization
         double[] prices = new double[5];
         prices[0] = 23.5;
         prices[1] = 33.0;
-        System.out.println(prices[0]);
-/* ------------------------------------------------------- */
-        // TODO: Example_2
+        prices[2] = 45.75;
+        prices[3] = 12.99;
+        prices[4] = 67.25;
+        System.out.println("First price: $" + prices[0]);
+        System.out.println("Array length: " + prices.length);
+
+        // Example 2: Array initialization with values
         String[] cars = {"BMW", "Mercedes", "Tesla", "Nissan", "Toyota"};
-        System.out.println(cars[2]);
-        cars[0] = "Ford";// index 0 changed
-        System.out.println(cars[0]);
-        System.out.println(cars[5]); //index out of range
-        for(int i=0;i<cars.length; i++){
-            System.out.println(cars[i]);
-        }
-        //foreach or enhanced for
-        for(String x : cars){
-            System.out.println(x);
+        System.out.println("Car at index 2: " + cars[2]);
+        cars[0] = "Ford"; // Modify element
+        System.out.println("Modified car at index 0: " + cars[0]);
+
+        // Example 3: Traversing arrays with different loops
+        System.out.println("Using standard for loop:");
+        for (int i = 0; i < cars.length; i++) {
+            System.out.println("Index " + i + ": " + cars[i]);
         }
 
-/* ------------------------------------------------------- */
-        // TODO: Example_3: sum array elements
+        System.out.println("\nUsing enhanced for loop (foreach):");
+        for (String car : cars) {
+            System.out.println("Car: " + car);
+        }
+
+        // Example 4: Sum of array elements
         int[] numbers = {11, 22, 35, 41, 55};
         int sum = 0;
         for (int i = 0; i < numbers.length; i++) {
@@ -30,223 +39,161 @@ public class Arrays_1D {
         }
         System.out.println("Sum of elements: " + sum);
 
-/* ------------------------------------------------------- */
-        // TODO: Example_4: Finding the Maximum Element
+        // Example 5: Finding the maximum element
         int[] nums = {8, 3, 11, 5, 2};
         int max = nums[0];
+        int maxIndex = 0;
         for (int i = 1; i < nums.length; i++) {
             if (nums[i] > max) {
                 max = nums[i];
+                maxIndex = i;
             }
         }
-        System.out.println("Maximum element: " + max);
+        System.out.println("Maximum element: " + max + " at index " + maxIndex);
 
-/* ------------------------------------------------------- */
-        // TODO: Example_5: Checking for Even Numbers
-        int[] numbers_1 = {1, 2, 3, 4, 5};
-        for (int i = 0; i < numbers_1.length; i++) {
-            if (numbers_1[i] % 2 == 0) {
-                System.out.println(numbers_1[i] + " is even.");
+        // Example 6: Finding the minimum element
+        int min = nums[0];
+        int minIndex = 0;
+        for (int i = 1; i < nums.length; i++) {
+            if (nums[i] < min) {
+                min = nums[i];
+                minIndex = i;
             }
         }
+        System.out.println("Minimum element: " + min + " at index " + minIndex);
 
-/* ------------------------------------------------------- */
-        // TODO: Example_6: Counting Positive and Negative Numbers
-        int[] numbers_2 = {-1, 2, -3, 4, -5};
-        int positiveCount = 0;
-        int negativeCount = 0;
-        for (int i = 0; i < numbers_2.length; i++) {
-            if (numbers_2[i] > 0) {
+        // Example 7: Finding the average
+        int[] numbers_avg = {10, 20, 30, 40, 50};
+        int sumAvg = 0;
+        for (int num : numbers_avg) {
+            sumAvg += num;
+        }
+        double average = (double) sumAvg / numbers_avg.length;
+        System.out.println("Average: " + average);
+
+
+        // Example 8: Checking for even numbers
+        int[] numbers_even = {1, 2, 3, 4, 5, 6, 7, 8};
+        System.out.print("Even numbers: ");
+        for (int i = 0; i < numbers_even.length; i++) {
+            if (numbers_even[i] % 2 == 0) {
+                System.out.print(numbers_even[i] + " ");
+            }
+        }
+        System.out.println();
+
+        // Example 9: Counting positive, negative, and zero
+        int[] numbers_mixed = {-1, 2, -3, 4, -5, 0, 7, -8, 0};
+        int positiveCount = 0, negativeCount = 0, zeroCount = 0;
+        for (int i = 0; i < numbers_mixed.length; i++) {
+            if (numbers_mixed[i] > 0) {
                 positiveCount++;
-            } else if (numbers_2[i] < 0) {
+            } else if (numbers_mixed[i] < 0) {
                 negativeCount++;
+            } else {
+                zeroCount++;
             }
         }
         System.out.println("Positive numbers: " + positiveCount);
         System.out.println("Negative numbers: " + negativeCount);
+        System.out.println("Zeros: " + zeroCount);
 
-/* ------------------------------------------------------- */
-        // TODO: Example_7: Reversing an Array
-        int[] numbers_3 = {1, 2, 3, 4, 5};
-        int[] reversed = new int[numbers_3.length];
-        for (int i = 0; i < numbers_3.length; i++) {
-            reversed[i] = numbers_3[numbers_3.length - 1 - i];
+        // Example 10: Finding elements above average
+        int[] dataSet = {15, 22, 8, 30, 12, 25};
+        int totalSum = 0;
+        for (int val : dataSet) {
+            totalSum += val;
+        }
+        double avgValue = (double) totalSum / dataSet.length;
+        System.out.println("Average: " + avgValue);
+        System.out.print("Elements above average: ");
+        for (int val : dataSet) {
+            if (val > avgValue) {
+                System.out.print(val + " ");
+            }
+        }
+        System.out.println();
+
+        // Example 11: Searching for an element
+        System.out.print("\nEnter a number to search in the array [15, 22, 8, 30, 12, 25]: ");
+        int searchNum = scanner.nextInt();
+        boolean found = false;
+        int foundIndex = -1;
+        for (int i = 0; i < dataSet.length; i++) {
+            if (dataSet[i] == searchNum) {
+                found = true;
+                foundIndex = i;
+                break;
+            }
+        }
+        if (found) {
+            System.out.println("Number " + searchNum + " found at index " + foundIndex);
+        } else {
+            System.out.println("Number " + searchNum + " not found in the array");
+        }
+
+        // TODO: SECTION 2 - Array Manipulation
+
+        // Example 1: Reversing an array
+        int[] original = {1, 2, 3, 4, 5};
+        int[] reversed = new int[original.length];
+        System.out.print("Original array: ");
+        for (int val : original) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        for (int i = 0; i < original.length; i++) {
+            reversed[i] = original[original.length - 1 - i];
         }
         System.out.print("Reversed array: ");
-        for (int i = 0; i < reversed.length; i++) {
-            System.out.print(reversed[i] + " ");
+        for (int val : reversed) {
+            System.out.print(val + " ");
         }
         System.out.println();
 
-/* ------------------------------------------------------- */
-        // TODO: Example_8: Counting Duplicates
-        int[] numbers_4 = {3, 2, 4, 2, 5, 1, 3};
-        int duplicateCount = 0;
-        for (int i = 0; i < numbers_4.length - 1; i++) {
-            for (int j = i + 1; j < numbers_4.length; j++) {
-                if (numbers_4[i] == numbers_4[j]) {
-                    duplicateCount++;
-                    break;
-                }
-            }
-        }
-        System.out.println("Number of duplicates: " + duplicateCount);
-
-/* ------------------------------------------------------- */
-        // TODO: Example_9: Finding the Average
-        int[] numbers_5 = {10, 20, 30, 40, 50};
-        double average;
-        int sum_1 = 0;
-        for (int num : numbers_5) {
-            sum_1 += num;
-        }
-        average = (double) sum_1 / numbers_5.length;
-        System.out.println("Average: " + average);
-
-/* ------------------------------------------------------- */
-        // TODO: Example_10: Finding the Common Elements in Two Arrays
-        int[] array1 = {1, 2, 3, 4, 5};
-        int[] array2 = {3, 4, 5, 6, 7};
-        System.out.print("Common elements: ");
-        for (int number1 : array1) {
-            for (int number2 : array2) {
-                if (number1 == number2) {
-                    System.out.print(number1 + " ");
-                    break;
-                }
-            }
+        // Example 2: In-place array reversal
+        int[] inPlaceArray = {10, 20, 30, 40, 50};
+        System.out.print("Before reversal: ");
+        for (int val : inPlaceArray) {
+            System.out.print(val + " ");
         }
         System.out.println();
 
-/* ------------------------------------------------------- */
-        // TODO: Example_11: Array Rotation (Left Rotation)
-        int[] numbers_6 = {1, 2, 3, 4, 5};
-        int rotations_1 = 2;
-        for (int r = 0; r < rotations_1; r++) {
-            int firstElement = numbers_6[0];
-
-            // Shift elements to the left
-            for (int i = 0; i < numbers_6.length - 1; i++) {
-                numbers_6[i] = numbers_6[i + 1];
-            }
-            // Place the first element at the end
-            numbers_6[numbers_6.length - 1] = firstElement;
+        for (int i = 0; i < inPlaceArray.length / 2; i++) {
+            int temp = inPlaceArray[i];
+            inPlaceArray[i] = inPlaceArray[inPlaceArray.length - 1 - i];
+            inPlaceArray[inPlaceArray.length - 1 - i] = temp;
         }
-        System.out.print("Rotated Array: ");
-        for (int num : numbers_6) {
-            System.out.print(num + " ");
+        System.out.print("After reversal: ");
+        for (int val : inPlaceArray) {
+            System.out.print(val + " ");
         }
         System.out.println();
 
-/* ------------------------------------------------------- */
-        // TODO: Example_12: Array Rotation (Right Rotation)
-        int[] numbers_7 = {1, 2, 3, 4, 5};
-        int rotations_2 = 2;
-        for (int r = 0; r < rotations_2; r++) {
-            int lastElement = numbers_7[numbers_7.length - 1];
-            // Shift elements to the right
-            for (int i = numbers_7.length - 1; i > 0; i--) {
-                numbers_7[i] = numbers_7[i - 1];
-            }
-            // Place the last element at the beginning
-            numbers_7[0] = lastElement;
-        }
-        System.out.print("Right Rotated Array: ");
-        for (int num : numbers_7) {
-            System.out.print(num + " ");
-        }
-        System.out.println();
-
-/* ------------------------------------------------------- */
-        // TODO: Example_13: Finding the Difference Between Consecutive Elements
-        int[] numbers_8 = {5, 8, 12, 3, 7};
-        int[] differences = new int[numbers_8.length - 1];
-
-        for (int i = 0; i < differences.length; i++) {
-            differences[i] = numbers_8[i + 1] - numbers_8[i];
-        }
-        System.out.print("Differences Between Consecutive Elements: ");
-        for (int diff : differences) {
-            System.out.print(diff + " ");
-        }
-        System.out.println();
-
-/* ------------------------------------------------------- */
-        // TODO: Example_14: copying an array to another one
+        // Example 3: Copying an array
         int[] sourceArray = {2, 4, 6, 8, 10};
         int[] destinationArray = new int[sourceArray.length];
-
         for (int i = 0; i < sourceArray.length; i++) {
             destinationArray[i] = sourceArray[i];
         }
-        System.out.print("Source Array: ");
-        for (int number : sourceArray) {
-            System.out.print(number + " ");
+        System.out.print("Source array: ");
+        for (int val : sourceArray) {
+            System.out.print(val + " ");
         }
         System.out.println();
-        System.out.print("Destination Array: ");
-        for (int number : destinationArray) {
-            System.out.print(number + " ");
-        }
-
-/* ------------------------------------------------------- */
-        // TODO: Example_15: sort array elements
-        int[] array = {7, 2, 5, 1, 8, 3};
-        System.out.print("Original Array: ");
-        for (int number : array) {
-            System.out.print(number + " ");
-        }
-        System.out.println();
-        // Perform simple sorting without using methods
-        for (int i = 0; i < array.length - 1; i++) {
-            for (int j = 0; j < array.length - 1 - i; j++) {
-                if (array[j] > array[j + 1]) {
-                    // Swap array[j] and array[j+1]
-                    int temp = array[j];
-                    array[j] = array[j + 1];
-                    array[j + 1] = temp;
-                }
-            }
-        }
-        System.out.print("Sorted Array: ");
-        for (int number : array) {
-            System.out.print(number + " ");
+        System.out.print("Destination array: ");
+        for (int val : destinationArray) {
+            System.out.print(val + " ");
         }
         System.out.println();
 
-/* ------------------------------------------------------- */
-        // TODO: Example_16: differences between two arrays
-        int[] array_1 = {5, 8, 12, 6, 10};
-        int[] array_2 = {3, 6, 8, 4, 7};
-        // Calculate the difference and store in the third array
-        int[] differenceArray = new int[array_1.length];
-        for (int i = 0; i < array_1.length; i++) {
-            differenceArray[i] = array_1[i] - array_2[i];
-        }
-        // Display the original arrays
-        System.out.print("First Array: ");
-        for (int number : array_1) {
-            System.out.print(number + " ");
-        }
-        System.out.println();
-        System.out.print("Second Array: ");
-        for (int number : array_2) {
-            System.out.print(number + " ");
-        }
-        System.out.println();
-        // Display the difference array
-        System.out.print("Difference Array: ");
-        for (int number : differenceArray) {
-            System.out.print(number + " ");
-        }
-        System.out.println();
-
-/* ------------------------------------------------------- */
-        // TODO: Example_17: insert new element in specified location
+        // Example 4: Inserting an element at a specific position
         int[] originalArray = {1, 2, 4, 5, 6};
         int insertIndex = 2;
         int newElement = 3;
         int[] newArray = new int[originalArray.length + 1];
+
         for (int i = 0; i < insertIndex; i++) {
             newArray[i] = originalArray[i];
         }
@@ -254,10 +201,524 @@ public class Arrays_1D {
         for (int i = insertIndex + 1; i < newArray.length; i++) {
             newArray[i] = originalArray[i - 1];
         }
-        System.out.print("Array after Insertion: ");
-        for (int number : newArray) {
-            System.out.print(number + " ");
+
+        System.out.print("Original array: ");
+        for (int val : originalArray) {
+            System.out.print(val + " ");
         }
         System.out.println();
+        System.out.println("Inserting " + newElement + " at index " + insertIndex);
+        System.out.print("New array: ");
+        for (int val : newArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        // Example 5: Deleting an element from a specific position
+        int[] arrayToDelete = {10, 20, 30, 40, 50};
+        int deleteIndex = 2;
+        int[] smallerArray = new int[arrayToDelete.length - 1];
+
+        for (int i = 0, j = 0; i < arrayToDelete.length; i++) {
+            if (i != deleteIndex) {
+                smallerArray[j++] = arrayToDelete[i];
+            }
+        }
+
+        System.out.print("Original array: ");
+        for (int val : arrayToDelete) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.println("Deleting element at index " + deleteIndex);
+        System.out.print("New array: ");
+        for (int val : smallerArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        // TODO: SECTION 3 - Array Rotation
+
+        // Example 1: Left rotation
+        int[] leftRotateArray = {1, 2, 3, 4, 5};
+        int leftRotations = 2;
+        System.out.print("Original array: ");
+        for (int val : leftRotateArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        for (int r = 0; r < leftRotations; r++) {
+            int firstElement = leftRotateArray[0];
+            for (int i = 0; i < leftRotateArray.length - 1; i++) {
+                leftRotateArray[i] = leftRotateArray[i + 1];
+            }
+            leftRotateArray[leftRotateArray.length - 1] = firstElement;
+        }
+        System.out.println("After " + leftRotations + " left rotations:");
+        for (int val : leftRotateArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        // Example 2: Right rotation
+        int[] rightRotateArray = {1, 2, 3, 4, 5};
+        int rightRotations = 2;
+        System.out.print("Original array: ");
+        for (int val : rightRotateArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        for (int r = 0; r < rightRotations; r++) {
+            int lastElement = rightRotateArray[rightRotateArray.length - 1];
+            for (int i = rightRotateArray.length - 1; i > 0; i--) {
+                rightRotateArray[i] = rightRotateArray[i - 1];
+            }
+            rightRotateArray[0] = lastElement;
+        }
+        System.out.println("After " + rightRotations + " right rotations:");
+        for (int val : rightRotateArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        // TODO: SECTION 4 - Advanced Array Operations
+
+        // Example 1: Finding duplicates
+        int[] duplicateArray = {3, 2, 4, 2, 5, 1, 3, 4};
+        System.out.print("Array: ");
+        for (int val : duplicateArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.print("Duplicate elements: ");
+
+        for (int i = 0; i < duplicateArray.length - 1; i++) {
+            for (int j = i + 1; j < duplicateArray.length; j++) {
+                if (duplicateArray[i] == duplicateArray[j]) {
+                    // Check if already printed
+                    boolean alreadyPrinted = false;
+                    for (int k = 0; k < i; k++) {
+                        if (duplicateArray[k] == duplicateArray[i]) {
+                            alreadyPrinted = true;
+                            break;
+                        }
+                    }
+                    if (!alreadyPrinted) {
+                        System.out.print(duplicateArray[i] + " ");
+                    }
+                    break;
+                }
+            }
+        }
+        System.out.println();
+
+        // Example 2: Finding common elements between two arrays
+        int[] array1 = {1, 2, 3, 4, 5};
+        int[] array2 = {3, 4, 5, 6, 7};
+        System.out.print("Array 1: ");
+        for (int val : array1) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.print("Array 2: ");
+        for (int val : array2) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.print("Common elements: ");
+        for (int val1 : array1) {
+            for (int val2 : array2) {
+                if (val1 == val2) {
+                    System.out.print(val1 + " ");
+                    break;
+                }
+            }
+        }
+        System.out.println();
+
+        // Example 3: Merging two arrays
+        int[] firstArray = {1, 3, 5, 7};
+        int[] secondArray = {2, 4, 6, 8};
+        int[] mergedArray = new int[firstArray.length + secondArray.length];
+
+        for (int i = 0; i < firstArray.length; i++) {
+            mergedArray[i] = firstArray[i];
+        }
+        for (int i = 0; i < secondArray.length; i++) {
+            mergedArray[firstArray.length + i] = secondArray[i];
+        }
+
+        System.out.print("First array: ");
+        for (int val : firstArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.print("Second array: ");
+        for (int val : secondArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.print("Merged array: ");
+        for (int val : mergedArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        // Example 4: Array difference (element-wise subtraction)
+        int[] arrayA = {5, 8, 12, 6, 10};
+        int[] arrayB = {3, 6, 8, 4, 7};
+        int[] differenceArray = new int[arrayA.length];
+
+        for (int i = 0; i < arrayA.length; i++) {
+            differenceArray[i] = arrayA[i] - arrayB[i];
+        }
+
+        System.out.print("Array A: ");
+        for (int val : arrayA) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.print("Array B: ");
+        for (int val : arrayB) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.print("Difference (A - B): ");
+        for (int val : differenceArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        // Example 5: Consecutive differences
+        int[] consecutiveArray = {5, 8, 12, 3, 7};
+        int[] differences = new int[consecutiveArray.length - 1];
+
+        for (int i = 0; i < differences.length; i++) {
+            differences[i] = consecutiveArray[i + 1] - consecutiveArray[i];
+        }
+
+        System.out.print("Array: ");
+        for (int val : consecutiveArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.print("Consecutive differences: ");
+        for (int val : differences) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+
+        // Example 6: Finding frequency of elements
+        int[] freqArray = {1, 2, 2, 3, 3, 3, 4, 4, 4, 4};
+        boolean[] visited = new boolean[freqArray.length];
+
+        System.out.print("Array: ");
+        for (int val : freqArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.println("Element frequencies:");
+
+        for (int i = 0; i < freqArray.length; i++) {
+            if (!visited[i]) {
+                int count = 1;
+                for (int j = i + 1; j < freqArray.length; j++) {
+                    if (freqArray[i] == freqArray[j]) {
+                        count++;
+                        visited[j] = true;
+                    }
+                }
+                System.out.println(freqArray[i] + " appears " + count + " time(s)");
+            }
+        }
+
+        // TODO: SECTION 5 - Practical Applications
+
+        // Example 1: User input array with analysis
+        System.out.print("Enter the size of the array (1-20): ");
+        int userSize = scanner.nextInt();
+        if (userSize < 1 || userSize > 20) {
+            System.out.println("Invalid size! Using default size of 5.");
+            userSize = 5;
+        }
+
+        int[] userArray = new int[userSize];
+        System.out.println("Enter " + userSize + " integers:");
+        for (int i = 0; i < userSize; i++) {
+            System.out.print("Element " + (i + 1) + ": ");
+            userArray[i] = scanner.nextInt();
+        }
+
+        // Analyze the user's array
+        System.out.println("\n--- Array Analysis ---");
+        int userSum = 0, userMax = userArray[0], userMin = userArray[0];
+        for (int val : userArray) {
+            userSum += val;
+            if (val > userMax) userMax = val;
+            if (val < userMin) userMin = val;
+        }
+
+        System.out.print("Your array: ");
+        for (int val : userArray) {
+            System.out.print(val + " ");
+        }
+        System.out.println();
+        System.out.println("Sum: " + userSum);
+        System.out.println("Average: " + ((double) userSum / userSize));
+        System.out.println("Maximum: " + userMax);
+        System.out.println("Minimum: " + userMin);
+
+        // Example 2: Grade management system
+        System.out.println("\n--- Grade Management System ---");
+        System.out.print("Enter the number of students (1-30): ");
+        int numStudents = scanner.nextInt();
+        if (numStudents < 1 || numStudents > 30) {
+            System.out.println("Invalid number! Using default of 5 students.");
+            numStudents = 5;
+        }
+
+        double[] grades = new double[numStudents];
+        System.out.println("Enter grades for " + numStudents + " students (0-100):");
+        for (int i = 0; i < numStudents; i++) {
+            System.out.print("Student " + (i + 1) + " grade: ");
+            grades[i] = scanner.nextDouble();
+            if (grades[i] < 0 || grades[i] > 100) {
+                System.out.println("Invalid grade! Setting to 0.");
+                grades[i] = 0;
+            }
+        }
+
+        // Calculate statistics
+        double gradeSum = 0, highestGrade = grades[0], lowestGrade = grades[0];
+        int passCount = 0, failCount = 0;
+
+        for (double grade : grades) {
+            gradeSum += grade;
+            if (grade > highestGrade) highestGrade = grade;
+            if (grade < lowestGrade) lowestGrade = grade;
+            if (grade >= 60) {
+                passCount++;
+            } else {
+                failCount++;
+            }
+        }
+
+        double classAverage = gradeSum / numStudents;
+
+        System.out.println("\n--- Grade Statistics ---");
+        System.out.println("Class average: " + classAverage);
+        System.out.println("Highest grade: " + highestGrade);
+        System.out.println("Lowest grade: " + lowestGrade);
+        System.out.println("Students passed (≥60): " + passCount);
+        System.out.println("Students failed (<60): " + failCount);
+        System.out.println("Pass rate: " + (passCount * 100.0 / numStudents) + "%");
+
+        // Example 3: Stock price tracker
+        double[] stockPrices = new double[7];
+        String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+
+        System.out.println("Enter stock closing prices for the week:");
+        for (int i = 0; i < 7; i++) {
+            System.out.print(days[i] + ": $");
+            stockPrices[i] = scanner.nextDouble();
+        }
+
+        double totalPrice = 0, maxPrice = stockPrices[0], minPrice = stockPrices[0];
+        int maxDay = 0, minDay = 0;
+
+        for (int i = 0; i < stockPrices.length; i++) {
+            totalPrice += stockPrices[i];
+            if (stockPrices[i] > maxPrice) {
+                maxPrice = stockPrices[i];
+                maxDay = i;
+            }
+            if (stockPrices[i] < minPrice) {
+                minPrice = stockPrices[i];
+                minDay = i;
+            }
+        }
+
+        double avgPrice = totalPrice / 7;
+        double priceChange = stockPrices[6] - stockPrices[0];
+        double percentChange = (priceChange / stockPrices[0]) * 100;
+
+        System.out.println("\n--- Stock Analysis ---");
+        System.out.println("Weekly average price: $" + avgPrice);
+        System.out.println("Highest price: $" + maxPrice + " on " + days[maxDay]);
+        System.out.println("Lowest price: $" + minPrice + " on " + days[minDay]);
+        System.out.println("Week-over-week change: $" + priceChange +
+                " (" + percentChange + "%)");
+
+        // Example 4: Temperature monitoring system
+        System.out.println("\n--- Temperature Monitoring System ---");
+        System.out.print("Enter number of temperature readings (1-24): ");
+        int numReadings = scanner.nextInt();
+        if (numReadings < 1 || numReadings > 24) {
+            System.out.println("Invalid number! Using default of 6 readings.");
+            numReadings = 6;
+        }
+
+        double[] temperatures = new double[numReadings];
+        System.out.println("Enter temperature readings in Celsius:");
+        for (int i = 0; i < numReadings; i++) {
+            System.out.print("Reading " + (i + 1) + ": ");
+            temperatures[i] = scanner.nextDouble();
+        }
+
+        double tempSum = 0, maxTemp = temperatures[0], minTemp = temperatures[0];
+        int coldCount = 0, normalCount = 0, hotCount = 0;
+
+        for (double temp : temperatures) {
+            tempSum += temp;
+            if (temp > maxTemp) maxTemp = temp;
+            if (temp < minTemp) minTemp = temp;
+
+            if (temp < 15) {
+                coldCount++;
+            } else if (temp <= 25) {
+                normalCount++;
+            } else {
+                hotCount++;
+            }
+        }
+
+        double avgTemp = tempSum / numReadings;
+
+        System.out.println("\n--- Temperature Analysis ---");
+        System.out.println("Average temperature: " + avgTemp + "°C");
+        System.out.println("Maximum temperature: " + maxTemp + "°C");
+        System.out.println("Minimum temperature: " + minTemp + "°C");
+        System.out.println("Cold readings (<15°C): " + coldCount);
+        System.out.println("Normal readings (15-25°C): " + normalCount);
+        System.out.println("Hot readings (>25°C): " + hotCount);
+
+        // Example 5: Array Menu System
+
+        int[] workingArray = {5, 2, 8, 1, 9, 3, 7};
+        int menuChoice;
+
+        do {
+            System.out.println("\n--- Array Operations Menu ---");
+            System.out.print("Current array: ");
+            for (int val : workingArray) {
+                System.out.print(val + " ");
+            }
+            System.out.println();
+
+            System.out.println("\n1. Sort Array (Ascending)");
+            System.out.println("2. Sort Array (Descending)");
+            System.out.println("3. Reverse Array");
+            System.out.println("4. Find Maximum");
+            System.out.println("5. Find Minimum");
+            System.out.println("6. Calculate Sum and Average");
+            System.out.println("7. Search for Element");
+            System.out.println("8. Reset to Default Array");
+            System.out.println("9. Exit");
+            System.out.print("Enter your choice (1-9): ");
+            menuChoice = scanner.nextInt();
+
+            switch (menuChoice) {
+                case 1: // Sort ascending
+                    for (int i = 0; i < workingArray.length - 1; i++) {
+                        for (int j = 0; j < workingArray.length - 1 - i; j++) {
+                            if (workingArray[j] > workingArray[j + 1]) {
+                                int temp = workingArray[j];
+                                workingArray[j] = workingArray[j + 1];
+                                workingArray[j + 1] = temp;
+                            }
+                        }
+                    }
+                    System.out.println("Array sorted in ascending order!");
+                    break;
+
+                case 2: // Sort descending
+                    for (int i = 0; i < workingArray.length - 1; i++) {
+                        for (int j = 0; j < workingArray.length - 1 - i; j++) {
+                            if (workingArray[j] < workingArray[j + 1]) {
+                                int temp = workingArray[j];
+                                workingArray[j] = workingArray[j + 1];
+                                workingArray[j + 1] = temp;
+                            }
+                        }
+                    }
+                    System.out.println("Array sorted in descending order!");
+                    break;
+
+                case 3: // Reverse
+                    for (int i = 0; i < workingArray.length / 2; i++) {
+                        int temp = workingArray[i];
+                        workingArray[i] = workingArray[workingArray.length - 1 - i];
+                        workingArray[workingArray.length - 1 - i] = temp;
+                    }
+                    System.out.println("Array reversed!");
+                    break;
+
+                case 4: // Find maximum
+                    int findMax = workingArray[0];
+                    int maxPosition = 0;
+                    for (int i = 1; i < workingArray.length; i++) {
+                        if (workingArray[i] > findMax) {
+                            findMax = workingArray[i];
+                            maxPosition = i;
+                        }
+                    }
+                    System.out.println("Maximum element: " + findMax + " at index " + maxPosition);
+                    break;
+
+                case 5: // Find minimum
+                    int findMin = workingArray[0];
+                    int minPosition = 0;
+                    for (int i = 1; i < workingArray.length; i++) {
+                        if (workingArray[i] < findMin) {
+                            findMin = workingArray[i];
+                            minPosition = i;
+                        }
+                    }
+                    System.out.println("Minimum element: " + findMin + " at index " + minPosition);
+                    break;
+
+                case 6: // Sum and average
+                    int calcSum = 0;
+                    for (int val : workingArray) {
+                        calcSum += val;
+                    }
+                    double calcAvg = (double) calcSum / workingArray.length;
+                    System.out.println("Sum: " + calcSum);
+                    System.out.println("Average: " + calcAvg);
+                    break;
+
+                case 7: // Search
+                    System.out.print("Enter number to search: ");
+                    int searchValue = scanner.nextInt();
+                    boolean foundValue = false;
+                    for (int i = 0; i < workingArray.length; i++) {
+                        if (workingArray[i] == searchValue) {
+                            System.out.println("Found " + searchValue + " at index " + i);
+                            foundValue = true;
+                            break;
+                        }
+                    }
+                    if (!foundValue) {
+                        System.out.println(searchValue + " not found in array");
+                    }
+                    break;
+
+                case 8: // Reset
+                    workingArray = new int[]{5, 2, 8, 1, 9, 3, 7};
+                    System.out.println("Array reset to default values!");
+                    break;
+
+                case 9: // Exit
+                    System.out.println("Thank you for using the Array Operations System!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Please try again.");
+            }
+        } while (menuChoice != 9);
+
+        scanner.close();
     }
 }
