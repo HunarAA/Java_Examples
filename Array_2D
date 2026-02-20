@@ -1,299 +1,523 @@
+import java.util.Scanner;
 public class Arrays_2D {
-    public static void main(String args[]){
-// please sure to uncomment the examples one by one
-//-----------------------------TODO: Example_1----------------------------------
-//       TODO: Manually allocate differing size second dimensions (columns).
-        int[][] twoD = new int[4][];
-        twoD[0] = new int[1]; // one column for first row
-        twoD[1] = new int[2]; // two columns for second row
-        twoD[2] = new int[3]; // three columns for third row
-        twoD[3] = new int[4]; // four columns for fourth row
-        int i, j, k = 0;
-        // add items (values) to the array
-        for(i=0; i<4; i++) {
-            for (j = 0; j < i + 1; j++) {
-                twoD[i][j] = k;
-                k++;
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        // TODO: SECTION 1 - 2D Array Basics (Declaration and Initialization)
+
+        // Example 1: Declaration and manual initialization
+        int[][] grades = new int[3][4];  // 3 rows, 4 columns
+        grades[0][0] = 85;
+        grades[0][1] = 90;
+        grades[0][2] = 78;
+        grades[0][3] = 92;
+        grades[1][0] = 88;
+        grades[1][1] = 76;
+        grades[1][2] = 95;
+        grades[1][3] = 89;
+        grades[2][0] = 91;
+        grades[2][1] = 84;
+        grades[2][2] = 87;
+        grades[2][3] = 93;
+        System.out.println("Grade at row 1, column 2: " + grades[1][2]);
+        System.out.println("Number of rows: " + grades.length);
+        System.out.println("Number of columns in first row: " + grades[0].length);
+
+        // Example 2: Initialization with values (shorthand)
+        int[][] matrix = {
+                {1, 2, 3},    // Row 0
+                {4, 5, 6},    // Row 1
+                {7, 8, 9}     // Row 2
+        };
+        System.out.println("\nMatrix element at [1][1]: " + matrix[1][1]);
+
+        // Example 3: Traversing 2D arrays with nested loops
+        System.out.println("\nTraversing matrix with standard for loops:");
+        for (int i = 0; i < matrix.length; i++) {           // i = row index
+            for (int j = 0; j < matrix[i].length; j++) {    // j = column index
+                System.out.print(matrix[i][j] + " ");
             }
+            System.out.println();  // New line after each row
         }
-        // print the array
-        for(i=0; i<4; i++) {
-            for(j=0; j<i+1; j++)
-                System.out.print(twoD[i][j] + " ");
+
+        System.out.println("\nTraversing matrix with enhanced for loops:");
+        for (int[] row : matrix) {          // Each 'row' is a 1D array
+            for (int element : row) {       // Each 'element' is a single value
+                System.out.print(element + " ");
+            }
             System.out.println();
         }
-// ---------------------------TODO: Example_2--------------------------
-//        int[][] matrix = {
-//            {1, 2, 3},
-//            {4, 5, 6},
-//            {7, 8, 9}
-//        };
-//        // Accessing elements using nested loops
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = 0; j < matrix[i].length; j++) {
-//                System.out.print(matrix[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//  -------------------------TODO: Example_3--------------------------------
-//        TODO: Initializing a 2D Array with User Input
-//        Scanner scanner = new Scanner(System.in);
-//        // Get the dimensions of the 2D array from the user
-//        System.out.print("Enter the number of rows: ");
-//        int rows = scanner.nextInt();
-//        System.out.print("Enter the number of columns: ");
-//        int columns = scanner.nextInt();
-//        // Initialize a 2D array based on user input
-//        int[][] userArray = new int[rows][columns];
-//        // Populate the array with user input
-//        System.out.println("Enter the elements of the array:");
-//        for (int i = 0; i < rows; i++) {
-//            for (int j = 0; j < columns; j++) {
-//                userArray[i][j] = scanner.nextInt();
-//            }
-//        }
-//        // Display the user-initialized 2D array
-//        System.out.println("User-Initialized 2D Array:");
-//        for (int i = 0; i < rows; i++) {
-//            for (int j = 0; j < columns; j++) {
-//                System.out.print(userArray[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//  -----------------------------TODO: Example_4----------------------------
-//        TODO: Sum of Elements in a 2D Array
-//        int[][] matrix = {
-//                {1, 2, 3},
-//                {4, 5, 6},
-//                {7, 8, 9}
-//        };
-        // Calculating the sum of all elements
-//        int sum = 0;
-//        int sum_all = 0;
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = 0; j < matrix[i].length; j++) {
-//                sum_all += matrix[i][j];
-//                sum += matrix[i][j]; // sum of every row
-//            }
-//            System.out.println("sum of row ["+i+"]"+sum);
-//            sum=0;
-//        }
-//        System.out.println("Sum of all elements: " + sum_all);
-//  ---------------------------TODO: Example_5------------------------------
-//        TODO: Finding the Maximum Element
-//        int[][] matrix = {
-//                {3, 7, 1},
-//                {8, 2, 5},
-//                {4, 6, 9}
-//        };
-//        // Finding the maximum element
-//        int max = matrix[0][0];
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = 0; j < matrix[i].length; j++) {
-//                if (matrix[i][j] > max) {
-//                    max = matrix[i][j];
-//                }
-//            }
-//        }
-//        System.out.println("Maximum element: " + max);
-//  ---------------------------TODO: Example_6------------------------------
-//        TODO: Transposing a Matrix (swapping its rows with its columns)
-//        int[][] matrix = {
-//                {1, 2, 3},
-//                {4, 5, 6},
-//                {7, 8, 9}
-//        };
-////         Transposing the matrix
-//        int[][] transposedMatrix = new int[matrix[0].length][matrix.length];
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = 0; j < matrix[i].length; j++) {
-//                transposedMatrix[j][i] = matrix[i][j];
-//            }
-//        }
-//        for (int i = 0; i < transposedMatrix.length; i++) {
-//            for (int j = 0; j < transposedMatrix[i].length; j++) {
-//                System.out.print(transposedMatrix[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//  ----------------------------TODO: Example_7-----------------------------
-//        TODO: Matrix Addition (the operation of adding two matrices by adding their corresponding elements)
-//        int[][] matrix1 = {
-//                {1, 2, 3},
-//                {4, 5, 6},
-//                {7, 8, 9}
-//        };
-//        int[][] matrix2 = {
-//                {9, 8, 7},
-//                {6, 5, 4},
-//                {3, 2, 1}
-//        };
-//        // Performing matrix addition
-//        int[][] resultMatrix = new int[matrix1.length][matrix1[0].length];
-//        for (int i = 0; i < matrix1.length; i++) {
-//            for (int j = 0; j < matrix1[i].length; j++) {
-//                resultMatrix[i][j] = matrix1[i][j] + matrix2[i][j];
-//            }
-//        }
-//        // Displaying the result matrix
-//        System.out.println("Matrix Addition Result:");
-//        for (int i = 0; i < resultMatrix.length; i++) {
-//            for (int j = 0; j < resultMatrix[i].length; j++) {
-//                System.out.print(resultMatrix[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//  -----------------------------TODO: Example_8----------------------------
-//       TODO: Matrix Multiplication
 
-//        int[][] matrix1 = {
-//                {1, 2},
-//                {3, 4},
-//                {5, 6}
-//        };
-//        int[][] matrix2 = {
-//                {7, 8, 9},
-//                {10, 11, 12}
-//        };
-//        // Performing matrix multiplication
-//        int[][] resultMatrix = new int[matrix1.length][matrix2[0].length];
-//        for (int i = 0; i < matrix1.length; i++) {
-//            for (int j = 0; j < matrix2[0].length; j++) {
-//                for (int k = 0; k < matrix1[0].length; k++) {
-//                    resultMatrix[i][j] += matrix1[i][k] * matrix2[k][j];
-//                }
-//            }
-//        }
-//        // Displaying the result matrix
-//        System.out.println("Matrix Multiplication Result:");
-//        for (int i = 0; i < resultMatrix.length; i++) {
-//            for (int j = 0; j < resultMatrix[i].length; j++) {
-//                System.out.print(resultMatrix[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//  -----------------------------TODO: Example_9----------------------------
-//       TODO: Matrix Scalar Multiplication
-        // Initializing a matrix
-//        int[][] matrix = {
-//                {1, 2, 3},
-//                {4, 5, 6},
-//                {7, 8, 9}
-//        };
-//        // Performing scalar multiplication
-//        int scalar = 2;
-//        int[][] resultMatrix = new int[matrix.length][matrix[0].length];
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = 0; j < matrix[i].length; j++) {
-//                resultMatrix[i][j] = scalar * matrix[i][j];
-//            }
-//        }
-//        // Displaying the result matrix
-//        System.out.println("Scalar Multiplication Result:");
-//        for (int i = 0; i < resultMatrix.length; i++) {
-//            for (int j = 0; j < resultMatrix[i].length; j++) {
-//                System.out.print(resultMatrix[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//  -----------------------------TODO: Example_10----------------------------
-//       TODO: Finding the Sum of Each Row in a 2D Array
+        // Example 4: Jagged arrays (rows with different column sizes)
+        int[][] jaggedArray = new int[4][];     // 4 rows, columns not specified yet
+        jaggedArray[0] = new int[1];            // Row 0 has 1 column
+        jaggedArray[1] = new int[2];            // Row 1 has 2 columns
+        jaggedArray[2] = new int[3];            // Row 2 has 3 columns
+        jaggedArray[3] = new int[4];            // Row 3 has 4 columns
 
-//        int[][] matrix = {
-//                {1, 2, 3},
-//                {4, 5, 6},
-//                {7, 8, 9}
-//        };
-//        // Finding the sum of each row
-//        for (int i = 0; i < matrix.length; i++) {
-//            int rowSum = 0;
-//            for (int j = 0; j < matrix[i].length; j++) {
-//                rowSum += matrix[i][j];
-//            }
-//            System.out.println("Sum of elements in Row " + (i + 1) + ": " + rowSum);
-//        }
-//  ---------------------------TODO: Example_11------------------------------
-//          TODO: Rotating a Matrix 90 Degrees
-        // Initializing a 3x3 matrix
-//        int[][] matrix = {
-//                {1, 2, 3},
-//                {4, 5, 6},
-//                {7, 8, 9}
-//        };
-//        // Rotating the matrix 90 degrees clockwise
-//        int[][] rotatedMatrix = new int[matrix[0].length][matrix.length];
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = 0; j < matrix[i].length; j++) {
-//                rotatedMatrix[j][matrix.length - 1 - i] = matrix[i][j];
-//            }
-//        }
-//        // Printing the rotated matrix
-//        for (int i = 0; i < rotatedMatrix.length; i++) {
-//            for (int j = 0; j < rotatedMatrix[i].length; j++) {
-//                System.out.print(rotatedMatrix[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//  -----------------------------TODO: Example_12----------------------------
-//        TODO: finding the sum of each column
-//        int[][] matrix = {
-//                {1, 2, 3},
-//                {4, 5, 6},
-//                {7, 8, 9}
-//        };
-//        // Finding the sum of each column
-//        int columns = matrix[0].length;
-//        for (int j = 0; j < columns; j++) {
-//            int columnSum = 0;
-//            for (int i = 0; i < matrix.length; i++) {
-//                columnSum += matrix[i][j];
-//            }
-//            System.out.println("Sum of elements in Column " + (j + 1) + ": " + columnSum);
-//        }
-//  ---------------------------TODO: Example_13------------------------------
-//        TODO: Transposing a 2D Array Without Creating a New Array
-//        int[][] matrix = {
-//                {1, 2, 3},
-//                {4, 5, 6},
-//                {7, 8, 9}
-//        };
-//        // Transposing the matrix in-place
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = i + 1; j < matrix[i].length; j++) {
-//                // Swap elements at (i, j) and (j, i)
-//                int temp = matrix[i][j];
-//                matrix[i][j] = matrix[j][i];
-//                matrix[j][i] = temp;
-//            }
-//        }
-//        // Displaying the transposed matrix
-//        System.out.println("In-Place Transposed Matrix:");
-//        for (int i = 0; i < matrix.length; i++) {
-//            for (int j = 0; j < matrix[i].length; j++) {
-//                System.out.print(matrix[i][j] + " ");
-//            }
-//            System.out.println();
-//        }
-//  ---------------------------TODO: Example_14------------------------------
-//        TODO: Finding the Sum of Diagonals in a Square Matrix
-        // Initializing a 4x4 matrix
-//        int[][] matrix = {
-//                {1, 2, 3, 4},
-//                {5, 6, 7, 8},
-//                {9, 10, 11, 12},
-//                {13, 14, 15, 16}
-//        };
-//        int primaryDiagonalSum = 0;
-//        int secondaryDiagonalSum = 0;
-//        // Calculating the sum of the primary diagonal
-//        for (int i = 0; i < matrix.length; i++) {
-//            primaryDiagonalSum += matrix[i][i];
-//        }
-//        // Calculating the sum of the secondary diagonal
-//        for (int i = 0; i < matrix.length; i++) {
-//            secondaryDiagonalSum += matrix[i][matrix.length - 1 - i];
-//        }
-//        System.out.println("Sum of primary diagonal: " + primaryDiagonalSum);
-//        System.out.println("Sum of secondary diagonal: " + secondaryDiagonalSum);
+        int counter = 0;
+        for (int i = 0; i < jaggedArray.length; i++) {
+            for (int j = 0; j < jaggedArray[i].length; j++) {
+                jaggedArray[i][j] = counter++;
+            }
+        }
+
+        System.out.println("\nJagged array (triangular pattern):");
+        for (int i = 0; i < jaggedArray.length; i++) {
+            for (int j = 0; j < jaggedArray[i].length; j++) {
+                System.out.print(jaggedArray[i][j] + " ");
+            }
+            System.out.println();
+        }
+
+        // Example 5: Initializing 2D array with user input
+        System.out.print("\nEnter number of rows (1-4): ");
+        int rows = scanner.nextInt();
+        System.out.print("Enter number of columns (1-4): ");
+        int cols = scanner.nextInt();
+
+        if (rows < 1 || rows > 4) rows = 2;
+        if (cols < 1 || cols > 4) cols = 2;
+
+        int[][] userArray = new int[rows][cols];
+        System.out.println("Enter " + (rows * cols) + " elements:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print("Element [" + i + "][" + j + "]: ");
+                userArray[i][j] = scanner.nextInt();
+            }
+        }
+        System.out.println("\nYour 2D array:");
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(userArray[i][j] + "\t");
+            }
+            System.out.println();
+        }
+
+        // TODO: SECTION 2 - Basic 2D Array Operations
+
+        // Example 1: Sum of all elements
+        int[][] numbers = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        int totalSum = 0;
+        for (int i = 0; i < numbers.length; i++) {
+            for (int j = 0; j < numbers[i].length; j++) {
+                totalSum += numbers[i][j];
+            }
+        }
+        System.out.println("\nSum of all elements: " + totalSum);  // 1+2+3+4+5+6+7+8+9 = 45
+
+        // Example 2: Sum of each row
+        System.out.println("\nSum of each row:");
+        for (int i = 0; i < numbers.length; i++) {
+            int rowSum = 0;
+            for (int j = 0; j < numbers[i].length; j++) {
+                rowSum += numbers[i][j];
+            }
+            System.out.println("Row " + i + " sum: " + rowSum);
+        }
+
+        // Example 3: Sum of each column
+        System.out.println("\nSum of each column:");
+        int numCols = numbers[0].length;
+        for (int j = 0; j < numCols; j++) {          // j = column index (outer)
+            int colSum = 0;
+            for (int i = 0; i < numbers.length; i++) { // i = row index (inner)
+                colSum += numbers[i][j];
+            }
+            System.out.println("Column " + j + " sum: " + colSum);
+        }
+
+        // Example 4: Finding maximum element
+        int[][] data = {
+                {3, 7, 1},
+                {8, 2, 5},
+                {4, 6, 9}
+        };
+        int maxElement = data[0][0];    // Start with first element
+        int maxRow = 0, maxCol = 0;
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data[i].length; j++) {
+                if (data[i][j] > maxElement) {
+                    maxElement = data[i][j];
+                    maxRow = i;
+                    maxCol = j;
+                }
+            }
+        }
+        System.out.println("\nMaximum element: " + maxElement + " at position [" + maxRow + "][" + maxCol + "]");
+
+        // Example 5: Finding minimum element
+        int minElement = data[0][0];
+        int minRow = 0, minCol = 0;
+        for (int i = 0; i < data.length; i++) {
+            for (int j = 0; j < data[i].length; j++) {
+                if (data[i][j] < minElement) {
+                    minElement = data[i][j];
+                    minRow = i;
+                    minCol = j;
+                }
+            }
+        }
+        System.out.println("Minimum element: " + minElement + " at position [" + minRow + "][" + minCol + "]");
+
+        // Example 6: Average of all elements
+        int sum = 0;
+        int count = 0;
+        for (int[] row : data) {
+            for (int element : row) {
+                sum += element;
+                count++;
+            }
+        }
+        double average = (double) sum / count;
+        System.out.println("Average of all elements: " + average);
+
+        // Example 7: Counting elements based on condition
+        int[][] scores = {
+                {75, 82, 91},
+                {68, 55, 89},
+                {94, 77, 61}
+        };
+        int passCount = 0, failCount = 0;
+        for (int i = 0; i < scores.length; i++) {
+            for (int j = 0; j < scores[i].length; j++) {
+                if (scores[i][j] >= 60) {
+                    passCount++;
+                } else {
+                    failCount++;
+                }
+            }
+        }
+        System.out.println("\nPassing scores (>=60): " + passCount);
+        System.out.println("Failing scores (<60): " + failCount);
+
+        // TODO: SECTION 3 - Matrix Operations
+
+        // Example 1: Matrix transpose
+        // Transpose means converting rows to columns and columns to rows
+        // Element at [i][j] in original becomes element at [j][i] in transposed
+        int[][] original = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        int[][] transposed = new int[original[0].length][original.length];
+
+        for (int i = 0; i < original.length; i++) {
+            for (int j = 0; j < original[i].length; j++) {
+                transposed[j][i] = original[i][j];  // Swap row and column indices
+            }
+        }
+
+        System.out.println("\nOriginal matrix:");
+        for (int i = 0; i < original.length; i++) {
+            for (int j = 0; j < original[i].length; j++) {
+                System.out.print(original[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        System.out.println("Transposed matrix:");
+        for (int i = 0; i < transposed.length; i++) {
+            for (int j = 0; j < transposed[i].length; j++) {
+                System.out.print(transposed[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        // Example 2: In-place transpose (square matrix only)
+        // For square matrices, we can transpose without creating a new array
+        // We only swap elements above the diagonal with elements below
+        // Elements on the diagonal stay in place
+        int[][] squareMatrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        System.out.println("Before in-place transpose:");
+        for (int i = 0; i < squareMatrix.length; i++) {
+            for (int j = 0; j < squareMatrix[i].length; j++) {
+                System.out.print(squareMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        // j starts from i+1 to only swap upper triangle (avoids swapping twice)
+        for (int i = 0; i < squareMatrix.length; i++) {
+            for (int j = i + 1; j < squareMatrix[i].length; j++) {
+                int temp = squareMatrix[i][j];
+                squareMatrix[i][j] = squareMatrix[j][i];
+                squareMatrix[j][i] = temp;
+            }
+        }
+        System.out.println("After in-place transpose:");
+        for (int i = 0; i < squareMatrix.length; i++) {
+            for (int j = 0; j < squareMatrix[i].length; j++) {
+                System.out.print(squareMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        // Example 3: Matrix addition
+        // Add corresponding elements from two matrices of the same size
+        int[][] matrixA = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        int[][] matrixB = {
+                {9, 8, 7},
+                {6, 5, 4},
+                {3, 2, 1}
+        };
+        int[][] sumMatrix = new int[matrixA.length][matrixA[0].length];
+
+        for (int i = 0; i < matrixA.length; i++) {
+            for (int j = 0; j < matrixA[i].length; j++) {
+                sumMatrix[i][j] = matrixA[i][j] + matrixB[i][j];
+            }
+        }
+        System.out.println("Matrix A + Matrix B:");
+        for (int i = 0; i < sumMatrix.length; i++) {
+            for (int j = 0; j < sumMatrix[i].length; j++) {
+                System.out.print(sumMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        // Example 4: Matrix subtraction
+        // Subtract corresponding elements: Result[i][j] = MatrixA[i][j] - MatrixB[i][j]
+        int[][] diffMatrix = new int[matrixA.length][matrixA[0].length];
+        for (int i = 0; i < matrixA.length; i++) {
+            for (int j = 0; j < matrixA[i].length; j++) {
+                diffMatrix[i][j] = matrixA[i][j] - matrixB[i][j];
+            }
+        }
+        System.out.println("Matrix A - Matrix B:");
+        for (int i = 0; i < diffMatrix.length; i++) {
+            for (int j = 0; j < diffMatrix[i].length; j++) {
+                System.out.print(diffMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        // Example 5: Scalar multiplication
+        // Multiply every element by a single number (scalar)
+        int[][] scalarMatrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        int scalar = 2;
+        int[][] scaledMatrix = new int[scalarMatrix.length][scalarMatrix[0].length];
+
+        for (int i = 0; i < scalarMatrix.length; i++) {
+            for (int j = 0; j < scalarMatrix[i].length; j++) {
+                scaledMatrix[i][j] = scalar * scalarMatrix[i][j];
+            }
+        }
+        System.out.println("Matrix multiplied by " + scalar + ":");
+        for (int i = 0; i < scaledMatrix.length; i++) {
+            for (int j = 0; j < scaledMatrix[i].length; j++) {
+                System.out.print(scaledMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        // Example 6: Matrix multiplication
+        // To multiply matrices: columns of first matrix must equal rows of second matrix
+        int[][] matrix1 = {
+                {1, 2},
+                {3, 4},
+                {5, 6}
+        };
+        int[][] matrix2 = {
+                {7, 8, 9},
+                {10, 11, 12}
+        };
+        // Result dimensions: rows from matrix1, columns from matrix2
+        int[][] productMatrix = new int[matrix1.length][matrix2[0].length];
+
+        for (int i = 0; i < matrix1.length; i++) {              // Each row of matrix1
+            for (int j = 0; j < matrix2[0].length; j++) {       // Each column of matrix2
+                for (int k = 0; k < matrix1[0].length; k++) {   // Multiply and sum
+                    productMatrix[i][j] += matrix1[i][k] * matrix2[k][j];
+                }
+            }
+        }
+        System.out.println("Matrix multiplication (3x2 * 2x3):");
+        for (int i = 0; i < productMatrix.length; i++) {
+            for (int j = 0; j < productMatrix[i].length; j++) {
+                System.out.print(productMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        // Example 7: Rotate matrix 90 degrees clockwise
+        // Each element moves to a new position:
+        // - First row becomes last column
+        // - Last row becomes first column
+        int[][] rotateMatrix = {
+                {1, 2, 3},
+                {4, 5, 6},
+                {7, 8, 9}
+        };
+        // Rotated matrix has swapped dimensions for non-square matrices
+        int[][] rotated = new int[rotateMatrix[0].length][rotateMatrix.length];
+
+        for (int i = 0; i < rotateMatrix.length; i++) {
+            for (int j = 0; j < rotateMatrix[i].length; j++) {
+                rotated[j][rotateMatrix.length - 1 - i] = rotateMatrix[i][j];
+            }
+        }
+        System.out.println("Original matrix:");
+        for (int i = 0; i < rotateMatrix.length; i++) {
+            for (int j = 0; j < rotateMatrix[i].length; j++) {
+                System.out.print(rotateMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        System.out.println("Rotated 90° clockwise:");
+        for (int i = 0; i < rotated.length; i++) {
+            for (int j = 0; j < rotated[i].length; j++) {
+                System.out.print(rotated[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        // Example 8: Sum of diagonals (square matrix)
+        // Primary diagonal: elements where row index equals column index [0][0], [1][1], [2][2], [3][3]
+        // Secondary diagonal: elements where row + column = size - 1 [0][3], [1][2], [2][1], [3][0]
+        int[][] diagonalMatrix = {
+                {1, 2, 3, 4},
+                {5, 6, 7, 8},
+                {9, 10, 11, 12},
+                {13, 14, 15, 16}
+        };
+        int primaryDiagonal = 0;
+        int secondaryDiagonal = 0;
+
+        for (int i = 0; i < diagonalMatrix.length; i++) {
+            primaryDiagonal += diagonalMatrix[i][i];                              // [i][i]
+            secondaryDiagonal += diagonalMatrix[i][diagonalMatrix.length - 1 - i]; // [i][n-1-i]
+        }
+        System.out.println("4x4 Matrix:");
+        for (int i = 0; i < diagonalMatrix.length; i++) {
+            for (int j = 0; j < diagonalMatrix[i].length; j++) {
+                System.out.print(diagonalMatrix[i][j] + "\t");
+            }
+            System.out.println();
+        }
+        System.out.println();
+
+        System.out.println("Primary diagonal sum: " + primaryDiagonal);     // 1+6+11+16 = 34
+        System.out.println("Secondary diagonal sum: " + secondaryDiagonal); // 4+7+10+13 = 34
+
+        // TODO: SECTION 4 - Real-World Applications
+
+        // Example 1: Student grade management system
+        // 2D arrays are perfect for storing tabular data like grades
+        // Rows = students, Columns = subjects
+        System.out.println("\n--- Student Grade Management System ---");
+        String[] students = {"Alice", "Bob", "Charlie"};
+        String[] subjects = {"Math", "Science", "English", "History"};
+        int[][] studentGrades = {
+                {85, 90, 78, 92},    // Alice's grades
+                {88, 76, 95, 89},    // Bob's grades
+                {91, 84, 87, 93}     // Charlie's grades
+        };
+
+        System.out.println("\nGrade Report:");
+        System.out.print("\t\t");
+        for (String subject : subjects) {
+            System.out.print(subject + "\t");
+        }
+        System.out.println("Average");
+
+        // Print each student's grades and calculate their average
+        for (int i = 0; i < students.length; i++) {
+            System.out.print(students[i] + "\t\t");
+            int studentSum = 0;
+            for (int j = 0; j < subjects.length; j++) {
+                System.out.print(studentGrades[i][j] + "\t");
+                studentSum += studentGrades[i][j];
+            }
+            double studentAvg = (double) studentSum / subjects.length;
+            System.out.printf("%.2f%n", studentAvg);
+        }
+
+        // Calculate average for each subject (sum of column / number of students)
+        System.out.print("\nSubject Avg:\t");
+        for (int j = 0; j < subjects.length; j++) {
+            int subjectSum = 0;
+            for (int i = 0; i < students.length; i++) {
+                subjectSum += studentGrades[i][j];
+            }
+            double subjectAvg = (double) subjectSum / students.length;
+            System.out.printf("%.1f\t", subjectAvg);
+        }
+        System.out.println();
+
+        // Example 2: Tic-Tac-Toe board representation
+        // A 3x3 char array is perfect for representing a game board
+        // ' ' = empty, 'X' = player X, 'O' = player O
+        System.out.println("\n--- Tic-Tac-Toe Board ---");
+        char[][] board = {
+                {'X', 'O', 'X'},
+                {' ', 'X', 'O'},
+                {'O', ' ', 'X'}
+        };
+
+        // Display the board with grid lines
+        System.out.println("  0   1   2");
+        for (int i = 0; i < 3; i++) {
+            System.out.print(i + " ");
+            for (int j = 0; j < 3; j++) {
+                System.out.print(board[i][j]);
+                if (j < 2) System.out.print(" | ");
+            }
+            System.out.println();
+            if (i < 2) System.out.println("  ---------");
+        }
+
+        // Check for winner - must check rows, columns, and both diagonals
+        // Check rows: all three elements in a row are the same
+        // Check columns: all three elements in a column are the same
+        for (int i = 0; i < 3; i++) {
+            // Check row i
+            if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ') {
+                System.out.println("Winner: " + board[i][0] + " (row " + i + ")");
+            }
+            // Check column i
+            if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ') {
+                System.out.println("Winner: " + board[0][i] + " (column " + i + ")");
+            }
+        }
+        // Check main diagonal (top-left to bottom-right): [0][0], [1][1], [2][2]
+        if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ') {
+            System.out.println("Winner: " + board[0][0] + " (main diagonal)");
+        }
+        // Check anti-diagonal (top-right to bottom-left): [0][2], [1][1], [2][0]
+        if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ') {
+            System.out.println("Winner: " + board[0][2] + " (anti-diagonal)");
+        }
+
+        scanner.close();
     }
 }
