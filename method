@@ -1,94 +1,273 @@
 public class methods {
-    public static void main(String args[]){
-//        // an instance (object) of methods class
+
+    public static void main(String[] args) {
+
+        // =====================================================================
+        // SECTION 1 - Method Basics (Static vs Non-Static, Return Types)
+        // =====================================================================
+
+        // To call a non-static method, you need an instance (object) of the class
         methods me = new methods();
-//        // calling non-static method
+
+        // Example 1: Calling a non-static method
         me.myMethod1();
-//        // calling static method
+
+        // Example 2: Calling a static method
+        // Static methods belong to the class itself — no object needed
         myMethod2();
 
-//        call summation method
-        summation(5, 4);
-        
-//        call celsiusToFahrenheit method
-        me.celsiusToFahrenheit(45);
-        
-//        calling power method
-        me.power(4, 2);
+        // =====================================================================
+        // SECTION 2 - Methods with Parameters and Return Values
+        // =====================================================================
 
-//        call array findMax method
-        int[] numbers = {};
-        int maxNumber = findMax(numbers);
-        System.out.println("Maximum Number: " + maxNumber);
+        // Example 3: Summation method (two int parameters, returns int)
+        System.out.println("\n--- Summation Method ---");
+        int sumResult = summation(5, 4);
+        System.out.println("Sum of 5 and 4: " + sumResult);
 
-//        array average method
-        int[] myArray_1 = {};
+        // Example 4: Celsius to Fahrenheit conversion (double parameter, returns double)
+        // Formula: (C × 9/5) + 32
+        System.out.println("\n--- Celsius to Fahrenheit ---");
+        double celsius = 45;
+        double fahrenheit = me.celsiusToFahrenheit(celsius);
+        System.out.println(celsius + "°C = " + fahrenheit + "°F");
+
+        double boilingPoint = me.celsiusToFahrenheit(100);
+        System.out.println("Boiling point: 100°C = " + boilingPoint + "°F");
+
+        double freezingPoint = me.celsiusToFahrenheit(0);
+        System.out.println("Freezing point: 0°C = " + freezingPoint + "°F");
+
+        // Example 5: Power method (base and exponent, returns double)
+        // Uses Math.pow() internally
+        System.out.println("\n--- Power Method ---");
+        double result1 = me.power(4, 2);
+        System.out.println("4 ^ 2 = " + result1);
+
+        double result2 = me.power(2, 10);
+        System.out.println("2 ^ 10 = " + result2);
+
+        double result3 = me.power(3, 3);
+        System.out.println("3 ^ 3 = " + result3);
+
+        // =====================================================================
+        // SECTION 3 - Methods with Randomness
+        // =====================================================================
+
+        // Example 6: Coin toss simulation
+        // Uses Math.random() — returns a value between 0.0 (inclusive) and 1.0 (exclusive)
+        System.out.println("\n--- Coin Toss Simulation (5 tosses) ---");
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Toss " + i + ": " + me.coinToss());
+        }
+
+        // Example 7: Random integer in a range [min, max] (inclusive)
+        // Useful for games, simulations, and testing
+        System.out.println("\n--- Random Integer in Range ---");
+        System.out.println("5 random numbers between 1 and 100:");
+        for (int i = 0; i < 5; i++) {
+            System.out.print(me.randomIntInRange(1, 100) + " ");
+        }
+        System.out.println();
+
+        System.out.println("Rolling a dice 5 times (range 1-6):");
+        for (int i = 0; i < 5; i++) {
+            System.out.print(me.randomIntInRange(1, 6) + " ");
+        }
+        System.out.println();
+
+        // =====================================================================
+        // SECTION 4 - Methods Operating on 1D Arrays
+        // =====================================================================
+
+        // Example 8: Find maximum element in an array
+        // Iterates through the array comparing each element to the current max
+        System.out.println("\n--- Find Maximum Value in Array ---");
+        int[] sampleArray = {3, 7, 1, 8, 2, 5, 4, 6, 9};
+        System.out.print("Array: ");
+        for (int val : sampleArray) System.out.print(val + " ");
+        System.out.println();
+
+        int maxNumber = findMax(sampleArray);
+        System.out.println("Maximum value: " + maxNumber);
+
+        // Edge case: empty array
+        int[] emptyArray = {};
+        System.out.print("Empty array max: ");
+        findMax(emptyArray);  // Will print the empty notice
+
+        // Example 9: Calculate average of array elements
+        // Sum all elements, then divide by count — casts to double for precision
+        System.out.println("\n--- Calculate Average of Array ---");
+        int[] myArray_1 = {10, 20, 30, 40, 50};
+        System.out.print("Array: ");
+        for (int val : myArray_1) System.out.print(val + " ");
+        System.out.println();
+
         double average = calculateAverage(myArray_1);
-        System.out.println("Average of elements: " + average);
+        System.out.println("Average: " + average);
 
-//        search for element in array
+        // Edge case: single element
+        int[] singleElement = {42};
+        System.out.println("Single element array average: " + calculateAverage(singleElement));
+
+        // Example 10: Sum of even numbers in an array
+        System.out.println("\n--- Sum of Even Numbers ---");
+        int[] mixedArray = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        System.out.print("Array: ");
+        for (int val : mixedArray) System.out.print(val + " ");
+        System.out.println();
+
+        int evenSum = me.sumEvenNumbers(mixedArray);
+        System.out.println("Sum of even numbers: " + evenSum);  // 2+4+6+8+10 = 30
+
+        // Example 11: Check if an element exists in the array (linear search)
+        // Returns true on the first match, false if not found
+        System.out.println("\n--- Search Element in Array ---");
         int[] myArray_2 = {1, 2, 3, 4, 5};
+        System.out.print("Array: ");
+        for (int val : myArray_2) System.out.print(val + " ");
+        System.out.println();
+
         int targetElement = 3;
         boolean contains = containsElement(myArray_2, targetElement);
-        System.out.println("Array contains " + targetElement + ": " + contains);
+        System.out.println("Array contains " + targetElement + ": " + contains);  // true
 
-//        calling factorial method
-        int result = factorial(5);
-        System.out.println("Factorial: " + result);
+        int missingElement = 99;
+        boolean notFound = containsElement(myArray_2, missingElement);
+        System.out.println("Array contains " + missingElement + ": " + notFound);  // false
 
-//        array 2D
+        // Example 12: Factorial of a number
+        // n! = 1 × 2 × 3 × ... × n   (note: 0! = 1 by definition)
+        System.out.println("\n--- Factorial Method ---");
+        System.out.println("0! = " + factorial(0));   // 1
+        System.out.println("1! = " + factorial(1));   // 1
+        System.out.println("5! = " + factorial(5));   // 120
+        System.out.println("10! = " + factorial(10)); // 3628800
+
+        // =====================================================================
+        // SECTION 5 - Methods Operating on 2D Arrays
+        // =====================================================================
+
+        // Example 13: Initialize a 2D array with random values (0–99)
+        System.out.println("\n--- Initialize 2D Array with Random Values ---");
         int rows = 3;
         int cols = 4;
-//        // Initialize a 2D array
         int[][] myArray_3 = initializeArray(rows, cols);
-//        // Print the 2D array
-        System.out.println("Original 2D Array:");
+        System.out.println("Randomly initialized " + rows + "x" + cols + " array:");
         printArray(myArray_3);
-//        // Calculate and print the sum of all elements in the 2D array
+
+        // Example 14: Print a 2D array in formatted grid layout
+        // Nested loops: outer = rows, inner = columns
+        System.out.println("\n--- Print 2D Array (Manual Values) ---");
+        int[][] fixedMatrix = {
+                {10, 20, 30, 40},
+                {50, 60, 70, 80},
+                {90, 100, 110, 120}
+        };
+        System.out.println("Fixed 3x4 matrix:");
+        printArray(fixedMatrix);
+
+        // Example 15: Calculate sum of all elements in a 2D array
+        // Iterates every row and every column, accumulating the total
+        System.out.println("\n--- Sum of All 2D Array Elements ---");
         int sum = calculateSum(myArray_3);
-        System.out.println("\nSum of all elements: " + sum);
+        System.out.println("Sum of random array elements: " + sum);
 
-    }// TODO: end of main method
+        int fixedSum = calculateSum(fixedMatrix);
+        System.out.println("Sum of fixed matrix elements: " + fixedSum);  // 780
 
-    // non-static method
-    public void myMethod1(){
-        System.out.println("My first method");
+        // =====================================================================
+        // SECTION 6 - Real-World Application: Student Grade Calculator
+        // =====================================================================
+        System.out.println("\n--- Real-World Application: Student Grade Calculator ---");
+
+        String[] students = {"Alice", "Bob", "Charlie", "Diana"};
+        // Each row = a student, each column = a subject score
+        int[][] studentScores = {
+                {85, 90, 78},    // Alice
+                {88, 76, 95},    // Bob
+                {91, 84, 87},    // Charlie
+                {70, 65, 80}     // Diana
+        };
+
+        System.out.println("Student\t\tAvg Score\tGrade");
+        System.out.println("-------\t\t---------\t-----");
+
+        for (int i = 0; i < students.length; i++) {
+            double studentAvg = calculateAverage(studentScores[i]);
+            String letterGrade;
+            if (studentAvg >= 90) letterGrade = "A";
+            else if (studentAvg >= 80) letterGrade = "B";
+            else if (studentAvg >= 70) letterGrade = "C";
+            else letterGrade = "F";
+
+            System.out.printf("%-12s\t%.2f\t\t%s%n", students[i], studentAvg, letterGrade);
+        }
+
+    } // end of main
+
+    // =========================================================================
+    // SECTION 1 - Basic Methods
+    // =========================================================================
+
+    // Non-static method — must be called on an object instance
+    public void myMethod1() {
+        System.out.println("My first non-static method");
     }
-    // static method
-    public static void myMethod2(){
-        System.out.println("My first method");
+
+    // Static method — belongs to the class, called without an object
+    public static void myMethod2() {
+        System.out.println("My first static method");
     }
 
-    public static int summation(int x, int y){
-        int sum;
-        sum = x + y;
+    // =========================================================================
+    // SECTION 2 - Math and Conversion Methods
+    // =========================================================================
+
+    // Adds two integers and returns the result
+    public static int summation(int x, int y) {
+        int sum = x + y;
         return sum;
     }
 
-    // TODO: Method to convert Celsius to Fahrenheit
+    // Converts a Celsius temperature to Fahrenheit
+    // Formula: (C × 9/5) + 32
     public double celsiusToFahrenheit(double celsius) {
-        return (celsius * 9/5) + 32;
+        return (celsius * 9.0 / 5.0) + 32;
     }
 
-    // TODO: Method to calculate the power of a number
+    // Returns base raised to the power of exponent
+    // Uses Java's built-in Math.pow(base, exponent)
     public double power(double base, int exponent) {
         return Math.pow(base, exponent);
     }
 
-    // TODO: Method to simulate a coin toss (Heads or Tails)
+    // =========================================================================
+    // SECTION 3 - Random Methods
+    // =========================================================================
+
+    // Simulates a coin toss — returns "Heads" or "Tails" with 50% probability each
     public String coinToss() {
-        return Math.random() < 0.5 ? "Heads" : "Tails";  // 50% chance for Heads or Tails
+        return Math.random() < 0.5 ? "Heads" : "Tails";
     }
 
-    // TODO: Method to generate a random integer between two given values (inclusive)
+    // Returns a random integer between min and max (both inclusive)
+    // Formula: min + random portion of the range [0, max-min]
     public int randomIntInRange(int min, int max) {
-        return min + (int) (Math.random() * (max - min + 1));  // Random integer in the range [min, max]
+        return min + (int) (Math.random() * (max - min + 1));
     }
 
-    // TODO: Method to find the maximum value in an array
+    // =========================================================================
+    // SECTION 4 - 1D Array Methods
+    // =========================================================================
+
+    // Finds and returns the largest value in an integer array
+    // Starts with the first element and updates max whenever a larger value is found
     public static int findMax(int[] array) {
         if (array.length == 0) {
-            System.out.println("Array is empty");
+            System.out.println("Array is empty — cannot find maximum.");
+            return Integer.MIN_VALUE;  // Sentinel value to indicate failure
         }
         int max = array[0];
         for (int i = 1; i < array.length; i++) {
@@ -99,10 +278,12 @@ public class methods {
         return max;
     }
 
-    // TODO: Method to calculate the average of elements in a 1D array
+    // Calculates and returns the average (mean) of all elements in the array
+    // Casts to double to avoid integer division losing the decimal portion
     public static double calculateAverage(int[] array) {
         if (array.length == 0) {
-            System.out.println("Array is empty");
+            System.out.println("Array is empty — cannot calculate average.");
+            return 0.0;
         }
         int sum = 0;
         for (int value : array) {
@@ -111,7 +292,8 @@ public class methods {
         return (double) sum / array.length;
     }
 
-    // TODO: Method to find the sum of even numbers in an array
+    // Returns the sum of only the even-valued elements in the array
+    // Uses the modulo operator: num % 2 == 0 means num is even
     public int sumEvenNumbers(int[] array) {
         int sum = 0;
         for (int num : array) {
@@ -122,7 +304,8 @@ public class methods {
         return sum;
     }
 
-    // TODO: Method to check if an element exists in a 1D array
+    // checks each element one by one
+    // Returns true as soon as a match is found; false if the whole array is scanned
     public static boolean containsElement(int[] array, int target) {
         for (int value : array) {
             if (value == target) {
@@ -132,10 +315,13 @@ public class methods {
         return false;
     }
 
-    // TODO: Method to calculate the factorial of a number
+    // Calculates n! (n factorial) iteratively
+    // 0! = 1,  n! = 1 × 2 × 3 × ... × n
+    // Note: factorials grow very fast — int overflows beyond 12!
     public static int factorial(int n) {
         if (n < 0) {
-            System.out.println("Factorial is not defined for negative numbers");
+            System.out.println("Factorial is not defined for negative numbers.");
+            return -1;  // Sentinel value to indicate invalid input
         }
         int result = 1;
         for (int i = 1; i <= n; i++) {
@@ -144,28 +330,35 @@ public class methods {
         return result;
     }
 
-    // TODO: Method to initialize a 2D array with random values
+    // =========================================================================
+    // SECTION 5 - 2D Array Methods
+    // =========================================================================
+
+    // Creates a 2D array of given dimensions and fills it with random values 0–99
+    // Uses nested loops: outer iterates rows, inner iterates columns
     public static int[][] initializeArray(int rows, int cols) {
         int[][] array = new int[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                array[i][j] = (int) (Math.random() * 100);
+                array[i][j] = (int) (Math.random() * 100);  // Random int in [0, 99]
             }
         }
         return array;
     }
 
-    // TODO: Method to print the contents of a 2D array
+    // Prints every element of a 2D array, row by row
+    // A newline is printed after each row to produce a grid-like display
     public static void printArray(int[][] array) {
         for (int i = 0; i < array.length; i++) {
             for (int j = 0; j < array[i].length; j++) {
-                System.out.print(array[i][j] + " ");
+                System.out.printf("%4d", array[i][j]);  // Right-aligned in 4 chars
             }
             System.out.println();
         }
     }
 
-    // TODO: Method to calculate the sum of all elements in a 2D array
+    // Iterates through every element in the 2D array and accumulates the total
+    // Uses enhanced for-each loops: outer iterates each row (int[]), inner iterates values
     public static int calculateSum(int[][] array) {
         int sum = 0;
         for (int[] row : array) {
@@ -175,4 +368,5 @@ public class methods {
         }
         return sum;
     }
+
 }
