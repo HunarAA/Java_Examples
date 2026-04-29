@@ -1,0 +1,298 @@
+import java.io.*;
+
+public class Java_FileHandling {
+    public static void main(String[] args) {
+
+        // change the path to your own
+        String filePath = "E:\\Java_Examples\\src\\myFile.txt";
+
+// File Class (create, check properties, delete)
+        // TODO: example_1 -> File class operations
+
+        // creating a file
+        createFileIfNotExists(filePath);
+
+        // check file properties
+        File myFile = new File(filePath);
+        System.out.println("File Name:     " + myFile.getName());
+        System.out.println("Absolute Path: " + myFile.getAbsolutePath());
+        System.out.println("Readable:      " + myFile.canRead());
+        System.out.println("Writable:      " + myFile.canWrite());
+        System.out.println("File Size:     " + myFile.length() + " bytes");
+        System.out.println("Is File:       " + myFile.isFile());
+        System.out.println("Is Directory:  " + myFile.isDirectory());
+
+// Directory operations
+        // TODO: example_2 -> create a directory and list its contents
+
+        File dir = new File("E:\\Java_Examples\\src\\MyDirectory");
+
+        // create directory
+        if (!dir.exists()) {
+            if (dir.mkdir()) {
+                System.out.println("Directory created: " + dir.getName());
+            } else {
+                System.out.println("Failed to create directory.");
+            }
+        } else {
+            System.out.println("Directory already exists.");
+        }
+
+        // create some files inside the directory
+        createFileInDir(dir, "notes.txt");
+        createFileInDir(dir, "data.csv");
+        createFileInDir(dir, "readme.md");
+
+        // list files in the directory
+        if (dir.isDirectory()) {
+            String[] files = dir.list();
+            if (files != null && files.length > 0) {
+                System.out.println("Files in '" + dir.getName() + "':");
+                for (String file : files) {
+                    System.out.println("  - " + file);
+                }
+            } else {
+                System.out.println("Directory is empty.");
+            }
+        }
+
+// FileWriter (write content to a file)
+        // TODO: example_3 -> FileWriter
+
+        // write a simple string to the file (overwrites existing content)
+        String content = "Hello, This is my text to be written to a text file.";
+        writeFileContent(myFile, content);
+
+        // save user preferences using FileWriter
+        String username = "john_doe";
+        String email    = "john@example.com";
+        String language = "English";
+        savePreferences(filePath, username, email, language);
+
+// FileReader (read character by character)
+        // TODO: example_4 -> FileReader
+
+        // read file content character by character
+        readFileCharByChar(myFile);
+
+// BufferedWriter (efficient writing)
+        // TODO: example_5 -> BufferedWriter
+
+        // save app settings using BufferedWriter
+        String theme                = "dark";
+        boolean notificationsEnabled = true;
+        int fontSize                = 14;
+        saveAppSettings(filePath, theme, notificationsEnabled, fontSize);
+
+        // write student records using BufferedWriter
+        writeStudentRecords(filePath);
+
+// BufferedReader (read line by line)
+        // TODO: example_6 -> BufferedReader
+
+        // read file content line by line
+        readFileLineByLine(filePath);
+
+        // TODO: call these two methods yourself in main() and observe the output
+        // saveAppSettings(filePath, "light", false, 12);
+        // readAppSettings(myFile);
+
+// delete file and directory
+        // TODO: example_7 -> delete file and directory
+
+        deleteFile(myFile);
+        cleanUpDirectory(dir);
+    }// end of main method
+
+    // example_1 -> create file if it does not exist
+    public static void createFileIfNotExists(String filePath) {
+        File file = new File(filePath);
+        try {
+            if (file.canWrite()) {
+                if (!file.exists()) {
+                    if (file.createNewFile()) {
+                        System.out.println("File created successfully.");
+                    }
+                } else {
+                    System.out.println("File already exists. Here is its path:\n" + file.getAbsolutePath());
+                }
+            } else {
+                System.out.println("Access denied. Cannot write to this location.");
+            }
+        } catch (IOException e) {
+            System.out.println("An error occurred: " + e.getMessage());
+        }
+    }
+
+    // example_2 helper -> create a file inside a given directory
+    public static void createFileInDir(File dir, String fileName) {
+        File f = new File(dir, fileName);
+        try {
+            f.createNewFile();
+        } catch (IOException e) {
+            System.out.println("Could not create file: " + fileName);
+        }
+    }
+
+    // example_3 -> write a string to a file using FileWriter
+    public static void writeFileContent(File file, String content) {
+        try (FileWriter writer = new FileWriter(file)) {
+            writer.write(content);
+            System.out.println("Content written to the file successfully.");
+        } catch (IOException e) {
+            System.out.println("An error occurred while writing to the file.");
+        }
+    }
+
+    // example_3 -> save user preferences (username, email, language) using FileWriter
+    public static void savePreferences(String filePath, String username,
+                                       String email, String language) {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            writer.write("Username: " + username + "\n");
+            writer.write("Email: "    + email    + "\n");
+            writer.write("Language: " + language + "\n");
+            System.out.println("User preferences saved successfully.");
+        } catch (IOException e) {
+            System.err.println("Error saving user preferences: " + e.getMessage());
+        }
+    }
+
+    // example_4 -> read file content character by character using FileReader
+    // fileReader.read() returns the Unicode value of each character, or -1 at end of file
+    public static void readFileCharByChar(File file) {
+        try (FileReader fileReader = new FileReader(file)) {
+            int character;
+            System.out.println("--- File content (character by character) ---");
+            while ((character = fileReader.read()) != -1) {
+                // cast the Unicode int value back to a readable char
+                System.out.print((char) character);
+            }
+            System.out.println(); // new line after file content
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+
+    // example_5 -> save app settings (theme, notifications, font size) using BufferedWriter
+    // BufferedWriter stores data in an internal 8192-character buffer,
+    // and flushes to disk only when the buffer is full or the writer is closed —
+    // this reduces disk communication and improves performance.
+    public static void saveAppSettings(String filePath, String theme,
+                                       boolean notificationsEnabled, int fontSize) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("theme="         + theme                + "\n");
+            writer.write("notifications=" + notificationsEnabled + "\n");
+            writer.write("font_size="     + fontSize             + "\n");
+            System.out.println("App settings saved using BufferedWriter.");
+        } catch (IOException e) {
+            System.err.println("Error saving app settings: " + e.getMessage());
+        }
+    }
+
+    // example_5 -> write formatted student records using BufferedWriter
+    public static void writeStudentRecords(String filePath) {
+        String[][] students = {
+                {"1", "Alan Turing",    "95.5"},
+                {"2", "Ada Lovelace",   "88.0"},
+                {"3", "Grace Hopper",   "91.3"},
+                {"4", "Linus Torvalds", "78.7"},
+                {"5", "James Gosling",  "85.2"}
+        };
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write("ID | Name             | Grade");
+            writer.newLine();
+            writer.write("---+------------------+------");
+            writer.newLine();
+            for (String[] student : students) {
+                String record = String.format("%-3s| %-17s| %s",
+                        student[0], student[1], student[2]);
+                writer.write(record);
+                writer.newLine();
+            }
+            System.out.println("Student records written using BufferedWriter.");
+        } catch (IOException e) {
+            System.out.println("Error writing student records: " + e.getMessage());
+        }
+    }
+
+    // example_6 -> read file content line by line using BufferedReader
+    // BufferedReader wraps a FileReader and reads chunks into a buffer,
+    // so individual readLine() calls hit memory instead of disk each time.
+    public static void readFileLineByLine(String filePath) {
+        try (FileReader fileReader = new FileReader(filePath);
+             BufferedReader reader = new BufferedReader(fileReader)) {
+            String line;
+            int lineNumber = 1;
+            System.out.println("--- File content (line by line) ---");
+            while ((line = reader.readLine()) != null) {
+                System.out.println(lineNumber + ": " + line);
+                lineNumber++;
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+        }
+    }
+
+    // example_6 (TODO) -> read app settings and parse key=value pairs using FileReader
+    // call this method yourself in main() after saveAppSettings()
+    public static void readAppSettings(File file) {
+        try (FileReader reader = new FileReader(file)) {
+            System.out.println("App Settings:");
+            String currentLine = "";
+            int ch;
+            while ((ch = reader.read()) != -1) {    // -1 = end of file
+                if (ch != '\n') {                   // '\n' = end of line
+                    currentLine += (char) ch;
+                } else {
+                    // split on '=' to separate key from value
+                    String[] parts = currentLine.split("=");
+                    if (parts.length == 2) {
+                        System.out.println(parts[0].trim() + " -> " + parts[1].trim());
+                    }
+                    currentLine = "";
+                }
+            }
+            // handle last line if file does not end with a newline
+            if (!currentLine.isEmpty()) {
+                String[] parts = currentLine.split("=");
+                if (parts.length == 2) {
+                    System.out.println(parts[0].trim() + " -> " + parts[1].trim());
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading app settings: " + e.getMessage());
+        }
+    }
+
+    // example_7 -> delete a single file
+    public static void deleteFile(File file) {
+        if (file.exists()) {
+            if (file.delete()) {
+                System.out.println("File deleted successfully: " + file.getName());
+            } else {
+                System.out.println("Failed to delete the file.");
+            }
+        } else {
+            System.out.println("File does not exist.");
+        }
+    }
+
+    // example_7 -> delete all files inside a directory, then delete the directory itself
+    public static void cleanUpDirectory(File dir) {
+        if (dir.exists()) {
+            File[] contents = dir.listFiles();
+            if (contents != null) {
+                for (File f : contents) {
+                    f.delete();
+                }
+            }
+            if (dir.delete()) {
+                System.out.println("Directory deleted successfully: " + dir.getName());
+            } else {
+                System.out.println("Failed to delete the directory.");
+            }
+        } else {
+            System.out.println("Directory does not exist.");
+        }
+    }
+}
